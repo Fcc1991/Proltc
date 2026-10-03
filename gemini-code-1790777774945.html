@@ -1,0 +1,3309 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>長照好幫手 | 找得到、看得懂、用得上的長照資源</title>
+  
+  <!-- 字型引入：高易讀性無襯線黑體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       1. 全站設計變數（色彩、圓角、排版）
+       ============================================================ */
+    :root {
+      --primary: #0e7490;         /* 核心湖水藍綠 */
+      --primary-dark: #155e75;
+      --primary-light: #ecfeff;
+      --accent: #ea580c;          /* 暖橘重點色 */
+      --accent-soft: #fff7ed;
+      --text-main: #1e293b;       /* 高對比鐵灰，閱讀護眼 */
+      --text-muted: #475569;
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+      --shadow-hover: 0 12px 28px -4px rgba(14, 116, 144, 0.12);
+      --radius-base: 18px;
+      --max-width: 1200px;
+      --base-font-size: 1.125rem; /* 預設 18px */
+
+      /* 輔具計算機專用色調 */
+      --assistive-primary: #1a73e8;
+      --assistive-primary-dark: #1557b0;
+      --assistive-warning: #d93025;
+      --assistive-warning-bg: #fce8e6;
+      --assistive-success: #188038;
+      --assistive-rental: #7b1fa2;
+      --assistive-rental-bg: #f3e5f5;
+    }
+
+    body.large-text {
+      --base-font-size: 1.3rem;   /* 長輩放大模式 (+20%) */
+    }
+
+    body.menu-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      font-size: var(--base-font-size);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ============================================================
+       2. 無障礙字級調整列
+       ============================================================ */
+    .top-bar {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .font-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .font-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .font-btn.active, .font-btn:hover {
+      background-color: var(--primary);
+      border-color: var(--primary-light);
+    }
+
+    /* ============================================================
+       3. 導覽列與手機優化選單 (含漢堡動畫與背景遮罩)
+       ============================================================ */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-icon {
+      font-size: 1.8rem;
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      cursor: pointer;
+      padding: 0;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2.5px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .menu-toggle.is-active span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+    .menu-toggle.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    .menu-toggle.is-active span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    .menu-backdrop {
+      display: none;
+      position: fixed;
+      top: 74px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 74px);
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 998;
+    }
+
+    .menu-backdrop.show {
+      display: block;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 74px;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border-bottom: 2px solid var(--primary);
+      padding: 16px 20px 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      gap: 8px;
+      max-height: calc(85vh - 74px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      z-index: 999;
+      animation: menuSlideDown 0.25s ease-out;
+    }
+
+    @keyframes menuSlideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 14px 16px;
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--text-main);
+      border-radius: 12px;
+      background-color: #f8fafc;
+      min-height: 52px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .nav-link:active {
+      background-color: #e2e8f0;
+      transform: scale(0.99);
+    }
+
+    .nav-link-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .arrow-icon, .sub-arrow {
+      font-size: 0.85rem;
+      transition: transform 0.25s ease;
+    }
+
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      padding: 6px 0 6px 12px;
+      gap: 6px;
+    }
+
+    .dropdown-menu.open {
+      display: flex;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 13px 14px;
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      border-radius: 10px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      min-height: 50px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .dropdown-item:active {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .dropdown-submenu {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .dropdown-sub-menu {
+      display: none;
+      flex-direction: column;
+      padding: 4px 0 4px 14px;
+      gap: 5px;
+    }
+
+    .dropdown-sub-menu.open {
+      display: flex;
+    }
+
+    .sub-item {
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      color: #334155;
+      background-color: #f1f5f9;
+      border-radius: 8px;
+      border: 1px dashed var(--border-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .sub-item:active {
+      background-color: #e0f2fe;
+      color: var(--primary);
+    }
+
+    .dropdown-menu.grid-2col {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dropdown-menu.grid-2col.open {
+      display: flex;
+    }
+
+    /* ============================================================
+       4. 核心標語區 (Hero Section)
+       ============================================================ */
+    .hero {
+      padding: 56px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at center, #ffffff 0%, var(--bg-body) 100%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e0f2fe;
+      color: var(--primary);
+      padding: 6px 20px;
+      border-radius: 99px;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      line-height: 1.35;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       5. 關於我、核心理念與核心價值專區
+       ============================================================ */
+    .about-section {
+      padding: 20px 0 50px;
+    }
+
+    .intro-quote-card {
+      background-color: #ffffff;
+      border-left: 6px solid var(--primary);
+      border-radius: 14px;
+      padding: 30px 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 36px;
+      font-size: 1.2rem;
+      color: #334155;
+      line-height: 1.8;
+    }
+
+    .intro-quote-card p:not(:last-child) {
+      margin-bottom: 14px;
+    }
+
+    .intro-quote-card strong {
+      color: var(--primary-dark);
+    }
+
+    .profile-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-base);
+      padding: 36px 26px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 36px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .profile-avatar-icon {
+      font-size: 2.6rem;
+      background-color: var(--primary-light);
+      padding: 12px;
+      border-radius: 16px;
+      line-height: 1;
+    }
+
+    .profile-header-text h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .profile-header-text p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .profile-bio {
+      font-size: 1.15rem;
+      color: #334155;
+      margin-bottom: 24px;
+      line-height: 1.75;
+    }
+
+    .profile-tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .profile-tag {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 99px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .profile-tag.highlight {
+      background-color: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: #bae6fd;
+    }
+
+    .philosophy-banner {
+      background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+      border: 1.5px solid #ccfbf1;
+      border-radius: var(--radius-base);
+      padding: 34px 26px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .philosophy-banner h4 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .philosophy-banner p {
+      font-size: 1.15rem;
+      color: #334155;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .value-card {
+      background-color: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 16px;
+      padding: 26px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .value-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .value-icon-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .value-icon-title .icon {
+      font-size: 1.8rem;
+    }
+
+    .value-icon-title h4 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .value-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       6. 核心 6 大服務卡片區
+       ============================================================ */
+    .section-cards {
+      padding: 24px 0 54px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+      border-left: 6px solid var(--primary);
+      padding-left: 14px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-base);
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      touch-action: manipulation;
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      padding: 14px;
+      background-color: var(--primary-light);
+      border-radius: 16px;
+      flex-shrink: 0;
+    }
+
+    .card-content h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .card-content p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .card-action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    /* ============================================================
+       7. 多方管道與溫暖陪伴專區
+       ============================================================ */
+    .community-section {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-base);
+      padding: 36px 24px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .community-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .community-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #ffffff;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .social-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-line {
+      background-color: #06C755;
+      box-shadow: 0 4px 14px rgba(6, 199, 85, 0.3);
+    }
+
+    .btn-ig {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      box-shadow: 0 4px 14px rgba(220, 39, 67, 0.3);
+    }
+
+    .warm-companion-card {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fef3c7 100%);
+      border: 1.5px solid #fed7aa;
+      border-radius: var(--radius-base);
+      padding: 40px 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(234, 88, 12, 0.08);
+      position: relative;
+    }
+
+    .warm-icon-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: #ffffff;
+      border-radius: 50%;
+      font-size: 2rem;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.15);
+    }
+
+    .warm-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #9a3412;
+      margin-bottom: 10px;
+    }
+
+    .warm-subtitle {
+      font-size: 1.15rem;
+      color: #7c2d12;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       8. 內頁共用外框與導覽標題 (SPA 佈局)
+       ============================================================ */
+    .calc-page-view {
+      display: none;
+      padding: 24px 0 60px;
+    }
+
+    .calc-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .btn-back-home:active {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .mobile-scroll-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px dashed #7dd3fc;
+    }
+
+    @media (max-width: 1023px) {
+      .mobile-scroll-hint {
+        display: flex;
+      }
+    }
+
+    /* ============================================================
+       9. 照顧及專業服務計算機 (含手機端左側凍結首欄)
+       ============================================================ */
+    .ltc-calc-wrapper {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-color);
+    }
+
+    .ltc-calc-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .ltc-table-scroll {
+      flex: 1 1 680px;
+      overflow-x: auto;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+
+    .ltc-side-panel {
+      flex: 1 1 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ltc-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+
+    .ltc-table th, .ltc-table td {
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .ltc-table th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 700;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .ltc-table td.num {
+      text-align: right;
+    }
+
+    .ltc-table tbody tr:hover {
+      background-color: #f1f5f9;
+    }
+
+    @media (max-width: 1023px) {
+      .ltc-table th.col-freeze-code,
+      .ltc-table td.col-freeze-code {
+        position: sticky;
+        left: 0;
+        z-index: 20;
+        background: #ffffff;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.04);
+      }
+      .ltc-table th.col-freeze-code {
+        z-index: 25;
+        background: #f8fafc;
+      }
+
+      .ltc-table th.col-freeze-name,
+      .ltc-table td.col-freeze-name {
+        position: sticky;
+        left: 68px;
+        z-index: 20;
+        background: #ffffff;
+        box-shadow: 3px 0 6px rgba(0,0,0,0.06);
+      }
+      .ltc-table th.col-freeze-name {
+        z-index: 25;
+        background: #f8fafc;
+      }
+    }
+
+    .ltc-input-qty {
+      width: 52px;
+      height: 38px;
+      padding: 4px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      color: #0f172a;
+      font-size: 16px;
+    }
+
+    .ltc-input-qty:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(14, 116, 144, 0.2);
+    }
+
+    .side-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .side-card h4 {
+      margin: 0 0 10px 0;
+      font-size: 15px;
+      color: #0f172a;
+      border-bottom: 2px solid #0ea5e9;
+      padding-bottom: 6px;
+    }
+
+    .cms-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .cms-table th, .cms-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 8px;
+      text-align: right;
+    }
+
+    .cms-table th {
+      background: #f1f5f9;
+      text-align: center;
+    }
+
+    .negative { color: #dc2626; font-weight: 700; }
+    .positive { color: #16a34a; font-weight: 700; }
+
+    .fee-summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 14.5px;
+    }
+
+    .fee-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: #d97706;
+    }
+
+    .note-text {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .calc-notes-card {
+      background: #fff;
+      border: 1.5px solid var(--border-color);
+      border-left: 6px solid #f59e0b;
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .calc-notes-card h5 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #92400e;
+      margin-bottom: 12px;
+    }
+
+    .calc-notes-card p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    .calc-notes-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       10. 輔具與無障礙環境改善計算機樣式
+       ============================================================ */
+    .assistive-calc-container {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-color);
+    }
+
+    .header-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.12);
+      margin-bottom: 16px;
+      border: 1px solid #e8eaed;
+    }
+    .header-card h1 { font-size: 1.35rem; color: var(--assistive-primary-dark); margin-bottom: 6px; }
+    .header-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .law-notice {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: #8d6e63;
+      line-height: 1.6;
+    }
+    .law-notice strong { color: #e65100; }
+
+    .group-selector-box { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-color); }
+    .group-label { font-size: 0.95rem; font-weight: bold; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+    .group-tabs { display: flex; gap: 10px; }
+    .tab-btn { flex: 1; padding: 12px 14px; border: 2px solid var(--border-color); background: #fff; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 0.95rem; text-align: center; transition: all 0.2s; color: var(--text-muted); touch-action: manipulation; }
+    .tab-btn.active { border-color: var(--assistive-primary); background: #e8f0fe; color: var(--assistive-primary-dark); }
+
+    .identity-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 14px; }
+    .radio-card { border: 1.5px solid var(--border-color); border-radius: 10px; padding: 10px 14px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 0.92rem; transition: all 0.15s; background: #fff; touch-action: manipulation; }
+    .radio-card input { margin-right: 8px; accent-color: var(--assistive-primary); }
+    .radio-card.active { border-color: var(--assistive-primary); background: #e8f0fe; font-weight: bold; }
+
+    .dashboard {
+      position: sticky;
+      top: 74px;
+      z-index: 500;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      border: 1px solid var(--border-color);
+      margin-bottom: 16px;
+    }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; text-align: center; }
+    .stat-box { padding: 8px 4px; border-radius: 8px; background: var(--bg-body); }
+    .stat-label { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 2px; }
+    .stat-val { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
+    .stat-val.primary { color: var(--assistive-primary); }
+    .stat-val.warning { color: var(--assistive-warning); }
+    .stat-val.success { color: var(--assistive-success); }
+    .stat-val.rental { color: var(--assistive-rental); }
+
+    .toast-msg { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.88rem; background: #e3f2fd; color: #0d47a1; border: 1px solid #bbdefb; }
+    .alert-banner { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.88rem; font-weight: bold; }
+    .alert-banner.show { display: block; background-color: var(--assistive-warning-bg); color: var(--assistive-warning); border: 1px solid #fad2cf; }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .search-input { flex: 1; min-width: 220px; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 16px; }
+    .filter-select { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; background: white; font-size: 0.95rem; }
+    .btn-reset { padding: 10px 16px; background: #fff; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; touch-action: manipulation; }
+    .btn-reset:hover { background: #f1f3f4; color: var(--text-main); }
+
+    .item-card { background: #ffffff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(60,64,67,0.12); border-left: 5px solid var(--assistive-primary); display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+    .item-card.category-f { border-left-color: #f2994a; }
+    .item-card.category-ei { border-left-color: #00897b; }
+    .item-card.category-rental { border-left-color: var(--assistive-rental); }
+
+    .item-main-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+    .item-info { flex: 1; min-width: 240px; }
+    .item-code { font-size: 0.8rem; background: #e8eaed; color: #3c4043; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-right: 6px; }
+    .item-name { font-weight: 700; font-size: 1.05rem; margin: 4px 0; color: var(--text-main); }
+    .item-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.78rem; font-weight: 600; }
+    .badge-free { background: #e6f4ea; color: var(--assistive-success); }
+    .badge-req { background: #fef7e0; color: #b06000; }
+    .badge-rent { background: var(--assistive-rental-bg); color: var(--assistive-rental); }
+    .badge-rule { background: #ede7f6; color: #512da8; font-weight: 700; }
+
+    .mode-switch { display: inline-flex; background: #f1f3f4; padding: 3px; border-radius: 6px; margin-right: 8px; }
+    .mode-btn { border: none; background: none; padding: 6px 12px; font-size: 0.85rem; cursor: pointer; border-radius: 4px; font-weight: 600; touch-action: manipulation; }
+    .mode-btn.active { background: white; color: var(--assistive-primary-dark); font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+
+    .item-action { display: flex; align-items: center; gap: 12px; }
+
+    .qty-stepper { display: flex; align-items: center; border: 1.5px solid var(--border-color); border-radius: 8px; overflow: hidden; background: white; }
+    .qty-btn { width: 38px; height: 38px; background: #f1f5f9; border: none; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; touch-action: manipulation; }
+    .qty-btn:active { background: #cbd5e1; }
+    .qty-input { width: 44px; height: 38px; text-align: center; border: none; font-size: 16px; font-weight: bold; color: var(--text-main); }
+    .qty-input:focus { outline: none; background: #f8f9fa; }
+
+    .item-subtotal { min-width: 90px; text-align: right; }
+    .subtotal-val { font-weight: 800; font-size: 1.1rem; color: var(--assistive-primary-dark); }
+    .subtotal-label { font-size: 0.74rem; color: var(--text-muted); }
+
+    .rental-date-box { background: #faf5fc; border: 1px dashed #d1c4e9; border-radius: 8px; padding: 10px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.86rem; }
+    .date-label { font-weight: 700; color: var(--assistive-rental); }
+    .date-inputs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .date-field { padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 15px; }
+    .rental-calc-info { margin-left: auto; color: #4a148c; font-weight: bold; text-align: right; font-size: 0.86rem; }
+
+    .footer-note { margin-top: 20px; padding: 16px; border-radius: 10px; background: #f1f3f4; font-size: 0.85rem; color: #5f6368; line-height: 1.7; }
+
+    /* ============================================================
+       11. 彈窗樣式 (包含全新四大支柱圖文展示卡片)
+       ============================================================ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 580px;
+      padding: 32px 26px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-box.large {
+      max-width: 820px;
+    }
+
+    .modal-box.extra-large {
+      max-width: 980px;
+      padding: 36px 30px;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 42px;
+      height: 42px;
+      background: #f1f5f9;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+
+    .modal-close-btn:active {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* 圖片轉化：四大支柱網格卡片 */
+    .care-pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    @media (min-width: 680px) {
+      .care-pillars-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
+    .pillar-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(14, 116, 144, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .pillar-graphic {
+      height: 120px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-graphic.home { background: linear-gradient(135deg, #e0f2fe 0%, #ecfeff 100%); color: #0284c7; }
+    .pillar-graphic.daycare { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); color: #16a34a; }
+    .pillar-graphic.fostercare { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); color: #d97706; }
+    .pillar-graphic.prof { background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%); color: #4f46e5; }
+
+    .pillar-graphic svg {
+      width: 72px;
+      height: 72px;
+      transition: transform 0.3s ease;
+    }
+
+    .pillar-card:hover .pillar-graphic svg {
+      transform: scale(1.08);
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      border-bottom: 1.5px dashed var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .pillar-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .pillar-code-badge {
+      background: #f1f5f9;
+      color: #0369a1;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid #bae6fd;
+    }
+
+    .pillar-desc {
+      font-size: 0.98rem;
+      color: #475569;
+      line-height: 1.65;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 16px;
+      font-family: inherit;
+      color: #334155;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .form-group input {
+      height: 48px;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.15);
+    }
+
+    .submit-area {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .submit-btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 44px;
+      border-radius: 30px;
+      background: var(--primary);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(14, 116, 144, 0.25);
+      transition: all 0.25s ease;
+      width: 100%;
+      min-height: 52px;
+      touch-action: manipulation;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+      background: var(--primary-dark);
+    }
+
+    .line-box-modal {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: #f2f9f7;
+      border: 1px solid #d1fae5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .line-btn-modal {
+      text-decoration: none;
+      background: #06C755;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+      touch-action: manipulation;
+    }
+
+    /* ============================================================
+       12. 頁尾
+       ============================================================ */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      padding: 34px 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .footer-contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 10px 22px;
+      border-radius: 99px;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1rem;
+      border: 1px solid #bae6fd;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .footer-contact-link:active {
+      background-color: var(--primary);
+      color: #ffffff;
+      transform: scale(0.98);
+    }
+
+    /* ============================================================
+       13. 響應式斷點設定 (RWD)
+       ============================================================ */
+    @media (max-width: 650px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .line-box-modal {
+        flex-direction: column;
+        text-align: center;
+      }
+      .dashboard {
+        top: 74px;
+        padding: 8px 10px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .stat-val {
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .hero-title {
+        font-size: 2.6rem;
+      }
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .social-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .menu-backdrop {
+        display: none !important;
+      }
+
+      .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border-bottom: none;
+        gap: 8px;
+        overflow-y: visible;
+        max-height: none;
+        animation: none;
+      }
+
+      .nav-link {
+        background: transparent;
+        padding: 10px 14px;
+        min-height: auto;
+        font-size: 1.05rem;
+      }
+
+      .nav-link:hover {
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 270px;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 8px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+        gap: 4px;
+        z-index: 100;
+      }
+
+      .nav-item:hover > .dropdown-menu {
+        display: flex;
+      }
+
+      .nav-item:hover > .nav-link .arrow-icon {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-item {
+        border: none;
+        background: transparent;
+        padding: 10px 14px;
+        font-size: 0.98rem;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-light);
+      }
+
+      .dropdown-submenu {
+        position: relative;
+      }
+
+      .dropdown-submenu .dropdown-sub-menu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 250px;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 8px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        z-index: 110;
+        gap: 4px;
+      }
+
+      .dropdown-submenu:hover > .dropdown-sub-menu {
+        display: flex;
+      }
+
+      .dropdown-submenu:hover > .dropdown-item {
+        background-color: var(--primary-light);
+        color: var(--primary);
+      }
+
+      .dropdown-menu.grid-2col {
+        min-width: 580px;
+      }
+
+      .nav-item:hover > .dropdown-menu.grid-2col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+      }
+
+      .sub-item {
+        border: none;
+        background: transparent;
+      }
+
+      .sub-item:hover {
+        background: #f1f5f9;
+        transform: none;
+      }
+
+      .hero {
+        padding: 68px 0 44px;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .warm-companion-card {
+        padding: 48px 32px;
+      }
+
+      .warm-title {
+        font-size: 1.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部無障礙字級切換列 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="font-switcher">
+        <span>閱讀字級：</span>
+        <button class="font-btn active" id="btnFontRegular">標準</button>
+        <button class="font-btn" id="btnFontLarge">放大 (+20%)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="brand" onclick="navigateTo('home')">
+        <span class="brand-icon">🏠</span>
+        <span>長照好幫手</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="切換選單" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="menu-backdrop" id="menuBackdrop"></div>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item">
+          <a href="javascript:void(0)" onclick="navigateTo('home')" class="nav-link">
+            <span class="nav-link-left"><span>🏠</span> 首頁</span>
+          </a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#about" onclick="navigateTo('home', '#about')" class="nav-link">
+            <span class="nav-link-left"><span>👨‍⚕️</span> 關於我</span>
+          </a>
+        </div>
+
+        <!-- 3. 長照服務介紹（點選照顧及專業服務即可觸發圖片對應四大卡片） -->
+        <div class="nav-item">
+          <div class="nav-link dropdown-toggle">
+            <span class="nav-link-left"><span>📋</span> 長照服務介紹</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-submenu">
+              <div class="dropdown-item submenu-toggle" onclick="openCareServicesModal()">
+                <span>🔹 照顧及專業服務 (四大服務)</span>
+                <span class="sub-arrow">▶</span>
+              </div>
+              <div class="dropdown-sub-menu">
+                <div class="sub-item" onclick="openCareServicesModal()"><span>🔸</span> 居家照顧服務 (BA碼)</div>
+                <div class="sub-item" onclick="openCareServicesModal()"><span>🔸</span> 日間(社區)照顧服務 (BB/BD碼)</div>
+                <div class="sub-item" onclick="openCareServicesModal()"><span>🔸</span> 家庭托顧服務 (BC碼)</div>
+                <div class="sub-item" onclick="openCareServicesModal()"><span>🔸</span> 專業服務 (C碼)</div>
+              </div>
+            </div>
+
+            <div class="dropdown-item" onclick="openInfoModal('交通接送服務', '專為中重度失能長輩（長照 4 級以上）提供往返醫療院所就醫或定期復健治療專車接送，依照失能等級與就醫距離享有專案車資補貼。', '🚐')">
+              <span>🔹 交通接送服務</span>
+            </div>
+
+            <div class="dropdown-submenu">
+              <div class="dropdown-item submenu-toggle">
+                <span>🔹 輔具及居家無障礙環境改善服務</span>
+                <span class="sub-arrow">▶</span>
+              </div>
+              <div class="dropdown-sub-menu">
+                <div class="sub-item" onclick="openInfoModal('輔具服務', '每 3 年最高提供 4 萬（第一組）或 6 萬（第二組）額度補助。涵蓋輪椅、氣墊床、便盆椅、移位機等輔具之租賃或購置，協助生活自立與照護防護。', '🦽')"><span>🔸</span> 輔具服務</div>
+                <div class="sub-item" onclick="openInfoModal('居家無障礙環境改善服務', '扶手安裝、浴室防滑處理、地面高低差改善（斜坡板）、水龍頭與門扇改裝等，協助打造安全無障礙防跌環境，3 年最高補助 2 萬元。', '🛠️')"><span>🔸</span> 居家無障礙環境改善服務</div>
+              </div>
+            </div>
+
+            <div class="dropdown-submenu">
+              <div class="dropdown-item submenu-toggle">
+                <span>🔹 喘息服務</span>
+                <span class="sub-arrow">▶</span>
+              </div>
+              <div class="dropdown-sub-menu">
+                <div class="sub-item" onclick="openInfoModal('居家喘息服務', '由受訓合格之照服員到府提供短期照顧服務，讓主要家庭照顧者能外出辦事、看病或獲得短暫休息與心理舒緩。', '🛋️')"><span>🔸</span> 居家喘息服務</div>
+                <div class="sub-item" onclick="openInfoModal('日間(社區)喘息服務', '安排長輩至日間照顧中心、巷弄長照站使用日間喘息與團體活動，讓家屬能有整天的彈性時間調整步調。', '🎨')"><span>🔸</span> 日間(社區)喘息服務</div>
+                <div class="sub-item" onclick="openInfoModal('機構喘息服務', '安排長輩至合格住宿型長照機構接受全天候 24 小時照顧，適合家屬出差、住院或外出旅遊時使用，減輕連續照顧壓力。', '🏥')"><span>🔸</span> 機構喘息服務</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-link dropdown-toggle">
+            <span class="nav-link-left"><span>🧮</span> 額度/費用試算</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-item" onclick="navigateTo('calc')"><span>🔹</span> 照顧及專業服務</div>
+            <div class="dropdown-item" onclick="navigateTo('assistive')"><span>🔹</span> 輔具與無障礙環境改善服務</div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-link dropdown-toggle">
+            <span class="nav-link-left"><span>🌐</span> 地方資源</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+          <div class="dropdown-menu grid-2col">
+            <div class="dropdown-item" onclick="openInfoModal('失智共同照護中心', '提供失智症患者確診銜接、個案管理服務、照護諮詢、家屬支持團體與社區失智友善據點資源轉介。', '🧠')"><span>🧠</span> 失智共同照護中心</div>
+            <div class="dropdown-item" onclick="openInfoModal('居家醫療', '醫師、護理師定期到行動不便或出門困難長輩家中進行看診、開藥、抽血與慢性病照護，免去大費周章奔波醫院之苦。', '🩺')"><span>🩺</span> 居家醫療</div>
+            <div class="dropdown-item" onclick="openInfoModal('居家安寧', '安寧緩和醫療專業團隊到府提供末期病人疼痛控制、舒適護理、心理靈性關懷，協助長輩在熟悉溫暖的家中尊嚴安度晚年。', '🕊️')"><span>🕊️</span> 居家安寧</div>
+            <div class="dropdown-item" onclick="openInfoModal('出院準備服務', '於住院期間提早啟動長照評估，無縫銜接出院後居家照顧、居家醫療、無障礙改善或機構轉銜，避免照顧空窗期。', '🏥')"><span>🏥</span> 出院準備服務</div>
+            <div class="dropdown-item" onclick="openInfoModal('家庭照顧支持者中心', '專為長照家庭照顧者設立之支持據點，提供個別心理諮商、抒壓支持團體、臨時喘息體驗與實務照護技巧培訓。', '🫂')"><span>🫂</span> 家庭照顧支持者中心</div>
+            <div class="dropdown-item" onclick="openInfoModal('社區心理衛生中心', '提供長輩與家屬專業心理諮商、情緒壓力協談、憂鬱與焦慮篩檢，建立健康的心理支持防護網。', '💚')"><span>💚</span> 社區心理衛生中心</div>
+            <div class="dropdown-item" onclick="openInfoModal('區公所社會課', '申辦中低收入身分、身心障礙生活補助、中低收入老人生活津貼、急難救助及各項地方政府社會福利津貼之公家窗口。', '🏛️')"><span>🏛️</span> 區公所社會課</div>
+            <div class="dropdown-item" onclick="openInfoModal('輔具中心', '各縣市公立輔具資源中心，由物理與職能治療師提供專業輔具評估、試用、維修、二手輔具回收與短期借用服務。', '🦽')"><span>🦽</span> 輔具中心</div>
+            <div class="dropdown-item" onclick="openInfoModal('民間社福基金會', '串聯弘道老人福利基金會、老盟、芥菜種會等民間非營利組織，提供弱勢獨老送餐服務、急難救助與愛心關懷訪視。', '🤝')"><span>🤝</span> 民間社福基金會</div>
+            <div class="dropdown-item" onclick="openInfoModal('獨居長輩緊急救援守護連線', '在家中裝設 24 小時無線通報主機與防跌求援隨身鈕，發生意外跌倒或突發急性病況時，一鍵直通監控中心啟動緊急救援。', '🚨')"><span>🚨</span> 獨居長輩緊急救援守護連線</div>
+            <div class="dropdown-item" onclick="openInfoModal('成人保護通報(家暴防治中心)', '若發現長輩遭受家庭暴力、身心虐待、惡意遺棄或嚴重疏忽，可隨時撥打 113 專線或尋求家暴防治中心即刻介入保護處遇。', '🛡️')"><span>🛡️</span> 成人保護通報(家暴防治中心)</div>
+            <div class="dropdown-item" onclick="openInfoModal('身心障礙者通報及生涯轉銜中心', '協助領有身心障礙證明者進行福利需求評估、就業輔導、日間作業設施（小作所）及各生涯階段之無縫轉銜。', '♿')"><span>♿</span> 身心障礙者通報及生涯轉銜中心</div>
+            <div class="dropdown-item" onclick="openInfoModal('2026住宿型機構補助方案', '入住一般護理之家、精神護理之家、老人福利機構等住宿型機構者，符合所得稅率級距規定，每人每年最高可獲 12 萬元補助（實際請以主管機關最新公告為準）。', '💰')"><span>💰</span> 2026住宿型機構補助方案</div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-link dropdown-toggle">
+            <span class="nav-link-left"><span>🎓</span> 教育訓練寶典</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-item" onclick="openInfoModal('照顧服務員培訓', '提供居服員初階與進階臨床技能指導、長照繼續教育積分規劃及實務防護指引。', '🧑‍⚕️')"><span>🧑‍⚕️</span> 照顧服務員</div>
+            <div class="dropdown-item" onclick="openInfoModal('居家督導員專區', '居督個案訪視評估規範、居家照服員排班與督導溝通技巧、品質查核與應變指引。', '📋')"><span>📋</span> 居家督導員</div>
+            <div class="dropdown-item" onclick="openInfoModal('個案管理員實務', 'A 單位長照個管照顧計畫擬定、社區跨專業網絡串接、照顧四包錢額度盤點策略。', '📑')"><span>📑</span> 個案管理員</div>
+            <div class="dropdown-item" onclick="openInfoModal('照顧技巧與實務指引', '翻身拍背、輪椅安全移位、管路照護注意事項之圖文與影片示範資源。', '📖')"><span>📖</span> 照顧技巧與實務指引</div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#faq" onclick="navigateTo('home', '#faq')" class="nav-link">
+            <span class="nav-link-left"><span>💬</span> 常見問題 FAQ</span>
+          </a>
+        </div>
+
+        <div class="nav-item">
+          <a href="javascript:void(0)" onclick="openContactModal()" class="nav-link">
+            <span class="nav-link-left"><span>📞</span> 聯絡我們</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       【主畫面：首頁 VIEW】
+       ============================================================ -->
+  <div id="homeView">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">
+          <span>🌿</span> 長照 3.0 友善指引
+        </div>
+        <h1 class="hero-title">長照資訊，<span>不再霧煞煞</span></h1>
+        <p class="hero-subtitle">找得到、看得懂、用得上。專為家庭照顧者量身打造，輕鬆了解服務內容補助額度、與社區資源。</p>
+      </div>
+    </section>
+
+    <!-- 關於我、核心理念與核心價值專區 -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="intro-quote-card">
+          <p>在長照的領域裡，我們面對的不僅僅是失能或老化的身體，而是一個個<strong>真實的人生與家庭</strong>。無論您是剛踏入長照領域、準備與我們並肩作戰的專業夥伴，還是正為家人尋找資源、感到徬徨的家屬，我都希望聽見您的分享，並能給予適合您的專屬建議。</p>
+          <p style="margin-bottom: 0;">長照不只是單向的「照顧」，更是<strong>雙向的「支持」</strong>。我們致力於成為每個家庭與助人工作者最穩健的後盾。</p>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar-icon">👨‍⚕️</div>
+            <div class="profile-header-text">
+              <h3>關於我</h3>
+              <p>長照 A、B 單位部門督導 ｜ 物理治療與社工跨領域實務工作者</p>
+            </div>
+          </div>
+          
+          <p class="profile-bio">
+            一位具物理治療學系與社工學分班背景的 90 後男性，擁有近十年長照實務經驗。專長包括居家運動與復能指導、長照四包錢運用建議、長照照顧相關議題與資源連結。目前亦擔任照顧實務指導員及《病人自主權利法》領航 36 班核心講師。
+          </p>
+
+          <div class="profile-tags-group">
+            <span class="profile-tag highlight">物理治療背景</span>
+            <span class="profile-tag highlight">社工學分認證</span>
+            <span class="profile-tag">近十年長照實務</span>
+            <span class="profile-tag">現任 A/B 單位督導</span>
+            <span class="profile-tag">個案管理人員</span>
+            <span class="profile-tag">居家照顧督導員</span>
+            <span class="profile-tag">照顧服務員</span>
+            <span class="profile-tag">照顧實務指導員</span>
+            <span class="profile-tag">病主法領航36班核心講師</span>
+          </div>
+        </div>
+
+        <div class="philosophy-banner">
+          <h4>核心理念</h4>
+          <div style="font-size: 1.35rem; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
+            「以人為本，專業賦能，重建生活的平衡與尊嚴」
+          </div>
+          <p>
+            相信每一位長者，都應享有在熟悉的社區中，安心且有尊嚴地安老的權利。服務模式結合了<strong>社會工作的溫暖與同理</strong>，以及<strong>物理治療的專業復能觀點</strong>。不僅關注個案所「失去」的能力，更著重發掘其「仍然能夠做到」的潛能；不僅協助分擔家屬的照顧壓力，更專注於維持並提升長輩的生活功能，使照顧歷程得以走得更長遠、更穩健。
+          </p>
+        </div>
+
+        <div class="section-header" style="margin-top: 40px;">
+          <h2 class="section-title">核心價值</h2>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon-title">
+              <span class="icon">❤️</span>
+              <h4>同理陪伴</h4>
+            </div>
+            <p class="value-desc">
+              我們傾聽每一個家庭的真實需求，理解家屬的焦慮與長輩的無奈。在提供專業建議前，我們先提供理解與陪伴。
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon-title">
+              <span class="icon">💪</span>
+              <h4>自立賦能</h4>
+            </div>
+            <p class="value-desc">
+              拒絕過度照顧，鼓勵「能做盡量做」。透過專業引導與日常技巧，幫助長輩找回自主權，減緩退化並減輕家屬勞損。
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon-title">
+              <span class="icon">🔗</span>
+              <h4>資源整合</h4>
+            </div>
+            <p class="value-desc">
+              面對複雜的長照體系，我們是您的領航員。精準串聯醫療、社區與居家資源，量身打造計畫，不再獨自摸索。
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon-title">
+              <span class="icon">🌱</span>
+              <h4>共好成長</h4>
+            </div>
+            <p class="value-desc">
+              重視每一位第一線同仁的專業與身心健康。建立完善支持與督導系統，讓照顧者先被照顧好，提供高品質服務。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 核心 6 大服務卡片區 -->
+    <main class="section-cards" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">核心服務與指引</h2>
+        </div>
+
+        <div class="cards-grid">
+          <!-- 卡片 1 (點擊打開四大服務圖文彈窗) -->
+          <div class="card" onclick="openCareServicesModal()">
+            <div class="card-top">
+              <div class="card-icon">💰</div>
+              <div class="card-content">
+                <h3>服務介紹 (四大支柱)</h3>
+                <p>居家照顧 (BA碼)、日間照顧 (BB/BD碼)、家庭托顧 (BC碼) 與專業服務 (C碼) 全貌解說。</p>
+              </div>
+            </div>
+            <div class="card-action">查看四大服務圖解 →</div>
+          </div>
+
+          <!-- 卡片 2 (點擊提供計算機雙選) -->
+          <div class="card" onclick="openCalcChoiceModal()">
+            <div class="card-top">
+              <div class="card-icon">🧮</div>
+              <div class="card-content">
+                <h3>額度&費用試算</h3>
+                <p>輸入失能等級與身分別，輕鬆算個人自負額度與每月補助總額上限。</p>
+              </div>
+            </div>
+            <div class="card-action">選擇試算工具 →</div>
+          </div>
+
+          <!-- 卡片 3 -->
+          <div class="card" onclick="openInfoModal('地方資源', '精準串聯失智共照中心、家庭支持者照顧中心、巷弄長照站、居家醫療、出院準備與住宿機構補助等社區網絡，讓照顧在地化。', '🏠')">
+            <div class="card-top">
+              <div class="card-icon">🏠</div>
+              <div class="card-content">
+                <h3>地方資源</h3>
+                <p>失智共照中心、居家醫療、出院準備、輔具中心與住宿型機構補助等全方位盤點。</p>
+              </div>
+            </div>
+            <div class="card-action">查找鄰近據點 →</div>
+          </div>
+
+          <!-- 卡片 4 -->
+          <div class="card" onclick="openInfoModal('教育訓練寶典', '提供居服員、居家督導員與個案管理員完整實務培訓指引。透過圖文範例教學，協助專業人員迅速上手照顧實務與評估流程。', '🎓')">
+            <div class="card-top">
+              <div class="card-icon">🎓</div>
+              <div class="card-content">
+                <h3>教育訓練寶典</h3>
+                <p>提供居服員與督導之教育訓練教材與課程設計參考，支持專業照顧品質的持續精進。透過清晰易懂的圖文說明與實務範例設計，協助長照現場之專業人員在服務執行上更具依據與方向。</p>
+              </div>
+            </div>
+            <div class="card-action">前往學習寶典 →</div>
+          </div>
+
+          <!-- 卡片 5 -->
+          <div class="card" onclick="openInfoModal('最新消息', '持續彙整衛生福利部長照給付與支付標準最新函釋、地方政府加碼補助公告與長照 3.0 全新權益變革。', '📜')">
+            <div class="card-top">
+              <div class="card-icon">📜</div>
+              <div class="card-content">
+                <h3>最新消息</h3>
+                <p>衛福部最新給付標準修正、地方政府加碼補助及長照 3.0 全新權益白話文變更。</p>
+              </div>
+            </div>
+            <div class="card-action">閱讀最新政策 →</div>
+          </div>
+
+          <!-- 卡片 6 -->
+          <div class="card" id="faq" onclick="openInfoModal('常見問題 FAQ', 'Q: 如何申請長照？撥打 1966 由照管專員到府評估。\nQ: 聘有外籍看護還能用長照嗎？可以！享有額度 30% 專業服務、交通接送、輔具改善及喘息服務。', '💬')">
+            <div class="card-top">
+              <div class="card-icon">💬</div>
+              <div class="card-content">
+                <h3>常見問題 FAQ</h3>
+                <p>如何申請長照服務？請外籍看護還能用長照嗎？審核流程要多久？解答總彙整。</p>
+              </div>
+            </div>
+            <div class="card-action">查看常見問題 →</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 多方管道專區 -->
+    <section class="container">
+      <div class="community-section">
+        <h2 class="community-title">多方管道，掌握即時照顧資訊</h2>
+        <p class="community-desc">民眾與照顧者有多處管道可隨時聯繫、互動與接收衛教資訊</p>
+        
+        <div class="social-links-grid">
+          <a href="https://line.me/R/ti/p/@dwc0352t" target="_blank" rel="noopener noreferrer" class="social-btn btn-line">
+            <span>💬</span> 加入官方 LINE 好友
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn btn-ig">
+            <span>📷</span> Instagram 圖文專區
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 溫暖陪伴呈現區 -->
+    <section class="container">
+      <div class="warm-companion-card">
+        <div class="warm-icon-box">❤️</div>
+        <h2 class="warm-title">長照好幫手 — 用最溫暖的力量陪伴辛苦的您</h2>
+        <p class="warm-subtitle">
+          在照顧的路上，您從來不是孤軍奮戰。我們致力於將複雜的法規化為清晰明瞭的指引，為每一個用心守護家人的您分擔壓力、點亮前方的路。
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       【內頁 1：照顧及專業服務計算機 VIEW】
+       ============================================================ -->
+  <div id="calcView" class="calc-page-view">
+    <div class="container">
+      <div class="calc-nav-header">
+        <div>
+          <button class="btn-back-home" onclick="navigateTo('home')">
+            <span>←</span> 返回首頁
+          </button>
+        </div>
+        <div>
+          <span style="color: var(--primary); font-weight: 700;">額度/費用試算 ❯ 照顧及專業服務</span>
+        </div>
+      </div>
+
+      <div class="mobile-scroll-hint">
+        <span>👈</span> 表格可左右滑動查看完整費用與輸入每月次數 <span>👉</span>
+      </div>
+
+      <div class="ltc-calc-wrapper">
+        <div class="ltc-calc-container">
+          <div class="ltc-table-scroll">
+            <table class="ltc-table" id="ltcServiceTable">
+              <thead>
+                <tr>
+                  <th class="col-freeze-code" rowspan="2">代碼</th>
+                  <th class="col-freeze-name" rowspan="2">服務項目</th>
+                  <th rowspan="2">費用</th>
+                  <th>第一類(0%)</th>
+                  <th>第二類(5%)</th>
+                  <th>第三類(16%)</th>
+                  <th rowspan="2" style="background:#e0f2fe; color:#0369a1;">每月次數</th>
+                  <th rowspan="2" style="background:#fef3c7; color:#92400e;">總額度</th>
+                </tr>
+              </thead>
+              <tbody id="ltcTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="ltc-side-panel">
+            <div class="side-card">
+              <h4>💰 預計自行負擔費用彙整</h4>
+              <div class="fee-summary-item">
+                <span>總使用額度 (合計)：</span>
+                <span id="totalUsedCost" style="font-weight:700; color:#1e293b;">0 元</span>
+              </div>
+              <div class="fee-summary-item">
+                <span>第二類 (5%) 預計付費：</span>
+                <span class="fee-val" id="cat2Total">0 元</span>
+              </div>
+              <div class="fee-summary-item">
+                <span>第三類 (16%) 預計付費：</span>
+                <span class="fee-val" id="cat3Total">0 元</span>
+              </div>
+              <p class="note-text">※ 以上試算金額僅供參考，實際費用請以照管中心與各特約服務機構核定為準。</p>
+            </div>
+
+            <div class="side-card">
+              <h4>📊 CMS 等級每月剩餘額度試算</h4>
+              <table class="cms-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">等級</th>
+                    <th colspan="2">無外籍看護</th>
+                    <th colspan="2">有外籍看護 (30%)</th>
+                  </tr>
+                  <tr>
+                    <th>給付額度</th>
+                    <th>剩餘額度</th>
+                    <th>給付額度</th>
+                    <th>剩餘額度</th>
+                  </tr>
+                </thead>
+                <tbody id="cmsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-notes-card">
+        <h5>💡 長照身分別與外籍看護使用說明</h5>
+        <p><strong>※ 長照身分別：</strong></p>
+        <p><strong>第一類：</strong>含列冊之低收入戶、中低收入戶，或符合領取中低收入老人生活津貼發給辦法第五條第一項第一款津貼資格者。</p>
+        <p><strong>第二類：</strong>非屬第一類身分別，符合領取中低收入老人生活津貼發給辦法第五條第一項第二款津貼或身心障礙者生活補助資格者。</p>
+        <p><strong>第三類：</strong>非屬第一類、第二類者。</p>
+        <p style="margin-top: 14px;"><strong>※ 外籍看護使用長照規定：</strong></p>
+        <p>若家中聘僱「外國人從事家庭幫傭工作或家庭看護工作」，可申請<strong>照顧及專業服務（給付項目之額度30%）</strong>、<strong>交通接送服務</strong>，以及<strong>輔具及居家無障礙環境改善服務</strong>；此外，當其請假休息期間，亦可申請家庭照顧者支持服務中的<strong>喘息服務</strong>。</p>
+      </div>
+
+      <div style="text-align: center; margin-top: 36px;">
+        <button class="footer-contact-link" onclick="openContactModal()">
+          <span>💬</span> 有額度試算疑問？立即免費諮詢
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【內頁 2：輔具與無障礙環境改善服務計算機 VIEW】
+       ============================================================ -->
+  <div id="assistiveCalcView" class="calc-page-view">
+    <div class="container">
+      <div class="calc-nav-header">
+        <div>
+          <button class="btn-back-home" onclick="navigateTo('home')">
+            <span>←</span> 返回首頁
+          </button>
+        </div>
+        <div>
+          <span style="color: var(--assistive-primary); font-weight: 700;">額度/費用試算 ❯ 輔具與無障礙環境改善服務</span>
+        </div>
+      </div>
+
+      <div class="assistive-calc-container">
+        <div class="header-card">
+          <h1>長照輔具及居家無障礙環境改善補助試算(實際計算以實際申請為主)</h1>
+          <p>長照給付對象得就第一組（4萬額度）或第二組（6萬額度）擇一申請。租賃對日足月（如 9/18~10/18）計 1 個月；未滿一個月依組別規則折算。</p>
+          
+          <div class="law-notice">
+            <strong>⚖️ 法規施行提示（民國 115 年 7 月 1 日施行）：</strong><br>
+            長照給付對象得就第一組或第二組給付項目，擇一申請。但 <strong>115 年 6 月 30 日以前已獲第一組給付者</strong>，應自獲得該給付之照顧計畫核定之日起滿三年後，始得就第二組給付項目提出申請。
+          </div>
+
+          <div class="group-selector-box">
+            <div class="group-label">
+              <span>選擇服務項目組別（額度區間 3 年內不可跨組切換）：</span>
+            </div>
+            <div class="group-tabs">
+              <button class="tab-btn active" id="tab-group1" onclick="switchGroup('group1')">第一組 (原選定完整項目 / 額度 4 萬元)</button>
+              <button class="tab-btn" id="tab-group2" onclick="switchGroup('group2')">第二組 (簡易/智慧科技與無障礙 / 額度 6 萬元)</button>
+            </div>
+          </div>
+
+          <div class="identity-selector">
+            <label class="radio-card active" id="card-cat1">
+              <div>
+                <input type="radio" name="identity" value="cat1" checked onchange="updateIdentity()">
+                <strong>第一類 (低收入戶)</strong>
+              </div>
+              <span style="color:var(--assistive-success); font-weight:bold;">補助 100%</span>
+            </label>
+            <label class="radio-card" id="card-cat2">
+              <div>
+                <input type="radio" name="identity" value="cat2" onchange="updateIdentity()">
+                <strong>第二類 (中低收入)</strong>
+              </div>
+              <span style="color:var(--assistive-primary); font-weight:bold;">補助 90%</span>
+            </label>
+            <label class="radio-card" id="card-cat3">
+              <div>
+                <input type="radio" name="identity" value="cat3" onchange="updateIdentity()">
+                <strong>第三類 (一般戶)</strong>
+              </div>
+              <span style="color:var(--text-muted); font-weight:bold;">補助 70%</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="dashboard">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-label" id="label-quota-limit">3年補助總上限 (第一組)</div>
+              <div class="stat-val" id="disp-quota-limit">40,000</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">目前使用總額度</div>
+              <div class="stat-val primary" id="disp-total-quota">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">政府最高補助金額</div>
+              <div class="stat-val success" id="disp-gov-subsidy">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">每月租賃折抵上限</div>
+              <div class="stat-val rental" id="disp-monthly-rental">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">預估民眾自付額</div>
+              <div class="stat-val" id="disp-user-copay">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">剩餘可用額度</div>
+              <div class="stat-val" id="disp-quota-remain">40,000</div>
+            </div>
+          </div>
+          
+          <div id="toast-banner" class="toast-msg"></div>
+          <div id="alert-quota" class="alert-banner">⚠️ 提示：已使用總額度超出本組 3 年額度上限，超額部分需全額自費！</div>
+          <div id="alert-f-quota" class="alert-banner">⚠️ 提示：居家無障礙改善（F碼）累計已達 20,000 元上限！</div>
+        </div>
+
+        <div class="controls">
+          <input type="text" id="search-box" class="search-input" placeholder="🔍 搜尋代碼或項目名稱 (如：輪椅、氣墊床、便盆椅、FA22...)" oninput="filterItems()">
+          <select id="category-filter" class="filter-select" onchange="filterItems()">
+            <option value="ALL">全部類別</option>
+            <option value="EA">個人排泄與沐浴 (EA/EB)</option>
+            <option value="WHEELCHAIR">輪椅與附加功能 (EC01-06)</option>
+            <option value="POSTURE">擺位系統 (EC07-10)</option>
+            <option value="TRANSFER">移位輔具 (ED01-08)</option>
+            <option value="ALERT_LIFE">警示與生活輔具 (EE/EF)</option>
+            <option value="MATTRESS">防壓瘡氣墊床 (EG01-02)</option>
+            <option value="CUSHION">輪椅座墊 (EG03-09)</option>
+            <option value="BED_CLIMB">照顧床與爬梯機 (EH01-05)</option>
+            <option value="EI">智慧科技輔具 (EI01-05)</option>
+            <option value="FA">居家無障礙環境改善 (FA08-44)</option>
+          </select>
+          <button class="btn-reset" onclick="resetCurrentGroup()">清空當前組別</button>
+        </div>
+
+        <div id="items-container"></div>
+
+        <div class="footer-note">
+          <strong>📋 租賃對日足月與額度規範說明：</strong><br>
+          1. <strong>對日足月規則</strong>：租賃起迄對日滿一個月（如 9/18 至 10/18）計為 1 個月整。<br>
+          2. <strong>破月零星天數折算</strong>：<br>
+             &nbsp;&nbsp;- <strong>第一組</strong>：按當月實際天數比例精算。<br>
+             &nbsp;&nbsp;- <strong>第二組</strong>：半個月以下以半個月計（0.5 個月），超過半個月以一個月計（1.0 個月）。<br>
+          3. <strong>額度區隔</strong>：第一組 3 年可用額度 40,000 元；第二組 3 年可用額度 <strong>60,000 元</strong>。<br>
+          4. <strong>居家無障礙環境改善（F碼）</strong>：無論第幾組，3 年期間內均以 <strong>20,000 元</strong> 為限。<br>
+          5. <strong>互斥規定</strong>：輪椅三擇一、附加功能搭配輪椅B/C款、背靠擇一、氣墊床擇一、座墊擇一。
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <button class="footer-contact-link" onclick="openContactModal()">
+            <span>💬</span> 輔具申請或核定疑問？點此專人諮詢
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【頁尾】
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 長照好幫手. All rights reserved.</p>
+      <div>
+        <button class="footer-contact-link" onclick="openContactModal()">
+          <span>💬</span> 聯繫我們
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       【全新重要彈窗：照顧及專業服務四大支柱圖文展示 (完全對應圖片內容)】
+       ============================================================ -->
+  <div class="modal-overlay" id="careServicesModal">
+    <div class="modal-box extra-large">
+      <button class="modal-close-btn" onclick="closeCareServicesModal()" aria-label="關閉">✕</button>
+      
+      <div style="text-align: center; margin-bottom: 8px;">
+        <span style="background: #e0f2fe; color: #0284c7; padding: 4px 14px; border-radius: 99px; font-size: 0.88rem; font-weight: bold;">
+          長照 2.0 / 3.0 第一包錢
+        </span>
+        <h2 style="font-size: 1.85rem; font-weight: 900; color: #155e75; margin-top: 10px;">照顧及專業服務</h2>
+        <p style="color: #64748b; font-size: 1rem; max-width: 680px; margin: 6px auto 0;">
+          長照四大支柱服務，兼顧居家生活照顧、日間社區參與、家庭式托顧與專業自立賦能。
+        </p>
+      </div>
+
+      <!-- 四大支柱卡片網格 -->
+      <div class="care-pillars-grid">
+        
+        <!-- 1. 居家照顧服務 -->
+        <div class="pillar-card">
+          <div class="pillar-graphic home">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 45L50 20L80 45V82C80 84.2 78.2 86 76 86H24C21.8 86 20 84.2 20 82V45Z" fill="#bae6fd" stroke="#0284c7" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M42 86V60H58V86" fill="#ffffff" stroke="#0284c7" stroke-width="4"/>
+              <circle cx="50" cy="42" r="10" fill="#fde047" stroke="#0284c7" stroke-width="3"/>
+              <path d="M45 44C47 47 53 47 55 44" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+              <path d="M12 70C20 62 30 72 38 68" stroke="#0284c7" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pillar-header">
+            <div class="pillar-title">居家照顧服務</div>
+            <div class="pillar-code-badge">代號：BA碼</div>
+          </div>
+          <div class="pillar-desc">
+            由專業合格之<strong>照顧服務員親自到府</strong>，提供長輩日常基本身體照顧、穿衣沐浴、翻身拍背、餐食準備、安全看視與陪同就醫等非侵入型生活服務，實質減輕家屬的照護重擔。
+          </div>
+        </div>
+
+        <!-- 2. 日間照顧服務 -->
+        <div class="pillar-card">
+          <div class="pillar-graphic daycare">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="18" y="32" width="64" height="54" rx="6" fill="#bbf7d0" stroke="#16a34a" stroke-width="4"/>
+              <path d="M14 36L50 16L86 36" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="36" cy="54" r="8" fill="#fef08a" stroke="#16a34a" stroke-width="3"/>
+              <circle cx="64" cy="54" r="8" fill="#fef08a" stroke="#16a34a" stroke-width="3"/>
+              <path d="M30 74C32 66 40 66 42 74" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
+              <path d="M58 74C60 66 68 66 70 74" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pillar-header">
+            <div class="pillar-title">日間照顧服務</div>
+            <div class="pillar-code-badge" style="color:#15803d; border-color:#86efac;">代號：BB、BD碼</div>
+          </div>
+          <div class="pillar-desc">
+            長輩白天搭專車前往社區日照中心，如同<strong>「樂齡生活學堂」</strong>般與同儕互動交朋友、參與活化身心課程與營養共餐，有效促進社會參與、延緩失智與失能退化，讓家屬安心工作。
+          </div>
+        </div>
+
+        <!-- 3. 家庭托顧服務 -->
+        <div class="pillar-card">
+          <div class="pillar-graphic fostercare">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 48L50 24L76 48V82H24V48Z" fill="#fde68a" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+              <circle cx="42" cy="56" r="7" fill="#ffffff" stroke="#d97706" stroke-width="3"/>
+              <circle cx="58" cy="56" r="7" fill="#ffffff" stroke="#d97706" stroke-width="3"/>
+              <path d="M38 74C40 68 46 68 48 74" stroke="#d97706" stroke-width="3"/>
+              <path d="M54 74C56 68 62 68 64 74" stroke="#d97706" stroke-width="3"/>
+              <path d="M50 18C52 14 56 14 58 17C60 20 50 24 50 24C50 24 40 20 42 17C44 14 48 14 50 18Z" fill="#ef4444"/>
+            </svg>
+          </div>
+          <div class="pillar-header">
+            <div class="pillar-title">家庭托顧服務</div>
+            <div class="pillar-code-badge" style="color:#b45309; border-color:#fde68a;">代號：BC碼</div>
+          </div>
+          <div class="pillar-desc">
+            宛如<strong>「社區長者保母」</strong>般的家庭微型照護（每處最多收托 4 人），在充滿人情味與居家安全感的在地家庭中，提供失能長輩或身心障礙者白天與半日的溫馨看顧與安心生活。
+          </div>
+        </div>
+
+        <!-- 4. 專業服務 -->
+        <div class="pillar-card">
+          <div class="pillar-graphic prof">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="38" r="14" fill="#c7d2fe" stroke="#4f46e5" stroke-width="4"/>
+              <path d="M26 82C26 66 36 60 50 60C64 60 74 66 74 82" fill="#e0e7ff" stroke="#4f46e5" stroke-width="4"/>
+              <path d="M42 66V74C42 78 48 80 50 80C52 80 58 78 58 74V66" stroke="#4f46e5" stroke-width="3"/>
+              <circle cx="50" cy="81" r="3" fill="#4f46e5"/>
+              <path d="M72 26V40H86" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+              <path d="M79 26V40" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pillar-header">
+            <div class="pillar-title">專業服務</div>
+            <div class="pillar-code-badge" style="color:#4338ca; border-color:#c7d2fe;">代號：C碼</div>
+          </div>
+          <div class="pillar-desc">
+            由物理治療師、職能治療師、護理師與營養師等跨領域醫事團隊親自到宅指導，秉持<strong>「自立賦能」</strong>理念，訓練日常生活自主功能、移位防跌與照護衛教，重拾尊嚴生活。
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px;">
+        <button class="submit-btn" style="width: auto; padding: 12px 30px; font-size: 1rem;" onclick="closeCareServicesModal(); navigateTo('calc');">
+          🧮 立即進入「照顧及專業服務」費用試算
+        </button>
+        <button class="btn-back-home" style="border-radius: 30px; padding: 12px 26px;" onclick="closeCareServicesModal(); openContactModal();">
+          💬 免費諮詢專案規劃
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【彈窗 2：通訊諮詢表單彈窗】
+       ============================================================ -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-box large">
+      <button class="modal-close-btn" onclick="closeContactModal()" aria-label="關閉">✕</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 2.2rem; margin-bottom: 6px;">💬</div>
+        <h2 style="font-size: 1.6rem; font-weight: 900; color: #155e75;">有任何長照需求，歡迎與我們聊聊</h2>
+        <p style="font-size: 1rem; color: #64748b; margin-top: 6px;">
+          如果您對長照服務、照顧安排或額度試算有疑問，歡迎留下需求，我們會盡快與您聯繫。
+        </p>
+      </div>
+
+      <form action="https://formspree.io/f/myeyonye" method="POST">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="modal-name">您的稱呼</label>
+            <input type="text" id="modal-name" name="姓名" placeholder="請輸入您的姓名或稱呼" required>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-phone">聯絡電話</label>
+            <input type="tel" id="modal-phone" name="電話" placeholder="例如：09XXXXXXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-email">電子信箱</label>
+            <input type="email" id="modal-email" name="Email" placeholder="請輸入您的 Email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-line">LINE ID（選填）</label>
+            <input type="text" id="modal-line" name="LINE ID" placeholder="方便我們透過 LINE 聯繫您">
+          </div>
+
+          <div class="form-group full">
+            <label for="modal-subject">需求主題</label>
+            <input type="text" id="modal-subject" name="需求主題" placeholder="例如：照顧額度試算、交通接送、輔具申請……" required>
+          </div>
+
+          <div class="form-group full">
+            <label for="modal-message">想與我們說說您的需求</label>
+            <textarea id="modal-message" name="需求內容" placeholder="請簡單描述您目前遇到的問題或希望獲得的協助……" required></textarea>
+          </div>
+        </div>
+
+        <input type="hidden" name="_subject" value="長照好幫手網站諮詢需求">
+
+        <div class="submit-area">
+          <button type="submit" class="submit-btn">送出需求</button>
+          <div style="font-size: 13px; color: #94a3b8; margin-top: 10px;">您提供的資料僅用於專屬聯繫與諮詢評估</div>
+        </div>
+      </form>
+
+      <div class="line-box-modal">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="font-size: 1.8rem;">💚</div>
+          <div>
+            <strong style="display: block; color: #1e3a35; font-size: 15px;">也可以直接加入官方 LINE</strong>
+            <span style="font-size: 14px; color: #4b635f;">官方 LINE：@dwc0352t</span>
+          </div>
+        </div>
+        <a href="https://line.me/R/ti/p/@dwc0352t" target="_blank" rel="noopener noreferrer" class="line-btn-modal">
+          加入官方 LINE
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【彈窗 3：通用服務資訊彈窗】
+       ============================================================ -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeInfoModal()" aria-label="關閉">✕</button>
+      <div style="font-size: 2.2rem; margin-bottom: 12px;" id="infoModalIcon">💡</div>
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 12px;" id="infoModalTitle">服務詳情</h3>
+      <div style="font-size: 1.1rem; color: #334155; line-height: 1.7; white-space: pre-line; margin-bottom: 24px;" id="infoModalContent">
+        服務介紹內容...
+      </div>
+      <div style="text-align: right;">
+        <button class="submit-btn" style="width: auto; padding: 10px 24px; font-size: 15px;" onclick="closeInfoModal(); openContactModal();">
+          💬 諮詢專屬建議
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【彈窗 4：計算機選擇彈窗】
+       ============================================================ -->
+  <div class="modal-overlay" id="calcChoiceModal">
+    <div class="modal-box" style="text-align: center;">
+      <button class="modal-close-btn" onclick="closeCalcChoiceModal()" aria-label="關閉">✕</button>
+      <div style="font-size: 2.2rem; margin-bottom: 10px;">🧮</div>
+      <h3 style="font-size: 1.5rem; font-weight: 900; color: var(--primary); margin-bottom: 8px;">選擇費用試算項目</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">請點選您需要進行額度與自負額試算的長照類別：</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <button class="submit-btn" style="padding: 14px; font-size: 1.05rem;" onclick="closeCalcChoiceModal(); navigateTo('calc');">
+          🔹 照顧及專業服務試算 (每月額度)
+        </button>
+        <button class="submit-btn" style="background: #1a73e8; padding: 14px; font-size: 1.05rem;" onclick="closeCalcChoiceModal(); navigateTo('assistive');">
+          🔹 輔具與無障礙改善試算 (3年額度)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【腳本區】
+       ============================================================ -->
+  <script>
+    // 1. 畫面切換控制 (SPA 視圖管理)
+    function navigateTo(view, hash) {
+      const homeView = document.getElementById('homeView');
+      const calcView = document.getElementById('calcView');
+      const assistiveCalcView = document.getElementById('assistiveCalcView');
+
+      homeView.style.display = 'none';
+      calcView.style.display = 'none';
+      assistiveCalcView.style.display = 'none';
+
+      if (view === 'calc') {
+        calcView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof recalculate === 'function') recalculate();
+      } else if (view === 'assistive') {
+        assistiveCalcView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof renderItems === 'function') renderItems();
+        if (typeof calculateTotals === 'function') calculateTotals();
+      } else {
+        homeView.style.display = 'block';
+        if (hash) {
+          const target = document.querySelector(hash);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      closeMobileMenu();
+    }
+
+    // 2. 漢堡選單與手機手風琴展開
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+
+    function toggleMobileMenu() {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.classList.toggle('is-active', isOpen);
+      menuBackdrop.classList.toggle('show', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
+    }
+
+    function closeMobileMenu() {
+      if (window.innerWidth < 1024) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('is-active');
+        menuBackdrop.classList.remove('show');
+        document.body.classList.remove('menu-open');
+      }
+    }
+
+    menuToggle.addEventListener('click', toggleMobileMenu);
+    menuBackdrop.addEventListener('click', closeMobileMenu);
+
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        if (window.innerWidth < 1024) {
+          const parentItem = toggle.closest('.nav-item');
+          const menu = parentItem.querySelector('.dropdown-menu');
+          const arrow = toggle.querySelector('.arrow-icon');
+          
+          const isOpen = menu.classList.toggle('open');
+          if (arrow) {
+            arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        if (window.innerWidth < 1024) {
+          e.stopPropagation();
+          const parentSubmenu = toggle.closest('.dropdown-submenu');
+          const subMenu = parentSubmenu.querySelector('.dropdown-sub-menu');
+          const subArrow = toggle.querySelector('.sub-arrow');
+
+          if (subMenu) {
+            const isOpen = subMenu.classList.toggle('open');
+            if (subArrow) {
+              subArrow.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0deg)';
+            }
+          }
+        }
+      });
+    });
+
+    // 3. 彈窗控制
+    function openCareServicesModal() {
+      document.getElementById('careServicesModal').classList.add('active');
+      closeMobileMenu();
+    }
+    function closeCareServicesModal() {
+      document.getElementById('careServicesModal').classList.remove('active');
+    }
+
+    function openContactModal() {
+      document.getElementById('contactModal').classList.add('active');
+      closeMobileMenu();
+    }
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.remove('active');
+    }
+
+    function openInfoModal(title, content, icon = '💡') {
+      document.getElementById('infoModalTitle').innerText = title;
+      document.getElementById('infoModalContent').innerText = content;
+      document.getElementById('infoModalIcon').innerText = icon;
+      document.getElementById('infoModal').classList.add('active');
+      closeMobileMenu();
+    }
+    function closeInfoModal() {
+      document.getElementById('infoModal').classList.remove('active');
+    }
+
+    function openCalcChoiceModal() {
+      document.getElementById('calcChoiceModal').classList.add('active');
+    }
+    function closeCalcChoiceModal() {
+      document.getElementById('calcChoiceModal').classList.remove('active');
+    }
+
+    window.addEventListener('click', (e) => {
+      const careModal = document.getElementById('careServicesModal');
+      const contactModal = document.getElementById('contactModal');
+      const infoModal = document.getElementById('infoModal');
+      const calcChoiceModal = document.getElementById('calcChoiceModal');
+      if (e.target === careModal) closeCareServicesModal();
+      if (e.target === contactModal) closeContactModal();
+      if (e.target === infoModal) closeInfoModal();
+      if (e.target === calcChoiceModal) closeCalcChoiceModal();
+    });
+
+    // 4. 無障礙字級切換
+    const btnFontRegular = document.getElementById('btnFontRegular');
+    const btnFontLarge = document.getElementById('btnFontLarge');
+
+    btnFontLarge.addEventListener('click', () => {
+      document.body.classList.add('large-text');
+      btnFontLarge.classList.add('active');
+      btnFontRegular.classList.remove('active');
+    });
+
+    btnFontRegular.addEventListener('click', () => {
+      document.body.classList.remove('large-text');
+      btnFontRegular.classList.add('active');
+      btnFontLarge.classList.remove('active');
+    });
+
+    // ============================================================
+    // 5. 照顧及專業服務計算機核心邏輯
+    // ============================================================
+    const ltcData = [
+      { code: "BA01", name: "基本身體清潔", fee: 260, c1: 0, c2: 13, c3: 41, defaultQty: 2 },
+      { code: "BA02", name: "基本日常照顧(30 Min.)", fee: 195, c1: 0, c2: 9, c3: 31, defaultQty: 2 },
+      { code: "BA03", name: "測量生命徵象", fee: 35, c1: 0, c2: 1, c3: 5, defaultQty: 2 },
+      { code: "BA04", name: "協助餵食或灌食", fee: 130, c1: 0, c2: 6, c3: 20, defaultQty: 2 },
+      { code: "BA05", name: "餐食照顧", fee: 310, c1: 0, c2: 15, c3: 49, defaultQty: 2 },
+      { code: "BA07", name: "協助沐浴及洗頭", fee: 325, c1: 0, c2: 16, c3: 52, defaultQty: 2 },
+      { code: "BA08", name: "足部照顧(照服需訓練)", fee: 500, c1: 0, c2: 25, c3: 80, defaultQty: 2 },
+      { code: "BA09", name: "[到宅沐浴車服務-第1型]", fee: 2200, c1: 0, c2: 110, c3: 352, defaultQty: 2 },
+      { code: "BA09a", name: "[到宅沐浴車服務-第2型]", fee: 2500, c1: 0, c2: 125, c3: 400, defaultQty: 2 },
+      { code: "BA10", name: "翻身拍背", fee: 155, c1: 0, c2: 7, c3: 24, defaultQty: 2 },
+      { code: "BA11", name: "肢體關節活動", fee: 195, c1: 0, c2: 9, c3: 31, defaultQty: 2 },
+      { code: "BA12", name: "協助上(下)樓梯", fee: 130, c1: 0, c2: 6, c3: 20, defaultQty: 2 },
+      { code: "BA13", name: "陪同外出(30 Min.)", fee: 195, c1: 0, c2: 9, c3: 31, defaultQty: 2 },
+      { code: "BA14", name: "陪同就醫(1.5Hrs)", fee: 685, c1: 0, c2: 34, c3: 109, defaultQty: 2 },
+      { code: "BA15-1", name: "家務協助-自用(30 Min.)", fee: 195, c1: 0, c2: 9, c3: 31, defaultQty: 2 },
+      { code: "BA15-2", name: "家務協助-共用(30 Min.)", fee: 195, c1: 97, c2: 101, c3: 112, defaultQty: 2 },
+      { code: "BA16-1", name: "代購或代領或代送服務-自用", fee: 130, c1: 0, c2: 6, c3: 20, defaultQty: 2 },
+      { code: "BA16-2", name: "代購或代領或代送服務-共用", fee: 130, c1: 65, c2: 68, c3: 75, defaultQty: 2 },
+      { code: "BA17a", name: "人工氣管內分泌物抽吸(照服需訓練)", fee: 75, c1: 0, c2: 3, c3: 12, defaultQty: 2 },
+      { code: "BA17b", name: "口鼻抽吸(照服需訓練)", fee: 65, c1: 0, c2: 3, c3: 10, defaultQty: 2 },
+      { code: "BA17c", name: "管路(尿管、鼻胃管)清潔", fee: 50, c1: 0, c2: 2, c3: 8, defaultQty: 2 },
+      { code: "BA17d", name: "甘油球通便、血糖機驗血糖", fee: 50, c1: 0, c2: 2, c3: 8, defaultQty: 2 },
+      { code: "BA17e", name: "依指示置入藥盒", fee: 50, c1: 0, c2: 2, c3: 8, defaultQty: 2 },
+      { code: "BA18", name: "安全看視(30 Min.)", fee: 200, c1: 0, c2: 10, c3: 32, defaultQty: 2 },
+      { code: "BA20", name: "陪伴服務(30 Min.)", fee: 175, c1: 0, c2: 8, c3: 28, defaultQty: 2 },
+      { code: "BA22", name: "巡視服務", fee: 130, c1: 0, c2: 6, c3: 20, defaultQty: 2 },
+      { code: "BA23", name: "協助洗頭", fee: 200, c1: 0, c2: 10, c3: 32, defaultQty: 2 },
+      { code: "BA24", name: "協助排泄", fee: 220, c1: 0, c2: 11, c3: 35, defaultQty: 2 }
+    ];
+
+    const cmsTiers = [
+      { level: "第2級", quota: 10020 },
+      { level: "第3級", quota: 15460 },
+      { level: "第4級", quota: 18580 },
+      { level: "第5級", quota: 24100 },
+      { level: "第6級", quota: 28070 },
+      { level: "第7級", quota: 32090 },
+      { level: "第8級", quota: 36180 }
+    ];
+
+    function renderLtcTable() {
+      const tbody = document.getElementById("ltcTableBody");
+      if (!tbody) return;
+      tbody.innerHTML = ltcData.map((item, index) => `
+        <tr>
+          <td class="col-freeze-code"><strong>${item.code}</strong></td>
+          <td class="col-freeze-name">${item.name}</td>
+          <td class="num">${item.fee.toLocaleString()}</td>
+          <td class="num">${item.c1}</td>
+          <td class="num">${item.c2}</td>
+          <td class="num">${item.c3}</td>
+          <td style="text-align:center;">
+            <input type="number" min="0" max="99" value="${item.defaultQty}" class="ltc-input-qty" data-index="${index}" oninput="recalculate()">
+          </td>
+          <td class="num" id="subtotal_${index}" style="font-weight:600; color:#92400e;">0</td>
+        </tr>
+      `).join("");
+      recalculate();
+    }
+
+    function recalculate() {
+      let totalUsed = 0;
+      let cat2Pay = 0;
+      let cat3Pay = 0;
+      let foreignCareUsed = 0;
+
+      const inputs = document.querySelectorAll(".ltc-input-qty");
+      inputs.forEach(input => {
+        const idx = parseInt(input.getAttribute("data-index"));
+        const qty = parseInt(input.value) || 0;
+        const item = ltcData[idx];
+
+        const lineTotal = item.fee * qty;
+        totalUsed += lineTotal;
+        cat2Pay += (item.c2 * qty);
+        cat3Pay += (item.c3 * qty);
+
+        if (item.code === "BA09" || item.code === "BA09a") {
+          foreignCareUsed += lineTotal;
+        }
+
+        const subtotalCell = document.getElementById(`subtotal_${idx}`);
+        if (subtotalCell) {
+          subtotalCell.innerText = lineTotal.toLocaleString();
+        }
+      });
+
+      const dispTotalUsed = document.getElementById("totalUsedCost");
+      if (dispTotalUsed) dispTotalUsed.innerText = totalUsed.toLocaleString() + " 元";
+      const dispCat2 = document.getElementById("cat2Total");
+      if (dispCat2) dispCat2.innerText = cat2Pay.toLocaleString() + " 元";
+      const dispCat3 = document.getElementById("cat3Total");
+      if (dispCat3) dispCat3.innerText = cat3Pay.toLocaleString() + " 元";
+
+      const cmsBody = document.getElementById("cmsTableBody");
+      if (cmsBody) {
+        cmsBody.innerHTML = cmsTiers.map(tier => {
+          const noForeignRemain = tier.quota - totalUsed;
+          const foreignQuota = Math.round(tier.quota * 0.3);
+          const foreignRemain = foreignQuota - foreignCareUsed;
+
+          return `
+            <tr>
+              <td style="text-align:center; font-weight:600;">${tier.level}</td>
+              <td>${tier.quota.toLocaleString()}</td>
+              <td class="${noForeignRemain >= 0 ? 'positive' : 'negative'}">${noForeignRemain.toLocaleString()}</td>
+              <td>${foreignQuota.toLocaleString()}</td>
+              <td class="${foreignRemain >= 0 ? 'positive' : 'negative'}">${foreignRemain.toLocaleString()}</td>
+            </tr>
+          `;
+        }).join("");
+      }
+    }
+
+    // ============================================================
+    // 6. 輔具與無障礙環境改善計算機核心邏輯
+    // ============================================================
+    const group1Data = [
+      { code: "EA01-1", name: "馬桶增高器", buyPrice: 1200, buyC1: 1200, buyC2: 1080, buyC3: 840, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
+      { code: "EA01-2", name: "便盆椅", buyPrice: 1200, buyC1: 1200, buyC2: 1080, buyC3: 840, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
+      { code: "EA01-3", name: "沐浴椅", buyPrice: 1200, buyC1: 1200, buyC2: 1080, buyC3: 840, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
+      { code: "EB01", name: "單支枴杖-不銹鋼製", buyPrice: 1000, buyC1: 1000, buyC2: 900, buyC3: 700, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "EA" },
+      { code: "EB02", name: "單支枴杖-鋁製", buyPrice: 500, buyC1: 500, buyC2: 450, buyC3: 350, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
+      { code: "EB03", name: "助行器", buyPrice: 800, buyC1: 800, buyC2: 720, buyC3: 560, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
+      { code: "EB04", name: "帶輪型助步車(助行椅)", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, rentPrice: 300, rentC1: 300, rentC2: 270, rentC3: 210, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "EA" },
+      { code: "EC01", name: "輪椅-A 款(非輕量化量產型)", buyPrice: 3500, buyC1: 3500, buyC2: 3150, buyC3: 2450, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
+      { code: "EC02", name: "輪椅-B 款(輕量化量產型)", buyPrice: 4000, buyC1: 4000, buyC2: 3600, buyC3: 2800, rentPrice: 450, rentC1: 450, rentC2: 405, rentC3: 315, canRent: true, note: "免評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
+      { code: "EC03", name: "輪椅-C 款(量身訂製型)", buyPrice: 9000, buyC1: 9000, buyC2: 8100, buyC3: 6300, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
+      { code: "EC04", name: "輪椅附加功能-A 款(具利於移位功能)", buyPrice: 5000, buyC1: 5000, buyC2: 5000, buyC3: 5000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
+      { code: "EC05", name: "輪椅附加功能-B款(具仰躺功能)", buyPrice: 2000, buyC1: 2000, buyC2: 2000, buyC3: 2000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
+      { code: "EC06", name: "輪椅附加功能-C款(具空中傾倒功能)", buyPrice: 4000, buyC1: 4000, buyC2: 4000, buyC3: 4000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
+      { code: "EC07", name: "擺位系統-A款(平面型輪椅背靠)", buyPrice: 1000, buyC1: 1000, buyC2: 1000, buyC3: 1000, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "POSTURE", ruleTag: "與EC08擇一" },
+      { code: "EC08", name: "擺位系統-B款(曲面適形輪椅背靠)", buyPrice: 6000, buyC1: 6000, buyC2: 6000, buyC3: 6000, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "POSTURE", ruleTag: "與EC07擇一" },
+      { code: "EC09", name: "擺位系統-C款(輪椅軀幹側支撐架)", buyPrice: 3000, buyC1: 3000, buyC2: 3000, buyC3: 3000, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "POSTURE", ruleTag: "與單支擇一" },
+      { code: "EC09-1", name: "擺位系統-C款(輪椅軀幹側支撐架-單支)", buyPrice: 1500, buyC1: 1500, buyC2: 1500, buyC3: 1500, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "POSTURE", ruleTag: "與雙側擇一" },
+      { code: "EC10", name: "擺位系統-D款(輪椅頭靠系統)", buyPrice: 2500, buyC1: 2500, buyC2: 2500, buyC3: 2500, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "POSTURE" },
+      { code: "EC11", name: "電動輪椅", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 2500, rentC1: 2500, rentC2: 2250, rentC3: 1750, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "WHEELCHAIR" },
+      { code: "EC12", name: "電動代步車", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 1200, rentC1: 1200, rentC2: 1080, rentC3: 840, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "WHEELCHAIR" },
+      { code: "ED01", name: "移位腰帶", buyPrice: 1500, buyC1: 1500, buyC2: 1350, buyC3: 1050, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "TRANSFER" },
+      { code: "ED02", name: "移位板", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "5", cat: "TRANSFER" },
+      { code: "ED03", name: "人力移位吊帶", buyPrice: 4000, buyC1: 4000, buyC2: 3600, buyC3: 2800, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "TRANSFER" },
+      { code: "ED04", name: "移位滑墊-A款", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "5", cat: "TRANSFER" },
+      { code: "ED05", name: "移位滑墊-B款", buyPrice: 8000, buyC1: 8000, buyC2: 7200, buyC3: 5600, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "5", cat: "TRANSFER" },
+      { code: "ED06", name: "移位轉盤", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "TRANSFER" },
+      { code: "ED07", name: "移位機", buyPrice: 40000, buyC1: 40000, buyC2: 36000, buyC3: 28000, rentPrice: 2000, rentC1: 2000, rentC2: 1800, rentC3: 1400, canRent: true, note: "需評估(可租賃可購置)", years: "10", cat: "TRANSFER" },
+      { code: "ED08", name: "移位機吊帶", buyPrice: 6000, buyC1: 6000, buyC2: 5400, buyC3: 4200, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "TRANSFER", ruleTag: "購置ED07三年後更換" },
+      { code: "EE01", name: "電話擴音器", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "ALERT_LIFE" },
+      { code: "EE02", name: "電話閃光震動器", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "ALERT_LIFE" },
+      { code: "EE03", name: "火警閃光警示器", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "ALERT_LIFE" },
+      { code: "EE04", name: "門鈴閃光器", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "ALERT_LIFE" },
+      { code: "EE05", name: "無線震動警示器", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "5", cat: "ALERT_LIFE" },
+      { code: "EF01", name: "衣著用輔具", buyPrice: 500, buyC1: 500, buyC2: 450, buyC3: 350, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "ALERT_LIFE" },
+      { code: "EF02", name: "居家用生活輔具", buyPrice: 500, buyC1: 500, buyC2: 450, buyC3: 350, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "ALERT_LIFE" },
+      { code: "EF03", name: "飲食用輔具", buyPrice: 500, buyC1: 500, buyC2: 450, buyC3: 350, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "ALERT_LIFE" },
+      { code: "EG01", name: "氣墊床-A款", buyPrice: 8000, buyC1: 8000, buyC2: 8000, buyC3: 8000, rentPrice: 300, rentC1: 300, rentC2: 270, rentC3: 210, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "MATTRESS", ruleTag: "氣墊床二擇一" },
+      { code: "EG02", name: "氣墊床-B款", buyPrice: 12000, buyC1: 12000, buyC2: 12000, buyC3: 12000, rentPrice: 500, rentC1: 500, rentC2: 450, rentC3: 350, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "MATTRESS", ruleTag: "氣墊床二擇一" },
+      { code: "EG03", name: "輪椅座墊-A款(連通管氣囊-塑膠)", buyPrice: 5000, buyC1: 5000, buyC2: 5000, buyC3: 5000, canRent: false, note: "需評估(限購置)", years: "2", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG04", name: "輪椅座墊-B款(連通管氣囊-橡膠)", buyPrice: 10000, buyC1: 10000, buyC2: 10000, buyC3: 10000, canRent: false, note: "需評估(限購置)", years: "2", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG05", name: "輪椅座墊-C款(液態凝膠座墊)", buyPrice: 10000, buyC1: 10000, buyC2: 10000, buyC3: 10000, canRent: false, note: "需評估(限購置)", years: "2", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG06", name: "輪椅座墊-D款(固態凝膠座墊)", buyPrice: 8000, buyC1: 8000, buyC2: 8000, buyC3: 8000, canRent: false, note: "需評估(限購置)", years: "5", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG07", name: "輪椅座墊-E款(填充式氣囊座墊)", buyPrice: 8000, buyC1: 8000, buyC2: 8000, buyC3: 8000, canRent: false, note: "需評估(限購置)", years: "5", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG08", name: "輪椅座墊-F款(交替充氣型座墊)", buyPrice: 5000, buyC1: 5000, buyC2: 5000, buyC3: 5000, canRent: false, note: "需評估(限購置)", years: "3", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EG09", name: "輪椅座墊-G款(量製型座墊)", buyPrice: 10000, buyC1: 10000, buyC2: 10000, buyC3: 10000, canRent: false, note: "需評估(限購置)", years: "3", cat: "CUSHION", ruleTag: "座墊僅擇一" },
+      { code: "EH01", name: "居家用照顧床", buyPrice: 8000, buyC1: 8000, buyC2: 7200, buyC3: 5600, rentPrice: 1000, rentC1: 1000, rentC2: 900, rentC3: 700, canRent: true, note: "需評估(可租賃可購置)", years: "5", cat: "BED_CLIMB" },
+      { code: "EH02", name: "照顧床附加功能-A款(床面升降)", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, rentPrice: 200, rentC1: 200, rentC2: 180, rentC3: 140, canRent: true, note: "需評估(可租賃可購置)", years: "5", cat: "BED_CLIMB" },
+      { code: "EH03", name: "照顧床附加功能-B款(電動升降)", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, rentPrice: 500, rentC1: 500, rentC2: 450, rentC3: 350, canRent: true, note: "需評估(可租賃可購置)", years: "5", cat: "BED_CLIMB" },
+      { code: "EH04", name: "爬梯機(單趟)", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 700, rentC1: 700, rentC2: 630, rentC3: 490, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "BED_CLIMB" },
+      { code: "EH05", name: "爬梯機(月)", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 4000, rentC1: 4000, rentC2: 3600, rentC3: 2800, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "BED_CLIMB" },
+      { code: "FA08", name: "居家無障礙設施-反光貼條或消光處理", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, canRent: false, note: "需評估(限購置)", years: "3", cat: "FA" },
+      { code: "FA13", name: "居家無障礙設施-水龍頭(單處)【(新增、改換)】", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA15", name: "居家無障礙設施-改善洗臉台(槽)(單處)【(新增、改換、移除-含原處填補)】", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA17", name: "居家無障礙設施-壁掛式淋浴台(單處)", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA18", name: "居家無障礙設施-改善流理台(單處)【(新增、改換)】", buyPrice: 15000, buyC1: 15000, buyC2: 13500, buyC3: 10500, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA19", name: "居家無障礙設施-改善抽油煙機(單處)【(位置調整)】", buyPrice: 1000, buyC1: 1000, buyC2: 900, buyC3: 700, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA22", name: "居家無障礙設施-固定式扶手(每10公分)", buyPrice: 160, buyC1: 160, buyC2: 144, buyC3: 112, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA23", name: "居家無障礙設施-可動式扶手(單支)", buyPrice: 3600, buyC1: 3600, buyC2: 3240, buyC3: 2520, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA24", name: "居家無障礙設施-床邊扶手(單處)", buyPrice: 1000, buyC1: 1000, buyC2: 900, buyC3: 700, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA25", name: "居家無障礙設備-門檻斜角(單側)", buyPrice: 1000, buyC1: 1000, buyC2: 900, buyC3: 700, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA26", name: "居家無障礙設施-非固定式斜坡板A款", buyPrice: 3500, buyC1: 3500, buyC2: 3150, buyC3: 2450, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA27", name: "居家無障礙設施-非固定式斜坡板B款", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA28", name: "居家無障礙設施-非固定式斜坡板C款", buyPrice: 7000, buyC1: 7000, buyC2: 6300, buyC3: 4900, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA29", name: "居家無障礙設施-非固定式斜坡板D款", buyPrice: 10000, buyC1: 10000, buyC2: 9000, buyC3: 7000, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA30", name: "居家無障礙設施-改善高低差(高度十公分以下)(單處)", buyPrice: 3500, buyC1: 3500, buyC2: 3150, buyC3: 2450, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA31", name: "居家無障礙設施-改善高低差(高度二十公分以下)(單處)", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA32", name: "居家無障礙設施-改善高低差(高度三十公分以下)(單處)", buyPrice: 7000, buyC1: 7000, buyC2: 6300, buyC3: 4900, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA33", name: "居家無障礙設施-改善高低差(高度超過三十公分)(單處)", buyPrice: 10000, buyC1: 10000, buyC2: 9000, buyC3: 7000, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA34", name: "居家無障礙設施-防滑地磚(單處)", buyPrice: 6000, buyC1: 6000, buyC2: 5400, buyC3: 4200, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA35", name: "居家無障礙設施-防滑措施", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, canRent: false, note: "需評估(限購置)", years: "3", cat: "FA" },
+      { code: "FA36", name: "居家無障礙設施-隔間(每平方公尺)【(新增)】", buyPrice: 800, buyC1: 800, buyC2: 720, buyC3: 560, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA37", name: "居家無障礙設施-門簡易型(單處)", buyPrice: 7000, buyC1: 7000, buyC2: 6300, buyC3: 4900, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA38", name: "居家無障礙設施-門進階型(單處)", buyPrice: 10000, buyC1: 10000, buyC2: 9000, buyC3: 7000, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA39", name: "居家無障礙設施-截水槽(單處)", buyPrice: 6000, buyC1: 6000, buyC2: 5400, buyC3: 4200, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA40", name: "居家無障礙設施-改善浴缸(單處)【(新增、改換、移除-含原處填補)】", buyPrice: 7000, buyC1: 7000, buyC2: 6300, buyC3: 4900, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA41", name: "居家無障礙設施-改善馬桶(單處)【(新增、改換、移除-含原處填補)】", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA42", name: "居家無障礙設施-馬桶背靠(單處)", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, canRent: false, note: "需評估(限購置)", years: "10", cat: "FA" },
+      { code: "FA43", name: "居家無障礙設施-移動式身體清洗槽-局部型", buyPrice: 2000, buyC1: 2000, buyC2: 1800, buyC3: 1400, canRent: false, note: "需評估(限購置)", years: "3", cat: "FA" },
+      { code: "FA44", name: "居家無障礙設施-移動式身體清洗槽-全身型", buyPrice: 5000, buyC1: 5000, buyC2: 4500, buyC3: 3500, canRent: false, note: "需評估(限購置)", years: "3", cat: "FA" }
+    ];
+
+    const group2Data = [
+      group1Data.find(i => i.code === "EA01-1"),
+      group1Data.find(i => i.code === "EA01-2"),
+      group1Data.find(i => i.code === "EA01-3"),
+      group1Data.find(i => i.code === "EB01"),
+      group1Data.find(i => i.code === "EB02"),
+      group1Data.find(i => i.code === "EB03"),
+      { code: "EI01", name: "智慧科技輔具-移位類", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 2000, rentC1: 2000, rentC2: 1800, rentC3: 1400, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "EI" },
+      { code: "EI02", name: "智慧科技輔具-移動類", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 2000, rentC1: 2000, rentC2: 1800, rentC3: 1400, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "EI" },
+      { code: "EI03", name: "智慧科技輔具-沐浴排泄類", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 1500, rentC1: 1500, rentC2: 1350, rentC3: 1050, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "EI" },
+      { code: "EI04", name: "智慧科技輔具-居家照顧床類", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 1800, rentC1: 1800, rentC2: 1620, rentC3: 1260, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "EI" },
+      { code: "EI05", name: "智慧科技輔具-安全看視類", buyPrice: 0, buyC1: 0, buyC2: 0, buyC3: 0, rentPrice: 1200, rentC1: 1200, rentC2: 1080, rentC3: 840, canRent: true, rentOnly: true, note: "需評估(限租賃)", years: "不適用", cat: "EI" },
+      ...group1Data.filter(i => i.cat === "FA")
+    ];
+
+    let currentGroup = 'group1';
+    const itemStates = { group1: {}, group2: {} };
+
+    function getTodayString() { return new Date().toISOString().split('T')[0]; }
+    function getNextMonthString() {
+      const d = new Date();
+      d.setMonth(d.getMonth() + 1);
+      return d.toISOString().split('T')[0];
+    }
+
+    function getItemState(code) {
+      if (!itemStates[currentGroup][code]) {
+        itemStates[currentGroup][code] = {
+          qty: 0,
+          mode: 'buy',
+          startDate: getTodayString(),
+          endDate: getNextMonthString()
+        };
+      }
+      return itemStates[currentGroup][code];
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-banner');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 4500);
+    }
+
+    function switchGroup(groupKey) {
+      if (currentGroup === groupKey) return;
+      currentGroup = groupKey;
+      document.getElementById('tab-group1').classList.toggle('active', groupKey === 'group1');
+      document.getElementById('tab-group2').classList.toggle('active', groupKey === 'group2');
+      
+      if (groupKey === 'group1') {
+        document.getElementById('label-quota-limit').innerText = "3年補助總上限 (第一組)";
+        document.getElementById('disp-quota-limit').innerText = "40,000";
+      } else {
+        document.getElementById('label-quota-limit').innerText = "3年補助總上限 (第二組)";
+        document.getElementById('disp-quota-limit').innerText = "60,000";
+      }
+
+      renderItems();
+      calculateTotals();
+      showToast(`已切換至「${groupKey === 'group1' ? '第一組 (4萬額度)' : '第二組 (6萬額度)'}」，已保留先前選擇。`);
+    }
+
+    function getCurrentData() {
+      return currentGroup === 'group1' ? group1Data : group2Data;
+    }
+
+    function computeRentalFactor(startDateStr, endDateStr, isGroup2) {
+      if (!startDateStr || !endDateStr) return 0;
+      const start = new Date(startDateStr);
+      const end = new Date(endDateStr);
+      if (end < start) return 0;
+
+      let fullMonths = 0;
+      let curAnchor = new Date(start);
+
+      while (true) {
+        let nextAnchor = new Date(curAnchor);
+        nextAnchor.setMonth(nextAnchor.getMonth() + 1);
+
+        const targetDay = curAnchor.getDate();
+        if (nextAnchor.getDate() !== targetDay) {
+          nextAnchor.setDate(0);
+        }
+
+        if (nextAnchor <= end) {
+          fullMonths += 1;
+          curAnchor = nextAnchor;
+        } else {
+          break;
+        }
+      }
+
+      let remainingFactor = 0;
+      if (curAnchor < end) {
+        const diffDays = Math.round((end - curAnchor) / (1000 * 60 * 60 * 24));
+        if (diffDays > 0) {
+          if (isGroup2) {
+            remainingFactor = (diffDays <= 15) ? 0.5 : 1.0;
+          } else {
+            const daysInCurrentMonth = new Date(curAnchor.getFullYear(), curAnchor.getMonth() + 1, 0).getDate();
+            remainingFactor = diffDays / daysInCurrentMonth;
+          }
+        }
+      }
+
+      return fullMonths + remainingFactor;
+    }
+
+    function applyRulesAndValidate(changedCode, newQty) {
+      const g = itemStates[currentGroup];
+
+      if (['EC01', 'EC02', 'EC03'].includes(changedCode) && newQty > 0) {
+        ['EC01', 'EC02', 'EC03'].forEach(code => {
+          if (code !== changedCode && g[code] && g[code].qty > 0) {
+            g[code].qty = 0;
+            const inp = document.getElementById(`qty-${code}`);
+            if (inp) inp.value = 0;
+            updateCardSubtotal(code);
+          }
+        });
+        showToast(`💡 提醒：輪椅 A、B、C 款依規定僅能擇一申請，已為您自動切換至 ${changedCode}。`);
+
+        if (changedCode === 'EC01') {
+          ['EC04', 'EC05', 'EC06'].forEach(accCode => {
+            if (g[accCode] && g[accCode].qty > 0) {
+              g[accCode].qty = 0;
+              const inp = document.getElementById(`qty-${accCode}`);
+              if (inp) inp.value = 0;
+              updateCardSubtotal(accCode);
+            }
+          });
+        }
+      }
+
+      if (['EC04', 'EC05', 'EC06'].includes(changedCode) && newQty > 0) {
+        const hasWheelchairBC = (g['EC02'] && g['EC02'].qty > 0) || (g['EC03'] && g['EC03'].qty > 0);
+        if (!hasWheelchairBC) {
+          alert("⚠️ 法規防呆提醒：\n輪椅附加功能（EC04、EC05、EC06）應搭配「EC02 輪椅-B款」或「EC03 輪椅-C款」同時申請！\n\n請先將輪椅 B 款或 C 款加入申請數量。");
+          return false;
+        }
+      }
+
+      if (['EC07', 'EC08'].includes(changedCode) && newQty > 0) {
+        const other = changedCode === 'EC07' ? 'EC08' : 'EC07';
+        if (g[other] && g[other].qty > 0) {
+          g[other].qty = 0;
+          const inp = document.getElementById(`qty-${other}`);
+          if (inp) inp.value = 0;
+          updateCardSubtotal(other);
+          showToast(`💡 提醒：擺位背靠 A 款 (EC07) 與 B 款 (EC08) 僅能擇一申請，已切換。`);
+        }
+      }
+
+      if (changedCode === 'ED08' && newQty > 0) {
+        showToast(`⚠️ 提示：ED08 移位機吊帶適用於「ED07 移位機購置滿三年後」之更換申請。`);
+      }
+
+      if (['EG01', 'EG02'].includes(changedCode) && newQty > 0) {
+        const other = changedCode === 'EG01' ? 'EG02' : 'EG01';
+        if (g[other] && g[other].qty > 0) {
+          g[other].qty = 0;
+          const inp = document.getElementById(`qty-${other}`);
+          if (inp) inp.value = 0;
+          updateCardSubtotal(other);
+          showToast(`💡 提醒：氣墊床 A 款與 B 款僅能擇一申請，已自動切換。`);
+        }
+      }
+
+      const cushions = ['EG03', 'EG04', 'EG05', 'EG06', 'EG07', 'EG08', 'EG09'];
+      if (cushions.includes(changedCode) && newQty > 0) {
+        cushions.forEach(code => {
+          if (code !== changedCode && g[code] && g[code].qty > 0) {
+            g[code].qty = 0;
+            const inp = document.getElementById(`qty-${code}`);
+            if (inp) inp.value = 0;
+            updateCardSubtotal(code);
+          }
+        });
+        showToast(`💡 提醒：輪椅座墊（EG03～EG09）依規定僅能擇一項申請，已自動切換。`);
+      }
+
+      return true;
+    }
+
+    function renderItems() {
+      const container = document.getElementById('items-container');
+      if (!container) return;
+      const filterCat = document.getElementById('category-filter').value;
+      const searchTerm = document.getElementById('search-box').value.trim().toLowerCase();
+      const currentData = getCurrentData();
+      
+      container.innerHTML = '';
+      
+      const filtered = currentData.filter(item => {
+        const matchCat = (filterCat === 'ALL' || item.cat === filterCat);
+        const matchSearch = (item.name.toLowerCase().includes(searchTerm) || item.code.toLowerCase().includes(searchTerm));
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 40px; color:#5f6368;">查無符合條件的項目</div>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const state = getItemState(item.code);
+        if (item.rentOnly) state.mode = 'rent';
+        
+        const isF = item.cat === 'FA';
+        const isEI = item.cat === 'EI';
+        const isRent = (state.mode === 'rent');
+        const isEvalRequired = item.note.includes('需評估');
+        
+        const card = document.createElement('div');
+        card.className = `item-card ${isF ? 'category-f' : ''} ${isEI ? 'category-ei' : ''} ${isRent ? 'category-rental' : ''}`;
+        
+        let priceInfo = '';
+        if (item.rentOnly) {
+          priceInfo = `月租給付上限: <strong>$${item.rentPrice.toLocaleString()}/月</strong>`;
+        } else if (item.canRent) {
+          priceInfo = `購置上限: <strong>$${item.buyPrice.toLocaleString()}</strong> | 月租: <strong>$${item.rentPrice.toLocaleString()}/月</strong>`;
+        } else {
+          priceInfo = `購置上限: <strong>$${item.buyPrice.toLocaleString()}</strong>`;
+        }
+
+        card.innerHTML = `
+          <div class="item-main-row">
+            <div class="item-info">
+              <div>
+                <span class="item-code">${item.code}</span>
+                <span class="badge ${isEvalRequired ? 'badge-req' : 'badge-free'}">${item.note}</span>
+                ${item.canRent ? `<span class="badge badge-rent">可租賃</span>` : ''}
+                ${item.ruleTag ? `<span class="badge badge-rule">⚠️ ${item.ruleTag}</span>` : ''}
+              </div>
+              <div class="item-name">${item.name}</div>
+              <div class="item-meta">
+                <span>${priceInfo}</span>
+                <span>年限: ${item.years}${item.years !== '不適用' ? ' 年' : ''}</span>
+              </div>
+            </div>
+            
+            <div class="item-action">
+              ${item.canRent && !item.rentOnly ? `
+                <div class="mode-switch">
+                  <button class="mode-btn ${!isRent ? 'active' : ''}" onclick="setItemMode('${item.code}', 'buy')">購置</button>
+                  <button class="mode-btn ${isRent ? 'active' : ''}" onclick="setItemMode('${item.code}', 'rent')">租賃</button>
+                </div>
+              ` : ''}
+              
+              <div class="qty-stepper">
+                <button class="qty-btn" onclick="changeQty('${item.code}', -1)">-</button>
+                <input type="number" class="qty-input" min="0" value="${state.qty}" id="qty-${item.code}" onchange="setQty('${item.code}', this.value)">
+                <button class="qty-btn" onclick="changeQty('${item.code}', 1)">+</button>
+              </div>
+              
+              <div class="item-subtotal">
+                <div class="subtotal-val" id="subtotal-${item.code}">$0</div>
+                <div class="subtotal-label" id="sublabel-${item.code}">額度小計</div>
+              </div>
+            </div>
+          </div>
+
+          ${isRent ? `
+            <div class="rental-date-box" id="rental-box-${item.code}">
+              <span class="date-label">🗓 租賃日期：</span>
+              <div class="date-inputs">
+                <label>起：<input type="date" class="date-field" value="${state.startDate}" onchange="setRentalDate('${item.code}', 'start', this.value)"></label>
+                <label>訖：<input type="date" class="date-field" value="${state.endDate}" onchange="setRentalDate('${item.code}', 'end', this.value)"></label>
+              </div>
+              <div class="rental-calc-info" id="rent-calc-${item.code}">
+                計算中...
+              </div>
+            </div>
+          ` : ''}
+        `;
+        container.appendChild(card);
+        updateCardSubtotal(item.code);
+      });
+    }
+
+    function setItemMode(code, mode) {
+      const state = getItemState(code);
+      state.mode = mode;
+      renderItems();
+      calculateTotals();
+    }
+
+    function setRentalDate(code, type, value) {
+      const state = getItemState(code);
+      if (type === 'start') state.startDate = value;
+      if (type === 'end') state.endDate = value;
+      updateCardSubtotal(code);
+      calculateTotals();
+    }
+
+    function changeQty(code, delta) {
+      const state = getItemState(code);
+      const targetQty = Math.max(0, state.qty + delta);
+      
+      if (delta > 0) {
+        const valid = applyRulesAndValidate(code, targetQty);
+        if (!valid) return;
+      } else {
+        applyRulesAndValidate(code, targetQty);
+      }
+      
+      state.qty = targetQty;
+      const input = document.getElementById(`qty-${code}`);
+      if (input) input.value = state.qty;
+      updateCardSubtotal(code);
+      calculateTotals();
+    }
+
+    function setQty(code, value) {
+      const state = getItemState(code);
+      const targetQty = Math.max(0, parseInt(value, 10) || 0);
+      
+      const valid = applyRulesAndValidate(code, targetQty);
+      if (!valid) {
+        const input = document.getElementById(`qty-${code}`);
+        if (input) input.value = state.qty;
+        return;
+      }
+      
+      state.qty = targetQty;
+      updateCardSubtotal(code);
+      calculateTotals();
+    }
+
+    function updateCardSubtotal(code) {
+      const item = getCurrentData().find(i => i.code === code);
+      if (!item) return;
+      const state = getItemState(code);
+      const identityInput = document.querySelector('input[name="identity"]:checked');
+      const identity = identityInput ? identityInput.value : 'cat1';
+      const isGroup2 = (currentGroup === 'group2');
+      
+      const subtotalElem = document.getElementById(`subtotal-${code}`);
+      const sublabelElem = document.getElementById(`sublabel-${code}`);
+      const rentCalcElem = document.getElementById(`rent-calc-${code}`);
+
+      if (state.mode === 'rent') {
+        const factor = computeRentalFactor(state.startDate, state.endDate, isGroup2);
+        const monthsExact = factor.toFixed(2);
+        const totalRentQuota = Math.round(state.qty * item.rentPrice * factor);
+
+        let unitRentSubsidy = 0;
+        if (identity === 'cat1') unitRentSubsidy = item.rentC1;
+        else if (identity === 'cat2') unitRentSubsidy = item.rentC2;
+        else if (identity === 'cat3') unitRentSubsidy = item.rentC3;
+
+        const monthlyMaxSubsidy = state.qty * unitRentSubsidy;
+        const totalSubsidy = Math.round(monthlyMaxSubsidy * factor);
+
+        if (subtotalElem) subtotalElem.innerText = '$' + totalRentQuota.toLocaleString();
+        if (sublabelElem) sublabelElem.innerText = `折算 ${monthsExact} 個月`;
+        if (rentCalcElem) {
+          rentCalcElem.innerHTML = `每月最高折抵: $${monthlyMaxSubsidy.toLocaleString()}/月 ｜ 本期總折抵: $${totalSubsidy.toLocaleString()} ${isGroup2 ? '<span style="color:#d81b60; font-size:0.75rem;">(對日足月/半月全月)</span>' : '<span style="color:#1565c0; font-size:0.75rem;">(對日足月)</span>'}`;
+        }
+      } else {
+        const totalQuota = state.qty * item.buyPrice;
+        if (subtotalElem) subtotalElem.innerText = '$' + totalQuota.toLocaleString();
+        if (sublabelElem) sublabelElem.innerText = '額度小計';
+      }
+    }
+
+    function updateIdentity() {
+      document.querySelectorAll('.radio-card').forEach(el => el.classList.remove('active'));
+      const selected = document.querySelector('input[name="identity"]:checked').value;
+      const card = document.getElementById(`card-${selected}`);
+      if (card) card.classList.add('active');
+      
+      getCurrentData().forEach(item => updateCardSubtotal(item.code));
+      calculateTotals();
+    }
+
+    function filterItems() {
+      renderItems();
+    }
+
+    function resetCurrentGroup() {
+      itemStates[currentGroup] = {};
+      document.getElementById('search-box').value = '';
+      document.getElementById('category-filter').value = 'ALL';
+      renderItems();
+      calculateTotals();
+      showToast("已清空目前組別的所有選擇數量。");
+    }
+
+    function calculateTotals() {
+      const identityInput = document.querySelector('input[name="identity"]:checked');
+      const identity = identityInput ? identityInput.value : 'cat1';
+      const currentData = getCurrentData();
+      const isGroup2 = (currentGroup === 'group2');
+
+      let totalQuotaUsed = 0;
+      let totalGovSubsidy = 0;
+      let totalMonthlyRentalSubsidy = 0;
+      let totalFQuotaUsed = 0;
+
+      currentData.forEach(item => {
+        const state = getItemState(item.code);
+        if (state.qty > 0) {
+          if (state.mode === 'rent') {
+            const factor = computeRentalFactor(state.startDate, state.endDate, isGroup2);
+            const quota = Math.round(state.qty * item.rentPrice * factor);
+            totalQuotaUsed += quota;
+
+            let unitRentSubsidy = 0;
+            if (identity === 'cat1') unitRentSubsidy = item.rentC1;
+            else if (identity === 'cat2') unitRentSubsidy = item.rentC2;
+            else if (identity === 'cat3') unitRentSubsidy = item.rentC3;
+
+            totalGovSubsidy += Math.round(state.qty * unitRentSubsidy * factor);
+            totalMonthlyRentalSubsidy += (state.qty * unitRentSubsidy);
+          } else {
+            const quota = state.qty * item.buyPrice;
+            totalQuotaUsed += quota;
+
+            let unitSubsidy = 0;
+            if (identity === 'cat1') unitSubsidy = item.buyC1;
+            else if (identity === 'cat2') unitSubsidy = item.buyC2;
+            else if (identity === 'cat3') unitSubsidy = item.buyC3;
+
+            totalGovSubsidy += (state.qty * unitSubsidy);
+
+            if (item.cat === 'FA') {
+              totalFQuotaUsed += quota;
+            }
+          }
+        }
+      });
+
+      const quotaLimit = isGroup2 ? 60000 : 40000;
+      const quotaRemain = Math.max(0, quotaLimit - totalQuotaUsed);
+      const userCopay = Math.max(0, totalQuotaUsed - totalGovSubsidy);
+
+      const dispTotalQuota = document.getElementById('disp-total-quota');
+      const dispGovSubsidy = document.getElementById('disp-gov-subsidy');
+      const dispMonthlyRental = document.getElementById('disp-monthly-rental');
+      const dispUserCopay = document.getElementById('disp-user-copay');
+      const dispQuotaRemain = document.getElementById('disp-quota-remain');
+
+      if (dispTotalQuota) dispTotalQuota.innerText = totalQuotaUsed.toLocaleString();
+      if (dispGovSubsidy) dispGovSubsidy.innerText = totalGovSubsidy.toLocaleString();
+      if (dispMonthlyRental) dispMonthlyRental.innerText = totalMonthlyRentalSubsidy.toLocaleString();
+      if (dispUserCopay) dispUserCopay.innerText = userCopay.toLocaleString();
+      if (dispQuotaRemain) dispQuotaRemain.innerText = quotaRemain.toLocaleString();
+
+      const quotaAlert = document.getElementById('alert-quota');
+      if (quotaAlert) {
+        if (totalQuotaUsed > quotaLimit) {
+          quotaAlert.classList.add('show');
+          if (dispTotalQuota) dispTotalQuota.classList.add('warning');
+        } else {
+          quotaAlert.classList.remove('show');
+          if (dispTotalQuota) dispTotalQuota.classList.remove('warning');
+        }
+      }
+
+      const fAlert = document.getElementById('alert-f-quota');
+      if (fAlert) {
+        if (totalFQuotaUsed >= 20000) {
+          fAlert.classList.add('show');
+        } else {
+          fAlert.classList.remove('show');
+        }
+      }
+    }
+
+    // 頁面初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLtcTable();
+      renderItems();
+      calculateTotals();
+    });
+  </script>
+</body>
+</html>
