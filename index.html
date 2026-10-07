@@ -3060,7 +3060,7 @@
                 <span class="item-code">${item.code}</span>
                 <span class="badge ${isEvalRequired ? 'badge-req' : 'badge-free'}">${item.note}</span>
                 ${item.canRent ? `<span class="badge badge-rent">可租賃</span>` : ''}
-                ${item.ruleTag ? `<span class="badge badge-rule">⚠️ ${item.ruleTag}</span>` : ''}
+                ${item.ruleTag ? `<span class="badge badge-rule">⚠️ \${item.ruleTag}</span>` : ''}
               </div>
               <div class="item-name">${item.name}</div>
               <div class="item-meta">
@@ -3091,13 +3091,13 @@
           </div>
 
           ${isRent ? `
-            <div class="rental-date-box" id="rental-box-${item.code}">
+            <div class="rental-date-box" id="rental-box-\${item.code}">
               <span class="date-label">🗓 租賃日期：</span>
               <div class="date-inputs">
                 <label>起：<input type="date" class="date-field" value="${state.startDate}" onchange="setRentalDate('${item.code}', 'start', this.value)"></label>
                 <label>訖：<input type="date" class="date-field" value="${state.endDate}" onchange="setRentalDate('${item.code}', 'end', this.value)"></label>
               </div>
-              <div class="rental-calc-info" id="rent-calc-${item.code}">
+              <div class="rental-calc-info" id="rent-calc-\${item.code}">
                 計算中...
               </div>
             </div>
@@ -3182,14 +3182,14 @@
         const monthlyMaxSubsidy = state.qty * unitRentSubsidy;
         const totalSubsidy = Math.round(monthlyMaxSubsidy * factor);
 
-        if (subtotalElem) subtotalElem.innerText = '$' + totalRentQuota.toLocaleString();
+        if (subtotalElem) subtotalElem.innerText = '\$' + totalRentQuota.toLocaleString();
         if (sublabelElem) sublabelElem.innerText = `折算 ${monthsExact} 個月`;
         if (rentCalcElem) {
           rentCalcElem.innerHTML = `每月最高折抵: $${monthlyMaxSubsidy.toLocaleString()}/月 ｜ 本期總折抵: $${totalSubsidy.toLocaleString()} ${isGroup2 ? '<span style="color:#d81b60; font-size:0.75rem;">(對日足月/半月全月)</span>' : '<span style="color:#1565c0; font-size:0.75rem;">(對日足月)</span>'}`;
         }
       } else {
         const totalQuota = state.qty * item.buyPrice;
-        if (subtotalElem) subtotalElem.innerText = '$' + totalQuota.toLocaleString();
+        if (subtotalElem) subtotalElem.innerText = '\$' + totalQuota.toLocaleString();
         if (sublabelElem) sublabelElem.innerText = '額度小計';
       }
     }
