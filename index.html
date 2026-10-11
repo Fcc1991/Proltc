@@ -136,7 +136,7 @@
     }
 
     /* ============================================================
-       3. 導覽列與手機優化選單 (含漢堡動畫與背景遮罩)
+       3. 導覽列與手機優化選單
        ============================================================ */
     .navbar {
       background-color: rgba(255, 255, 255, 0.96);
@@ -414,7 +414,6 @@
       margin-bottom: 24px;
     }
 
-    /* 全站即時搜尋列 */
     .search-hero-box {
       max-width: 680px;
       margin: 0 auto;
@@ -1276,7 +1275,7 @@
     .footer-note { margin-top: 20px; padding: 16px; border-radius: 10px; background: #f1f3f4; font-size: 0.85rem; color: #5f6368; line-height: 1.7; }
 
     /* ============================================================
-       11. 彈窗樣式 (包含四大支柱圖文展示卡片)
+       11. 彈窗樣式 (通用資訊彈窗 & 照顧服務四大支柱彈窗)
        ============================================================ */
     .modal-overlay {
       position: fixed;
@@ -1312,7 +1311,7 @@
     }
 
     .modal-box.large {
-      max-width: 820px;
+      max-width: 840px;
     }
 
     .modal-box.extra-large {
@@ -1349,6 +1348,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    /* 四大支柱網格卡片 */
     .care-pillars-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -1371,8 +1371,9 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       transition: all 0.2s ease;
+      position: relative;
     }
 
     .pillar-card:hover {
@@ -1438,113 +1439,157 @@
       line-height: 1.65;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .form-group {
+    /* 右下角詳細內容超連結 */
+    .pillar-footer-action {
       display: flex;
-      flex-direction: column;
+      justify-content: flex-end;
+      margin-top: auto;
+      padding-top: 8px;
     }
 
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
-
-    .form-group label {
-      font-size: 14px;
-      font-weight: 700;
-      color: #475569;
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 16px;
-      font-family: inherit;
-      color: #334155;
-      outline: none;
-      transition: all 0.25s ease;
-    }
-
-    .form-group input {
-      height: 48px;
-    }
-
-    .form-group textarea {
-      min-height: 110px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.15);
-    }
-
-    .submit-area {
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .submit-btn {
-      border: none;
-      cursor: pointer;
-      padding: 14px 44px;
-      border-radius: 30px;
-      background: var(--primary);
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: 0 6px 16px rgba(14, 116, 144, 0.25);
-      transition: all 0.25s ease;
-      width: 100%;
-      min-height: 52px;
-      touch-action: manipulation;
-    }
-
-    .submit-btn:active {
-      transform: scale(0.98);
-      background: var(--primary-dark);
-    }
-
-    .line-box-modal {
-      margin-top: 24px;
-      padding: 18px 20px;
-      border-radius: 16px;
-      background: #f2f9f7;
-      border: 1px solid #d1fae5;
-      display: flex;
+    .pillar-detail-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      gap: 4px;
+      color: #0284c7;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 99px;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
-    .line-btn-modal {
-      text-decoration: none;
-      background: #06C755;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 700;
-      white-space: nowrap;
-      display: inline-block;
-      touch-action: manipulation;
+    .pillar-detail-link:hover, .pillar-detail-link:active {
+      background: #0284c7;
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
     /* ============================================================
-       12. 🤖 AI 機器人小幫手專屬樣式 (常駐浮動 + 導覽抽屜)
+       12. 【全新優化】BA 碼居家照顧服務項目與額度彈窗樣式
+       ============================================================ */
+    .ba-table-header-box {
+      margin-bottom: 16px;
+    }
+
+    .ba-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ba-filter-chip {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ba-filter-chip.active, .ba-filter-chip:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .ba-table-responsive {
+      max-height: 480px;
+      overflow-y: auto;
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ba-styled-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+    }
+
+    .ba-styled-table th {
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: 800;
+      padding: 12px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      text-align: left;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    .ba-styled-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    .ba-styled-table tbody tr:hover {
+      background-color: #f8fafc;
+    }
+
+    /* 行顏色高亮對應圖片色彩 */
+    .ba-row-yellow {
+      background-color: #fefce8;
+    }
+    .ba-row-cyan {
+      background-color: #ecfeff;
+    }
+    .ba-row-orange {
+      background-color: #fff7ed;
+    }
+
+    .ba-code-pill {
+      display: inline-block;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+    }
+
+    .ba-tag {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      margin-left: 6px;
+    }
+
+    .ba-tag-yellow { background: #fef08a; color: #854d0e; }
+    .ba-tag-cyan { background: #a5f3fc; color: #0e7490; }
+    .ba-tag-orange { background: #fed7aa; color: #9a3412; }
+    .ba-tag-red { color: #dc2626; font-weight: 800; margin-left: 4px; }
+
+    .ba-fee-num {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #0e7490;
+      text-align: right;
+    }
+
+    .ba-copay-info {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       13. 🤖 AI 機器人小幫手專屬樣式
        ============================================================ */
     .ai-fab-btn {
       position: fixed;
@@ -1725,7 +1770,7 @@
     }
 
     /* ============================================================
-       13. 頁尾
+       14. 頁尾
        ============================================================ */
     .footer {
       background-color: #ffffff;
@@ -1760,16 +1805,9 @@
     }
 
     /* ============================================================
-       14. 響應式斷點設定 (RWD)
+       15. 響應式斷點設定 (RWD)
        ============================================================ */
     @media (max-width: 650px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-      .line-box-modal {
-        flex-direction: column;
-        text-align: center;
-      }
       .dashboard {
         top: 74px;
         padding: 8px 10px;
@@ -2597,7 +2635,7 @@
        ============================================================ -->
   <button class="ai-fab-btn" id="aiFabBtn" onclick="toggleAiChat()">
     <span class="ai-fab-icon">🤖</span>
-    <span>AI小幫手</span>
+    <span>AI 導覽小幫手</span>
   </button>
 
   <div class="ai-chat-window" id="aiChatWindow">
@@ -2631,7 +2669,7 @@
   </div>
 
   <!-- ============================================================
-       【彈窗 1：照顧及專業服務四大支柱圖文展示 (完全對應圖片內容)】
+       【彈窗 1：照顧及專業服務四大支柱圖文展示 (含右下角詳細內容超連結)】
        ============================================================ -->
   <div class="modal-overlay" id="careServicesModal">
     <div class="modal-box extra-large">
@@ -2648,7 +2686,7 @@
       </div>
 
       <div class="care-pillars-grid">
-        <!-- 1. 居家照顧服務 -->
+        <!-- 1. 居家照顧服務 (右下角新增詳細內容連結) -->
         <div class="pillar-card">
           <div class="pillar-graphic home">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2665,6 +2703,12 @@
           </div>
           <div class="pillar-desc">
             由專業合格之<strong>照顧服務員親自到府</strong>，提供長輩日常基本身體照顧、穿衣沐浴、翻身拍背、餐食準備、安全看視與陪同就醫等非侵入型生活服務，實質減輕家屬的照護重擔。
+          </div>
+          <div class="pillar-footer-action">
+            <a href="javascript:void(0)" class="pillar-detail-link" onclick="openBaDetailModal()">
+              <span>詳細內容</span>
+              <span>❯</span>
+            </a>
           </div>
         </div>
 
@@ -2745,7 +2789,65 @@
   </div>
 
   <!-- ============================================================
-       【彈窗 2：通訊諮詢表單彈窗】
+       【全新重要彈窗：BA 碼居家照顧服務項目與額度詳細表 (對應圖片完整優化)】
+       ============================================================ -->
+  <div class="modal-overlay" id="baDetailModal">
+    <div class="modal-box large">
+      <button class="modal-close-btn" onclick="closeBaDetailModal()" aria-label="關閉">✕</button>
+      
+      <div class="ba-table-header-box">
+        <span style="background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.85rem; font-weight: 800;">
+          衛福部給付標準表完整收錄
+        </span>
+        <h2 style="font-size: 1.6rem; font-weight: 900; color: #155e75; margin-top: 8px;">
+          📋 居家照顧服務項目與給付額度表 (BA碼)
+        </h2>
+        <p style="color: #64748b; font-size: 0.95rem; margin-top: 4px;">
+          清楚標示計時服務、照服員專業訓練認證與專案沐浴就醫補助項目，方便比對與規劃。
+        </p>
+
+        <!-- 快速篩選按鈕 -->
+        <div class="ba-filter-bar">
+          <button class="ba-filter-chip active" onclick="filterBaTable('ALL')">全部項目 (28項)</button>
+          <button class="ba-filter-chip" onclick="filterBaTable('YELLOW')">⏱️ 計時制服務</button>
+          <button class="ba-filter-chip" onclick="filterBaTable('CYAN')">🎓 需照服專門訓練</button>
+          <button class="ba-filter-chip" onclick="filterBaTable('ORANGE')">🚐 到宅沐浴車與就醫專案</button>
+        </div>
+      </div>
+
+      <!-- 美化後之響應式表格 -->
+      <div class="ba-table-responsive">
+        <table class="ba-styled-table">
+          <thead>
+            <tr>
+              <th style="width: 110px;">服務碼別</th>
+              <th>服務項目</th>
+              <th style="text-align: right; width: 140px;">額度(費用)</th>
+            </tr>
+          </thead>
+          <tbody id="baTableBody">
+            <!-- 由 JS 動態渲染並支援色彩高亮標籤 -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 底部引導 -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-top: 20px; gap: 12px;">
+        <div style="font-size: 0.85rem; color: #64748b;">
+          ※ 自負額比例：第1類 0% ｜ 第2類 5% ｜ 第3類 16%（實際自負額依核定為準）
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="submit-btn" style="width: auto; padding: 10px 24px; font-size: 0.95rem;" onclick="closeBaDetailModal(); closeCareServicesModal(); navigateTo('calc');">
+            🧮 帶入計算機立即試算
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       【彈窗 3：通訊諮詢表單彈窗】
        ============================================================ -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-box large">
@@ -2816,7 +2918,7 @@
   </div>
 
   <!-- ============================================================
-       【彈窗 3：通用服務資訊彈窗】
+       【彈窗 4：通用服務資訊彈窗】
        ============================================================ -->
   <div class="modal-overlay" id="infoModal">
     <div class="modal-box">
@@ -2835,7 +2937,7 @@
   </div>
 
   <!-- ============================================================
-       【彈窗 4：計算機選擇彈窗】
+       【彈窗 5：計算機選擇彈窗】
        ============================================================ -->
   <div class="modal-overlay" id="calcChoiceModal">
     <div class="modal-box" style="text-align: center;">
@@ -2959,6 +3061,14 @@
       document.getElementById('careServicesModal').classList.remove('active');
     }
 
+    function openBaDetailModal() {
+      document.getElementById('baDetailModal').classList.add('active');
+      renderBaTable('ALL');
+    }
+    function closeBaDetailModal() {
+      document.getElementById('baDetailModal').classList.remove('active');
+    }
+
     function openContactModal() {
       document.getElementById('contactModal').classList.add('active');
       closeMobileMenu();
@@ -2987,10 +3097,12 @@
 
     window.addEventListener('click', (e) => {
       const careModal = document.getElementById('careServicesModal');
+      const baModal = document.getElementById('baDetailModal');
       const contactModal = document.getElementById('contactModal');
       const infoModal = document.getElementById('infoModal');
       const calcChoiceModal = document.getElementById('calcChoiceModal');
       if (e.target === careModal) closeCareServicesModal();
+      if (e.target === baModal) closeBaDetailModal();
       if (e.target === contactModal) closeContactModal();
       if (e.target === infoModal) closeInfoModal();
       if (e.target === calcChoiceModal) closeCalcChoiceModal();
@@ -3013,7 +3125,86 @@
     });
 
     // ============================================================
-    // 5. 全站關鍵字快速搜尋功能 (即時穿透檢索)
+    // 5. 【圖片表格完整對應資料】BA 碼給付項目清單與篩選渲染
+    // ============================================================
+    const baItemsData = [
+      { code: "BA01", name: "基本身體清潔", fee: 260, type: "NORMAL" },
+      { code: "BA02", name: "基本日常照顧(30 Min.)", fee: 195, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA03", name: "測量生命徵象", fee: 35, type: "NORMAL" },
+      { code: "BA04", name: "協助餵食或灌食", fee: 130, type: "NORMAL" },
+      { code: "BA05", name: "餐食照顧", fee: 310, type: "NORMAL" },
+      { code: "BA07", name: "協助沐浴及洗頭", fee: 325, type: "NORMAL" },
+      { code: "BA08", name: "足部照顧", fee: 500, type: "CYAN", tag: "🎓 照服需訓練", note: "照服需訓練" },
+      { code: "BA09", name: "[到宅沐浴車服務-第1型]", fee: 2200, type: "ORANGE", tag: "🚐 到宅沐浴車專案" },
+      { code: "BA09a", name: "[到宅沐浴車服務-第2型]", fee: 2500, type: "ORANGE", tag: "🚐 到宅沐浴車專案" },
+      { code: "BA10", name: "翻身拍背", fee: 155, type: "NORMAL" },
+      { code: "BA11", name: "肢體關節活動", fee: 195, type: "NORMAL" },
+      { code: "BA12", name: "協助上(下)樓梯", fee: 130, type: "NORMAL" },
+      { code: "BA13", name: "陪同外出(30 Min.)", fee: 195, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA14", name: "陪同就醫(1.5Hrs)", fee: 685, type: "ORANGE", tag: "🏥 專案就醫 1.5小時" },
+      { code: "BA15-1", name: "家務協助-自用(30 Min.)", fee: 195, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA15-2", name: "家務協助-共用(30 Min.)", fee: 195, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA16-1", name: "代購或代領或代送服務-自用", fee: 130, type: "NORMAL" },
+      { code: "BA16-2", name: "代購或代領或代送服務-共用", fee: 130, type: "NORMAL" },
+      { code: "BA17a", name: "人工氣管內分泌物抽吸", fee: 75, type: "CYAN", tag: "🎓 照服需訓練", note: "照服需訓練" },
+      { code: "BA17b", name: "口鼻抽吸", fee: 65, type: "CYAN", tag: "🎓 照服需訓練", note: "照服需訓練" },
+      { code: "BA17c", name: "管路(尿管、鼻胃管)清潔", fee: 50, type: "NORMAL" },
+      { code: "BA17d", name: "甘油球通便、血糖機驗血糖", fee: 50, type: "NORMAL" },
+      { code: "BA17e", name: "依指示置入藥盒", fee: 50, type: "NORMAL" },
+      { code: "BA18", name: "安全看視(30 Min.)", fee: 200, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA20", name: "陪伴服務(30 Min.)", fee: 175, type: "YELLOW", tag: "⏱️ 計時制 30分" },
+      { code: "BA22", name: "巡視服務", fee: 130, type: "NORMAL" },
+      { code: "BA23", name: "協助洗頭", fee: 200, type: "NORMAL" },
+      { code: "BA24", name: "協助排泄", fee: 220, type: "NORMAL" }
+    ];
+
+    function renderBaTable(filterType) {
+      const tbody = document.getElementById("baTableBody");
+      if (!tbody) return;
+
+      const filtered = baItemsData.filter(item => {
+        if (filterType === 'ALL') return true;
+        return item.type === filterType;
+      });
+
+      tbody.innerHTML = filtered.map(item => {
+        let rowClass = "";
+        let tagHtml = "";
+        if (item.type === "YELLOW") {
+          rowClass = "ba-row-yellow";
+          tagHtml = `<span class="ba-tag ba-tag-yellow">${item.tag}</span>`;
+        } else if (item.type === "CYAN") {
+          rowClass = "ba-row-cyan";
+          tagHtml = `<span class="ba-tag ba-tag-cyan">${item.tag}</span><span class="ba-tag-red">(${item.note})</span>`;
+        } else if (item.type === "ORANGE") {
+          rowClass = "ba-row-orange";
+          tagHtml = `<span class="ba-tag ba-tag-orange">${item.tag}</span>`;
+        }
+
+        const copayCat2 = Math.round(item.fee * 0.05);
+        const copayCat3 = Math.round(item.fee * 0.16);
+
+        return `
+          <tr class="${rowClass}">
+            <td><span class="ba-code-pill">${item.code}</span></td>
+            <td>
+              <strong>${item.name}</strong> ${tagHtml}
+              <div class="ba-copay-info">自負額：第1類 0元 ｜ 第2類 ${copayCat2}元 ｜ 第3類 ${copayCat3}元</div>
+            </td>
+            <td class="ba-fee-num">$${item.fee.toLocaleString()}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function filterBaTable(filterType) {
+      document.querySelectorAll(".ba-filter-chip").forEach(el => el.classList.remove("active"));
+      event.target.classList.add("active");
+      renderBaTable(filterType);
+    }
+
+    // ============================================================
+    // 6. 全站關鍵字快速搜尋功能 (即時穿透檢索)
     // ============================================================
     const searchIndex = [
       { title: "居家照顧服務", desc: "照服員到府提供身體清潔、沐浴洗頭、餐食及家務協助", type: "服務介紹", action: () => openCareServicesModal() },
@@ -3089,7 +3280,7 @@
     });
 
     // ============================================================
-    // 6. 🤖 AI 機器人小幫手互動引擎
+    // 7. 🤖 AI 機器人小幫手互動引擎
     // ============================================================
     const aiChatWindow = document.getElementById('aiChatWindow');
     const aiChatBody = document.getElementById('aiChatBody');
@@ -3105,7 +3296,7 @@
     const aiKnowledge = [
       {
         keys: ["網站", "如何使用", "怎麼用", "功能", "教學"],
-        reply: "本站專為長照家庭設計，主要功能包含：<br>1. <strong>服務介紹</strong>：了解照顧及專業服務、輔具與喘息服務。<br>2. <strong>額度試算</strong>：提供「照顧服務月額度」與「輔具3年4萬/6萬」精準線上試算機。<br>3. <strong>地方資源</strong>：盤點居家醫療、出院準備與住宿機構補助。<br>4. <strong>全站搜尋</strong>：在頂部輸入關鍵字即可快速直達！"
+        reply: "本站專為長照家庭設計，主要功能包含：<br>1. <strong>服務介紹</strong>：了解照顧及專業服務四大支柱、輔具與喘息服務。<br>2. <strong>額度試算</strong>：提供「照顧服務月額度」與「輔具3年4萬/6萬」精準線上試算機。<br>3. <strong>地方資源</strong>：盤點居家醫療、出院準備與住宿機構補助。<br>4. <strong>全站搜尋</strong>：在頂部輸入關鍵字即可快速直達！"
       },
       {
         keys: ["照顧費用", "照顧服務", "ba", "算錢", "月額度"],
@@ -3167,7 +3358,7 @@
     }
 
     // ============================================================
-    // 7. 照顧及專業服務計算機核心邏輯
+    // 8. 照顧及專業服務計算機核心邏輯
     // ============================================================
     const ltcData = [
       { code: "BA01", name: "基本身體清潔", fee: 260, c1: 0, c2: 13, c3: 41, defaultQty: 2 },
@@ -3285,7 +3476,7 @@
     }
 
     // ============================================================
-    // 8. 輔具與無障礙環境改善計算機核心邏輯
+    // 9. 輔具與無障礙環境改善計算機核心邏輯
     // ============================================================
     const group1Data = [
       { code: "EA01-1", name: "馬桶增高器", buyPrice: 1200, buyC1: 1200, buyC2: 1080, buyC3: 840, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "EA" },
