@@ -1980,6 +1980,123 @@
     .dc-table-box { margin-top: 12px; border: 1px solid var(--border-color); border-radius: 12px; padding: 4px 12px; background: #fff; }
     .dc-table-box summary { cursor: pointer; font-weight: 800; color: var(--primary-dark); padding: 10px 0; min-height: 44px; }
     .dc-table-box small { color: #64748b; margin-left: 4px; }
+    .ps-item summary { padding-right: 28px; align-items: flex-start; }
+    .ps-sum { display: flex; flex-direction: column; gap: 2px; }
+    .ps-name { font-weight: 800; color: #1e293b; }
+    .ps-scene { font-size: .88rem; color: #64748b; font-weight: 500; line-height: 1.55; }
+
+    /* ===== 喘息服務試算 ===== */
+    .calc-tabs { display:flex; gap:10px; margin:0 0 16px; }
+    .calc-tab { flex:1; min-height:48px; padding:10px 12px; border:2px solid var(--border-color); background:#fff; border-radius:12px; font:inherit; font-weight:800; font-size:.98rem; color:var(--text-muted); cursor:pointer; touch-action:manipulation; }
+    .calc-tab.active { border-color:var(--primary); background:#ecfeff; color:var(--primary); }
+    .rs-box { background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:16px; margin-bottom:14px; }
+    .rs-box h4 { font-size:1.05rem; margin-bottom:6px; color:var(--primary); }
+    .rs-box p.rs-sub { font-size:.9rem; color:var(--text-muted); margin-bottom:10px; line-height:1.6; }
+    .rs-levels { display:grid; grid-template-columns:repeat(auto-fill,minmax(92px,1fr)); gap:8px; }
+    .rs-level { min-height:48px; border:2px solid var(--border-color); background:#fff; border-radius:10px; font:inherit; font-weight:800; cursor:pointer; padding:6px; touch-action:manipulation; }
+    .rs-level small { display:block; font-weight:600; font-size:.72rem; color:var(--text-muted); }
+    .rs-level.active { border-color:#0f766e; background:#f0fdfa; color:#0f766e; }
+    .rs-ids { display:flex; flex-wrap:wrap; gap:8px; }
+    .rs-id { flex:1 1 140px; min-height:48px; border:2px solid var(--border-color); background:#fff; border-radius:10px; font:inherit; font-weight:700; cursor:pointer; padding:6px 8px; touch-action:manipulation; }
+    .rs-id small { display:block; font-weight:600; font-size:.72rem; color:var(--text-muted); }
+    .rs-id.active { border-color:#b45309; background:#fffbeb; color:#92400e; }
+    .rs-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+    .rs-stat { background:#f8fafc; border-radius:10px; padding:10px 12px; }
+    .rs-stat span { display:block; font-size:.8rem; color:var(--text-muted); }
+    .rs-stat b { font-size:1.2rem; color:#1e293b; }
+    .rs-stat.ok b { color:#0f766e; } .rs-stat.bad b { color:#b91c1c; }
+    .rs-warn { display:none; margin-top:10px; padding:10px 12px; border-radius:8px; background:#fef2f2; color:#b91c1c; font-weight:700; font-size:.92rem; border:1px solid #fecaca; }
+    .rs-warn.show { display:block; }
+    .rs-bar { height:12px; background:#e2e8f0; border-radius:99px; overflow:hidden; margin-top:10px; }
+    .rs-bar i { display:block; height:100%; background:#14b8a6; width:0; transition:width .25s; }
+    .rs-bar.over i { background:#ef4444; }
+    .rs-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .rs-table { width:100%; border-collapse:collapse; font-size:.9rem; min-width:620px; }
+    .rs-table th, .rs-table td { border:1px solid var(--border-color); padding:8px; text-align:center; }
+    .rs-table th { background:#f1f5f9; }
+    .rs-table td.l { text-align:left; }
+    .rs-table input { width:70px; min-height:44px; font-size:16px; text-align:center; border:1px solid #cbd5e1; border-radius:8px; }
+    .rs-lv-table { width:100%; border-collapse:collapse; font-size:.88rem; }
+    .rs-lv-table th, .rs-lv-table td { border:1px solid var(--border-color); padding:6px 8px; text-align:center; }
+    .rs-lv-table th { background:#f1f5f9; }
+    .rs-lv-table tr.cur td { background:#f0fdfa; font-weight:800; }
+    @media (max-width:640px) { .calc-tab { font-size:.88rem; padding:8px 6px; } }
+
+    /* ===== 輔具／無障礙：示意圖與規範 ===== */
+    .cg-art-wrap { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; background:linear-gradient(180deg,#f0fdfa,#ecfeff); border:1px solid #ccfbf1; border-radius:12px; padding:10px 8px 6px; margin:8px 0 6px; }
+    .cg-art { width:150px; max-width:46%; height:auto; display:block; }
+    .cg-art * { stroke:#0e7490; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .cg-art .f { fill:#cffafe; }
+    .cg-art .a { stroke:#f59e0b; }
+    .cg-photo { width:100%; max-width:320px; height:auto; border-radius:10px; display:none; }
+    .has-photo .cg-photo { display:block; }
+    .has-photo .cg-art, .has-photo .cg-art-cap { display:none; }
+    .cg-photo-credit { flex-basis:100%; text-align:center; font-size:.74rem; color:var(--text-muted); display:none; }
+    .has-photo .cg-photo-credit { display:block; }
+    .cg-art-cap { flex-basis:100%; text-align:center; font-size:.74rem; color:var(--text-muted); }
+    .cg-rules { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:10px 12px; margin-top:10px; }
+    .cg-rules h6, .cg-care h6 { margin:0 0 6px !important; }
+    .cg-rules ul { margin:0; padding-left:1.15em; }
+    .cg-rules li { margin:3px 0; font-size:.92rem; line-height:1.6; }
+    .cg-care { background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px; padding:10px 12px; margin-top:10px; }
+    .cg-care ul { margin:0; padding-left:1.15em; }
+    .cg-care li { margin:3px 0; font-size:.92rem; line-height:1.6; }
+    .cg-care small { display:block; margin-top:6px; color:var(--text-muted); font-size:.76rem; }
+
+    .hc-golink { align-self:flex-start; margin-top:6px; min-height:44px; padding:8px 14px; border:1.5px solid #0e7490; background:#fff; color:#0e7490; border-radius:999px; font:inherit; font-weight:800; font-size:.9rem; cursor:pointer; touch-action:manipulation; }
+    .hc-golink:hover { background:#ecfeff; }
+    @keyframes goHlBg { 0%,65% { background:#fde68a; } 100% { background:transparent; } }
+    .go-hl { animation:goHlBg 2.6s ease; outline:3px solid #f59e0b; outline-offset:2px; border-radius:8px; }
+    tr.go-hl td { animation:goHlBg 2.6s ease; }
+    tr.go-hl { outline:none; }
+
+    .rs3-sec { background:#fff; border:1px solid var(--border-color); border-radius:12px; padding:12px 14px; margin:10px 0; }
+    .rs3-sec h5 { font-size:1.02rem; margin:0 0 8px; color:var(--primary); }
+    .rs3-sec ul, .rs3-sec ol { margin:0; padding-left:1.25em; }
+    .rs3-sec li { margin:5px 0; line-height:1.7; font-size:.96rem; }
+    .rs3-sec.steps { background:#f0fdfa; border-color:#99f6e4; }
+    .rs3-sec.cost { background:#fffbeb; border-color:#fde68a; }
+    .rs3-sec.tips { background:#f0f9ff; border-color:#bae6fd; }
+    .rs3-contacts { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .rs3-contacts a { display:inline-flex; align-items:center; min-height:46px; padding:8px 16px; border-radius:999px; background:#0e7490; color:#fff !important; font-weight:800; text-decoration:none; font-size:.95rem; }
+    .rs3-src { font-size:.84rem; color:var(--text-muted); margin-top:10px; line-height:1.7; }
+    .rs3-src a { color:#0e7490; word-break:break-all; }
+    .rs3-hub { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:10px; }
+    .rs3-hub button { min-height:56px; text-align:left; padding:10px 14px; border:1.5px solid #99f6e4; background:#f0fdfa; border-radius:12px; font:inherit; font-weight:800; color:#0f766e; cursor:pointer; touch-action:manipulation; }
+    .rs3-hub button small { display:block; font-weight:500; color:var(--text-muted); font-size:.8rem; margin-top:2px; }
+
+    .nr-form { display:grid; grid-template-columns:1fr; gap:10px; margin:10px 0; }
+    .nr-form select, .nr-form input[type=text] { min-height:48px; font-size:16px; padding:8px 12px; border:1.5px solid var(--border-color); border-radius:10px; width:100%; background:#fff; font-family:inherit; }
+    .nr-geo { min-height:50px; border:2px solid #0e7490; background:#ecfeff; color:#0e7490; border-radius:12px; font:inherit; font-weight:800; cursor:pointer; touch-action:manipulation; padding:8px 12px; }
+    .nr-status { font-size:.88rem; color:#0f766e; min-height:1.3em; }
+    .nr-status.warn { color:#b91c1c; }
+    .nr-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }
+    .nr-btn { text-align:left; min-height:64px; padding:10px 14px; border:1.5px solid #99f6e4; background:#f0fdfa; border-radius:12px; font:inherit; font-weight:800; color:#0f766e; cursor:pointer; touch-action:manipulation; }
+    .nr-btn small { display:block; font-weight:500; color:var(--text-muted); font-size:.8rem; margin-top:2px; line-height:1.4; }
+    .nr-btn.off { background:#fff; border-color:#cbd5e1; color:#0e7490; }
+    @media (min-width:640px) { .nr-form { grid-template-columns:1fr 1fr; } .nr-form .nr-geo, .nr-form .nr-status { grid-column:1 / -1; } }
+
+    .nv-box { background:#fff; border:1px solid var(--border-color); border-radius:16px; padding:16px; margin-bottom:16px; }
+    .nv-box h2 { font-size:1.15rem; margin:0 0 8px; color:var(--primary); }
+    .nv-box p.sub { font-size:.92rem; color:var(--text-muted); margin:0 0 10px; line-height:1.7; }
+    .nv-map { background:linear-gradient(135deg,#ecfeff,#f0fdfa); border:1.5px solid #99f6e4; }
+    .nv-needs { display:flex; flex-wrap:wrap; gap:8px; }
+    .nv-need { min-height:48px; padding:8px 14px; border:2px solid var(--border-color); background:#fff; border-radius:999px; font:inherit; font-weight:700; cursor:pointer; touch-action:manipulation; }
+    .nv-need.active { border-color:#0f766e; background:#f0fdfa; color:#0f766e; }
+    .nv-reco { margin-top:12px; padding:12px 14px; background:#fffbeb; border:1px solid #fde68a; border-radius:12px; }
+    .nv-reco h3 { font-size:1rem; margin:0 0 6px; }
+    .nv-reco ol { margin:0; padding-left:1.3em; } .nv-reco li { margin:4px 0; line-height:1.65; font-size:.95rem; }
+    .nv-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+    @media (min-width:700px) { .nv-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:1000px) { .nv-grid { grid-template-columns:repeat(3,1fr); } }
+    .nv-card { border:1.5px solid var(--border-color); border-radius:14px; padding:14px; background:#fff; display:flex; flex-direction:column; gap:6px; }
+    .nv-card.hl { border-color:#f59e0b; box-shadow:0 0 0 3px #fde68a; }
+    .nv-card h3 { font-size:1.02rem; margin:0; }
+    .nv-card p { margin:0; font-size:.9rem; color:var(--text-muted); line-height:1.6; flex:1; }
+    .nv-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+    .nv-actions button, .nv-actions a { min-height:44px; padding:8px 12px; border-radius:10px; font:inherit; font-weight:800; font-size:.88rem; cursor:pointer; touch-action:manipulation; text-decoration:none; display:inline-flex; align-items:center; }
+    .nv-actions .pri { border:0; background:#0e7490; color:#fff !important; }
+    .nv-actions .sec { border:1.5px solid #0e7490; background:#fff; color:#0e7490 !important; }
   </style>
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:type" content="website">
@@ -1988,7 +2105,7 @@
   <meta property="og:description" content="申請、費用、喘息、輔具、外籍看護、機構補助一次看懂；附額度試算與長照小幫手導覽。">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "長照好厝邊", "inLanguage": "zh-TW", "description": "長照 3.0 最新資訊、額度與輔具補助試算、家屬常見問題，找得到、看得懂、用得上。"}, {"@type": "FAQPage", "inLanguage": "zh-TW", "mainEntity": [{"@type": "Question", "name": "爸媽剛中風（或骨折）要出院了，我第一步該做什麼？", "acceptedAnswer": {"@type": "Answer", "text": "不用等出院才處理。住院期間就可以請 病房護理師、出院準備服務團隊或醫院社工 協助啟動長照評估，也可以直接撥打 1966 。 依衛福部「出院準備銜接長照服務計畫」，醫院出院準備團隊須在出院前完成長照需要等級（CMS）評估；社區 A 單位則須在 出院後 3 日內 到案家擬定照顧計畫。 【實務提醒】家屬最常犯的錯是「等回家再說」，結果回家第一週沒人教、沒人幫手。住院時就先問清楚三件事：出院後要不要翻身、管路怎麼照顧、需不需要借輔具（氣墊床、輪椅、便盆椅），並請醫院在出院前就替您連結服務。"}}, {"@type": "Question", "name": "什麼樣的長輩可以申請長照？我爸還能自己走路，也能申請嗎？", "acceptedAnswer": {"@type": "Answer", "text": "一般須 日常生活有失能或需要協助 ，並符合下列任一身分：65 歲以上（原住民 55 歲以上）、領有身心障礙證明、失智症患者（舊制限 50 歲以上；依 114 年 6 月修正之辦法，已自 2026 年 1 月 1 日起不限年齡，49 歲以下年輕型失智者也可申請），或符合急性後期整合照護（PAC）收案對象。依辦法規定，評估結果為「第 1 級」（身體或心智未失能者）不納入給付，需為第 2～8 級才有服務額度。 長照 3.0 也陸續把 年輕型失智且失能者、PAC 失能者 等納入（見第 20 題）。 「還能走路」不代表不能申請——洗澡、穿衣、吃藥、外出、情緒與認知狀況，都在評估範圍。 【實務提醒】只要家屬覺得「開始需要有人盯著、幫忙」，就可以先撥 1966 諮詢。評估由照管中心辦理，沒有「太早申請」這回事，早一點評估，反而能早一點把輔具和居家環境準備好。"}}, {"@type": "Question", "name": "申請長照的完整流程是什麼？需要準備什麼資料？", "acceptedAnswer": {"@type": "Answer", "text": "撥打 1966 （或由醫院出院準備團隊轉介） 照管專員電話聯繫，並 到府評估 核定 長照需要等級（CMS 2～8 級） 與各項額度 A 單位 個案管理師 到府，與您討論並擬定照顧計畫 B 單位（服務單位）開始提供居家、日照、輔具等服務 【實務提醒】建議先備妥：長輩身分證與健保卡、身心障礙證明（若有）、近期診斷書或出院病摘、用藥清單、主要照顧者聯絡方式。評估當天請主要照顧者一定要在場，由最了解日常狀況的人回答。"}}, {"@type": "Question", "name": "照管專員來評估時，有什麼要特別注意的？", "acceptedAnswer": {"@type": "Answer", "text": "專員會觀察並詢問長輩的吃飯、洗澡、穿衣、移動、如廁、認知、情緒，以及家庭支持狀況。 長輩見到外人常會「逞強」：明明需要人扶，卻說「我自己可以」。這是最常見、也最容易讓等級被低估的原因。 【實務提醒】請如實說出「最差的一天」，不要替長輩美化。評估前先寫下近一個月的實際事件（跌倒、夜間起床、忘記關瓦斯、拒絕洗澡、嗆咳等），當場交給專員。這不是誇大，而是讓等級貼近真實需求。"}}, {"@type": "Question", "name": "核定的等級覺得太低，或長輩病情變差了，可以重新評估嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。病情改變、住院後功能下降，都可以請 個案管理師 或撥 1966 申請複評。 等級調高時自核定當月 1 日生效；調低則自核定次月 1 日起生效，複評前的剩餘額度可保留至新等級核定前一日。一般每 1 年會定期複評；連續兩次評估（間隔 11 個月）皆為第 8 級者，複評期間可延長為 24 個月。非因個案或家屬原因而來不及複評時，服務單位仍可依原等級繼續服務。 【實務提醒】不要等到「撐不住」才複評。住院、跌倒骨折、確診失智、長期臥床之後，建議當月就提出，避免多等一個月的額度空窗。"}}, {"@type": "Question", "name": "評估完要等多久才有人來服務？可以自己選服務單位嗎？", "acceptedAnswer": {"@type": "Answer", "text": "時間依縣市與單位人力而異。醫院出院銜接案件，全國平均已從 2017 年的 51 天縮短到約 4 天 （3.0 目標為 2 天）；社區案件通常需要幾天到數週，視地區與服務類型而定。 您可以自己選擇服務單位 ，不必只能接受第一家。 【實務提醒】請個管師同時詢問 2～3 家 B 單位的可服務時段與人員穩定度，並在擬定計畫時就說明長輩的作息、語言、性別偏好。熱門時段（早上洗澡）常常需要排隊，彈性越大，越快有人到府。"}}, {"@type": "Question", "name": "長照「四包錢」是哪四包？每一包有多少錢？", "acceptedAnswer": {"@type": "Answer", "text": "項目 額度 ① 照顧及專業服務（每月） CMS 2 級 10,020｜3 級 15,460｜4 級 18,580｜5 級 24,100｜6 級 28,070｜7 級 32,090｜8 級 36,180 元 ② 交通接送（每月） 約 2,000 元（依就醫距離與地區分級，實際請洽照管中心） ③ 輔具及居家無障礙（3 年） 第一組 4 萬元，或 2026/7/1 起新增的第二組 6 萬元， 二擇一 ④ 喘息服務（每年） CMS 2～6 級 32,340 元；7～8 級 48,510 元 金額來源：各縣市照管中心與醫院公告（114 年）及衛福部 2026 年公告，日後可能調整。可用本站 額度試算 估算。 【實務提醒】額度是「上限」，不是匯給您的福利金。實際是服務單位提供服務後，向政府請款；您只需要負擔自付額。"}}, {"@type": "Question", "name": "我們自己要付多少錢？一般戶、中低收、低收差在哪？", "acceptedAnswer": {"@type": "Answer", "text": "服務 一般戶 中低收入戶 低收入戶 照顧及專業服務 16% 5% 0% 交通接送 25% 8% 0% 輔具及居家無障礙 30% 10% 0% 喘息服務 16% 5% 0% 比例以各縣市照管中心公告為準；本站試算頁底部另有「長照身分別」的法規說明，請一併參考。 【實務提醒】中低收、低收身分要先向戶籍地區公所取得證明並提供給照管中心，否則會被當一般戶計價。身分有變動（例如剛通過中低收審核）記得立刻通知個管師更新。"}}, {"@type": "Question", "name": "每月的額度沒用完，會累積到下個月嗎？", "acceptedAnswer": {"@type": "Answer", "text": "照顧及專業服務的額度 以月計算 ，一般不能保留到下個月；喘息服務額度則是 以年計算 （自評估核定當月起算 12 個月）。 【實務提醒】請個管師在每月月底前盤點剩餘額度。有些家庭「用不完」其實是因為服務單位排不出人，這時要主動反映，請個管師換時段或換單位，而不是默默讓額度浪費。"}}, {"@type": "Question", "name": "額度不夠用怎麼辦？超出的部分要全額自費嗎？", "acceptedAnswer": {"@type": "Answer", "text": "超出核定額度的部分，需 全額自費 。可以先請個管師檢視計畫，把額度優先用在「最能減輕負擔」的項目（如洗澡、翻身拍背、復能訓練），並搭配社區據點、喘息、輔具、居家醫療等其他資源。 【實務提醒】請看護與長照不是二選一。實務上，外籍看護家庭可用 30% 額度（見第 22 題）；若白天最需要人手，評估「日照＋看護分工」往往比單純增加居服時數更能撐得久。"}}, {"@type": "Question", "name": "家裡是第幾類身分？低收、中低收要怎麼申請？", "acceptedAnswer": {"@type": "Answer", "text": "長照部分負擔依身分分為 低收入戶、中低收入戶、一般戶 三種，負擔比例不同（見第 8 題）。 低收、中低收身分是由 戶籍地的區公所社會課 審核與核發證明，不是由長照單位認定。 【實務提醒】如果家中經濟因照顧而吃緊，可以同步詢問區公所：中低收入老人生活津貼、身心障礙生活補助、急難救助等，常常是「長照以外」另一筆能補貼的資源。"}}, {"@type": "Question", "name": "長輩要住進機構，政府有補助嗎？2026 年有新制嗎？", "acceptedAnswer": {"@type": "Answer", "text": "有，而且 2026 年已調增 。衛福部於 2026 年 9 月 10 日公布「住宿式服務機構使用者補助方案」調整（ 追溯自 115 年 1 月 1 日 ）： 對象：入住住宿式機構，且經評估 長照需要等級 4 級以上 ，或持有 中度以上身心障礙證明 者 金額：由每月 5,000 元調增為 每月 15,000 元，全年最高 18 萬元 （原制全年最高 12 萬元） 認列方式：改為 按月認列 ，當月實際入住達日曆天數二分之一以上，即認列 1 個月；地方政府每年分上、下半年 2 次檢核撥付 過渡：114 年度已核定領取 12 萬元者，115 年 1～8 月累積入住達 180 日，一律核給 12 萬元；9 月起依新制按月認列 實際申請作業與時程由衛福部另行通知地方政府，請洽當地長照中心或社會局確認。 【實務提醒】補助是「減輕費用」，不是「免費」。簽約前務必確認機構是否立案、月費與耗材（尿布、營養品、護理費）的明細、有無押金與退費規則，並請機構提供合約書帶回家討論。"}}, {"@type": "Question", "name": "居家服務員到底可以幫我們做什麼？哪些事不能做？", "acceptedAnswer": {"@type": "Answer", "text": "可以： 協助洗澡與身體清潔、翻身拍背、協助進食、排泄協助、肢體關節活動、陪同就醫或外出、備餐、長輩個人生活空間的整理。 不可以： 打針、換管路等醫療行為（需護理師）；全家的大掃除與洗全家衣物；照顧其他家人；代為處理金錢、存摺與印章；與長輩照顧無關的私人差事。 實際項目依長照給付及支付基準與您的照顧計畫而定。 【實務提醒】第一次服務前，請把「長輩最在意的三件事」寫給居服員（例如：不吃冰、洗澡水溫、不喜歡被叫某個稱呼）。有熟悉感，長輩接受度和服務成功率會差很多。"}}, {"@type": "Question", "name": "居服、日照、家庭托顧、機構，我該怎麼選？", "acceptedAnswer": {"@type": "Answer", "text": "白天家人要上班、長輩需要陪伴與活動 → 日間照顧（日照） 行動不便、出門困難、需要洗澡翻身 → 居家服務 想要小規模、家庭式環境 → 家庭托顧 24 小時都需要專人 、家屬已無法支撐 → 住宿式機構 照顧者需要休息 → 喘息服務 【實務提醒】不用一次決定。常見組合是「居服＋日照＋偶爾喘息」，試三個月再依狀況調整。照顧計畫本來就可以修改，個管師也會定期追蹤。"}}, {"@type": "Question", "name": "日間照顧中心怎麼挑？去參觀要看什麼？", "acceptedAnswer": {"@type": "Answer", "text": "是否 立案 、評鑑結果與負責人資歷 照服員與長者的人數比、午休與如廁的安排 動線、廁所、防滑、輪椅可否順暢通行 活動內容是否有 復能或認知訓練 ，而不只是看電視 午餐品質，能否提供軟質餐、吞嚥餐 接送路線與乘車時間（太久的車程長輩會很累） 收費明細：餐費、尿布、自費活動 是否可以 試上 1～2 天 【實務提醒】請在下午 2～3 點去看，那時最能看出日常照顧品質；並觀察工作人員怎麼跟長輩說話——語氣、有沒有蹲下來平視，比環境新舊更重要。"}}, {"@type": "Question", "name": "長輩排斥外人、不肯去日照，怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "排斥是很常見的反應，不是失敗。可以這樣慢慢來： 先請居服員在家短時間陪伴（30～60 分鐘），建立信任 日照先 半日試上 ，最好有熟人或家人陪第一次 用「去運動、去幫忙、朋友邀約」取代「去給人照顧」 給選擇權：「今天先去看看，不喜歡我們就回來」 避免欺騙式說法，以免日後失去長輩的信任 【實務提醒】前兩週最關鍵。請與個管師、日照人員保持聯絡，告訴他們長輩過去的職業、興趣與拿手的事，工作人員能快速找到話題，長輩才會覺得「這裡有我的位置」。"}}, {"@type": "Question", "name": "對服務單位或居服員不滿意，可以更換嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。先向 個案管理師 說明狀況，申請更換人員或服務單位；更換服務單位不需要重新申請長照評估。 若溝通無效，可向 照管中心 、地方政府衛生局或社會局的長照窗口反映，也可撥 1966 。若發現疑似虐待、竊盜或其他違法情形，請立即通報，緊急時撥 110 或 119。 【實務提醒】記錄日期、事件與證據（訊息截圖、照片），比情緒陳述更能讓單位和主管機關處理。語氣冷靜、事實清楚，通常能更快得到調整。"}}, {"@type": "Question", "name": "輔具怎麼申請？可以先租再決定買嗎？", "acceptedAnswer": {"@type": "Answer", "text": "輔具須經評估（照管專員、個管師或輔具中心治療師）才能核給。第一組（3 年 4 萬元）可購置或租賃；2026 年 7 月 1 日起新增第二組（3 年 6 萬元，須全租賃），兩組 二擇一 。居家無障礙改善（扶手、防滑、斜坡等）3 年最高 2 萬元。 可以用本站 輔具與無障礙環境改善試算 先估算補助與自付額。 【實務提醒】輔具買錯最浪費。輪椅、氣墊床、移位機務必先請輔具中心或治療師到場試用，確認身形、坐姿、居家空間（門寬、電梯、轉彎）再決定租或買；租賃也比較容易隨長輩狀況改變而更換。"}}, {"@type": "Question", "name": "長照 3.0 到底是什麼？和 2.0 差在哪？", "acceptedAnswer": {"@type": "Answer", "text": "《長期照顧十年計畫 3.0》涵蓋 115～124 年（2026～2035 年） ，行政院於 2025 年 12 月 31 日核定。方向是從「失能後才照顧」，走向 更早介入、預防失能、醫療與長照整合 ： 擴大服務對象（失智、PAC、外國專業人才等） 出院銜接更快（目標 2 天） 強化家庭照顧者支持，例如互助喘息 新增智慧科技輔具、居家服務分級、住宿機構品質提升與補助調增 四包錢仍延續使用，目前申請方式仍是 撥打 1966 。 【實務提醒】新制是「陸續上路」，不是一天全部生效。每一項都請以衛福部或 1966 的最新公告為準；遇到網路文章與公告不一致時，以官方為準。"}}, {"@type": "Question", "name": "3.0 新增了哪些服務對象？我的家人符合嗎？", "acceptedAnswer": {"@type": "Answer", "text": "新增或擴大包含： 年輕型失智且失能者 急性後期整合照護（PAC）失能者 ：中風、骨折、重大手術後返家復健者 符合資格的失能外國專業人才 報導指出符合者須長照需要等級 2 級以上，預估約 74.5 萬人受惠。原有對象（65 歲以上、身障、失智等）不變。 【實務提醒】各類擴大對象的實際上路時間與審核方式不盡相同，建議直接撥 1966，說明長輩的年齡、診斷與失能情形，由專員判斷。不要自己先預設「不符合」而放棄詢問。"}}, {"@type": "Question", "name": "新的輔具「第二組 6 萬」是什麼？和原本 4 萬怎麼選？", "acceptedAnswer": {"@type": "Answer", "text": "2026 年 7 月 1 日起 上路 第二組 ：3 年 6 萬元，須 全租賃 （含智慧科技輔具），其中居家無障礙改善上限 2 萬元 第一組 ：3 年 4 萬元，可購置或租賃 兩組 二擇一，不是合計 10 萬元 115 年 6 月 30 日以前已獲第一組給付者，須自核定日起滿 3 年後，才能申請第二組 【實務提醒】需要「買斷、長期使用」的輔具（如輪椅）通常第一組較合適；需要經常更換或智慧監測（防走失、離床感應、智慧床墊）時，第二組較有彈性。可先用本站試算頁比較，再與治療師討論。"}}, {"@type": "Question", "name": "我們有請外籍看護，3.0 之後還能使用長照嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可使用 照顧及專業服務額度的 30% ，自 114 年 9 月 1 日起可用於 日間照顧、家庭托顧 等社區式服務 可申請 交通接送、輔具及居家無障礙環境改善 看護請假期間可使用 喘息服務 。衛福部表示，聘僱外籍看護家庭的喘息規定在 3.0 並未改變；每年長照喘息加勞動部短期替代照顧的額度合計 12 萬 120 元（報導資料） 勞動部補助地方政府辦理 到宅指導 ，由專業人員與通譯免費到宅教導基本照護技巧 【實務提醒】很多雇主以為「有請看護就不能申請長照」，這是誤解。評估時請主動告知有聘看護，個管師才能把 30% 額度與社區資源配對好。"}}, {"@type": "Question", "name": "3.0 的出院銜接有什麼不同？住院時就能申請嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以，而且 越早越好 。醫院出院準備團隊會在出院前完成 CMS 評估，並擬定出院後的簡易照顧計畫；社區 A 單位須於出院後 3 日內到案家擬定正式照顧計畫。 全國平均銜接時間已從 2017 年的 51 天縮短到約 4 天，3.0 的目標是 2 天。 【實務提醒】請在病人出院前 3～5 天，主動向病房社工或個管師提出需求，讓氣墊床、輪椅與居家服務能在「回家當天」就位，而不是回家後才開始找。"}}, {"@type": "Question", "name": "家人失智，3.0 有哪些新資源？智慧輔具和 ACP 是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "失智照護擴大 ：3.0 新增失智症專章，年輕型失智且失能者納入服務對象；可洽失智共同照護中心與社區失智據點 智慧科技輔具 ：具感測、數據記錄、傳輸、分析等功能的輔具（如智慧床墊、安全看視、防走失），可透過第二組租賃使用 預立醫療照護諮商（ACP） ：報導指衛福部將提供「一生一次免費」的諮商，協助本人與家屬及早討論末期醫療選擇 ACP 的適用疾病與資格細節，請以衛福部公告為準。 【實務提醒】ACP 最好在長輩意識清楚、還能表達時進行。它談的是「想被怎麼照顧」，不是「放棄治療」；早點談，家人之後做決定時才不會自責、也不會吵架。"}}, {"@type": "Question", "name": "照顧者喘息怎麼用？一次可以休息多久？", "acceptedAnswer": {"@type": "Answer", "text": "喘息額度每年 32,340 元 （CMS 2～6 級）或 48,510 元 （7～8 級）。參考價格（114 年公告，可能調整）： 居家喘息：2 小時 770 元 日照喘息：全日 1,250 元、半日 625 元 機構住宿喘息：24 小時 2,310 元 以機構住宿喘息為例，32,340 ÷ 2,310 = 14，約可使用 14 天 ；48,510 元則約 21 天 （未計部分負擔與單位實際收費）。 【實務提醒】喘息不是等累垮才用。建議每年排 2～3 次「預防性喘息」：先讓長輩試住機構或日照 1～2 晚，家屬好好休息，也順便測試長輩適不適應。機構床位需提前預約，旺季尤其難排。"}}, {"@type": "Question", "name": "聽說有「互助喘息」，是什麼？怎麼預約？", "acceptedAnswer": {"@type": "Answer", "text": "這是長照 3.0 的「互助喘息服務試辦計畫」：由 1 名照顧服務員搭配 1～3 位家庭照顧者 ，共同照顧多位長輩；照顧者可輪流換工、以服務換服務，概念是「顧一個時段，換兩倍時段的喘息」。 截至 2026 年 3 月，已在 16 個縣市設置 50 處據點 。可至 互助喘息服務預約平台 註冊預約；家庭照顧者關懷專線： 0800-507272 。 【實務提醒】適合長輩還有一些活動能力、家屬願意「互相支援」的家庭。名額與時段有限，請提早預約，並先確認據點離家距離與可服務的失能程度。"}}, {"@type": "Question", "name": "照顧到快崩潰、情緒很差、睡不好，可以找誰幫忙？", "acceptedAnswer": {"@type": "Answer", "text": "您的感受很正常，也很重要。可以尋求： 家庭照顧者關懷專線： 0800-507272 安心專線 1925 （心理支持） 社區心理衛生中心、家庭照顧者支持服務據點、照顧者支持團體 睡眠與情緒問題持續兩週以上：請就診家醫科、身心科或精神科 若有傷害自己或他人的念頭，請立即撥打 119 或 1925 。 【實務提醒】照顧者先被照顧好，被照顧者才會被照顧好。請把喘息、日照、支持團體排進行事曆，而不是「等有空再說」——在長照路上，永遠不會有空。"}}, {"@type": "Question", "name": "爸爸失智，常忘事、半夜起來，甚至走失，家人該怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "就醫與評估 ：神經內科或精神科確診；可洽失智共同照護中心取得個管與家屬支持 預防走失 ：愛心手環、衣物縫上聯絡資訊、定位裝置；並可向警政單位洽詢失智者指紋捺印 居家安全 ：夜燈、門窗警示鈴、收好瓦斯與危險物品 溝通 ：簡單、肯定、不爭辯、轉移注意力 走失時 ：立即報案（110）， 不需要等 24 小時 【實務提醒】同一天不要糾正三次。失智者的「錯」多半是疾病，不是故意；改變環境，比改變他容易得多。把「不能做」換成「換個時間、換個方式做」，家屬的消耗會小很多。"}}, {"@type": "Question", "name": "怎麼預防長輩跌倒和壓瘡？家裡要先改哪裡？", "acceptedAnswer": {"@type": "Answer", "text": "浴室 ：防滑措施、扶手、沐浴椅 廁所與夜間動線 ：夜燈、扶手、馬桶增高器或便盆椅 室內動線 ：淨空雜物、地毯固定或移除、門檻斜角 臥床者 ：氣墊床、約每 2 小時翻身、保持皮膚乾爽、補充蛋白質與水分 居家無障礙改善 3 年最高 2 萬元，須先經評估。 【實務提醒】最先處理浴室與夜間上廁所的動線，這兩處是家屬最容易低估、也最常出事的地方。改善前先請治療師或輔具中心到府看一次，常常用小改動就能達到效果，不必大興土木。"}}, {"@type": "Question", "name": "什麼時候該考慮讓長輩住進機構？怎麼挑？", "acceptedAnswer": {"@type": "Answer", "text": "常見訊號： 夜間需要頻繁起身或翻身、有管路或複雜照護、照顧者的健康或工作已無法支撐、長輩出現安全風險（走失、頻繁跌倒、自傷）、居家與社區資源已用到極限。 挑選重點： 立案與評鑑、護理人力與照服員比例、費用明細與合約、用餐與下午時段實地參觀、是否可以試住、家屬探視規定。補助請見第 12 題。 【實務提醒】「送機構」不是放棄，而是換一種方式照顧。很多家庭在決定後，反而重新有力氣好好探視、陪伴。若遇到緊急狀況，請直接撥打 119，不要等網站或人員回覆。"}}]}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "長照好厝邊", "inLanguage": "zh-TW", "description": "長照 3.0 最新資訊、額度與輔具補助試算、家屬常見問題，找得到、看得懂、用得上。"}, {"@type": "FAQPage", "inLanguage": "zh-TW", "mainEntity": [{"@type": "Question", "name": "爸媽剛中風（或骨折）要出院了，我第一步該做什麼？", "acceptedAnswer": {"@type": "Answer", "text": "不用等出院才處理。住院期間就可以請 病房護理師、出院準備服務團隊或醫院社工 協助啟動長照評估，也可以直接撥打 1966 。 依衛福部「出院準備銜接長照服務計畫」，醫院出院準備團隊須在出院前完成長照需要等級（CMS）評估；社區 A 單位則須在 出院後 3 日內 到案家擬定照顧計畫。 【實務提醒】家屬最常犯的錯是「等回家再說」，結果回家第一週沒人教、沒人幫手。住院時就先問清楚三件事：出院後要不要翻身、管路怎麼照顧、需不需要借輔具（氣墊床、輪椅、便盆椅），並請醫院在出院前就替您連結服務。"}}, {"@type": "Question", "name": "什麼樣的長輩可以申請長照？我爸還能自己走路，也能申請嗎？", "acceptedAnswer": {"@type": "Answer", "text": "一般須 日常生活有失能或需要協助 ，並符合下列任一身分：65 歲以上（原住民 55 歲以上）、領有身心障礙證明、失智症患者（舊制限 50 歲以上；依 114 年 6 月修正之辦法，已自 2026 年 1 月 1 日起不限年齡，49 歲以下年輕型失智者也可申請），或符合急性後期整合照護（PAC）收案對象。依辦法規定，評估結果為「第 1 級」（身體或心智未失能者）不納入給付，需為第 2～8 級才有服務額度。 長照 3.0 也陸續把 年輕型失智且失能者、PAC 失能者 等納入（見第 20 題）。 「還能走路」不代表不能申請——洗澡、穿衣、吃藥、外出、情緒與認知狀況，都在評估範圍。 【實務提醒】只要家屬覺得「開始需要有人盯著、幫忙」，就可以先撥 1966 諮詢。評估由照管中心辦理，沒有「太早申請」這回事，早一點評估，反而能早一點把輔具和居家環境準備好。"}}, {"@type": "Question", "name": "申請長照的完整流程是什麼？需要準備什麼資料？", "acceptedAnswer": {"@type": "Answer", "text": "撥打 1966 （或由醫院出院準備團隊轉介） 照管專員電話聯繫，並 到府評估 核定 長照需要等級（CMS 2～8 級） 與各項額度 A 單位 個案管理師 到府，與您討論並擬定照顧計畫 B 單位（服務單位）開始提供居家、日照、輔具等服務 【實務提醒】建議先備妥：長輩身分證與健保卡、身心障礙證明（若有）、近期診斷書或出院病摘、用藥清單、主要照顧者聯絡方式。評估當天請主要照顧者一定要在場，由最了解日常狀況的人回答。"}}, {"@type": "Question", "name": "照管專員來評估時，有什麼要特別注意的？", "acceptedAnswer": {"@type": "Answer", "text": "專員會觀察並詢問長輩的吃飯、洗澡、穿衣、移動、如廁、認知、情緒，以及家庭支持狀況。 長輩見到外人常會「逞強」：明明需要人扶，卻說「我自己可以」。這是最常見、也最容易讓等級被低估的原因。 【實務提醒】請如實說出「最差的一天」，不要替長輩美化。評估前先寫下近一個月的實際事件（跌倒、夜間起床、忘記關瓦斯、拒絕洗澡、嗆咳等），當場交給專員。這不是誇大，而是讓等級貼近真實需求。"}}, {"@type": "Question", "name": "核定的等級覺得太低，或長輩病情變差了，可以重新評估嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。病情改變、住院後功能下降，都可以請 個案管理師 或撥 1966 申請複評。 等級調高時自核定當月 1 日生效；調低則自核定次月 1 日起生效，複評前的剩餘額度可保留至新等級核定前一日。一般每 1 年會定期複評；連續兩次評估（間隔 11 個月）皆為第 8 級者，複評期間可延長為 24 個月。非因個案或家屬原因而來不及複評時，服務單位仍可依原等級繼續服務。 【實務提醒】不要等到「撐不住」才複評。住院、跌倒骨折、確診失智、長期臥床之後，建議當月就提出，避免多等一個月的額度空窗。"}}, {"@type": "Question", "name": "評估完要等多久才有人來服務？可以自己選服務單位嗎？", "acceptedAnswer": {"@type": "Answer", "text": "時間依縣市與單位人力而異。醫院出院銜接案件，全國平均已從 2017 年的 51 天縮短到約 4 天 （3.0 目標為 2 天）；社區案件通常需要幾天到數週，視地區與服務類型而定。 您可以自己選擇服務單位 ，不必只能接受第一家。 【實務提醒】請個管師同時詢問 2～3 家 B 單位的可服務時段與人員穩定度，並在擬定計畫時就說明長輩的作息、語言、性別偏好。熱門時段（早上洗澡）常常需要排隊，彈性越大，越快有人到府。"}}, {"@type": "Question", "name": "長照「四包錢」是哪四包？每一包有多少錢？", "acceptedAnswer": {"@type": "Answer", "text": "項目 額度 ① 照顧及專業服務（每月） CMS 2 級 10,020｜3 級 15,460｜4 級 18,580｜5 級 24,100｜6 級 28,070｜7 級 32,090｜8 級 36,180 元 ② 交通接送（每月） 約 2,000 元（依就醫距離與地區分級，實際請洽照管中心） ③ 輔具及居家無障礙（3 年） 第一組 4 萬元，或 2026/7/1 起新增的第二組 6 萬元， 二擇一 ④ 喘息服務（每年） CMS 2～6 級 32,340 元；7～8 級 48,510 元 金額來源：各縣市照管中心與醫院公告（114 年）及衛福部 2026 年公告，日後可能調整。可用本站 額度試算 估算。 【實務提醒】額度是「上限」，不是匯給您的福利金。實際是服務單位提供服務後，向政府請款；您只需要負擔自付額。"}}, {"@type": "Question", "name": "我們自己要付多少錢？一般戶、中低收、低收差在哪？", "acceptedAnswer": {"@type": "Answer", "text": "服務 一般戶 中低收入戶 低收入戶 照顧及專業服務 16% 5% 0% 交通接送 25% 8% 0% 輔具及居家無障礙 30% 10% 0% 喘息服務 16% 5% 0% 比例以各縣市照管中心公告為準；本站試算頁底部另有「長照身分別」的法規說明，請一併參考。 【實務提醒】中低收、低收身分要先向戶籍地區公所取得證明並提供給照管中心，否則會被當一般戶計價。身分有變動（例如剛通過中低收審核）記得立刻通知個管師更新。"}}, {"@type": "Question", "name": "每月的額度沒用完，會累積到下個月嗎？", "acceptedAnswer": {"@type": "Answer", "text": "照顧及專業服務的額度 以月計算 ，一般不能保留到下個月；喘息服務額度則是 以年計算 （自評估核定當月起算 12 個月）。 【實務提醒】請個管師在每月月底前盤點剩餘額度。有些家庭「用不完」其實是因為服務單位排不出人，這時要主動反映，請個管師換時段或換單位，而不是默默讓額度浪費。"}}, {"@type": "Question", "name": "額度不夠用怎麼辦？超出的部分要全額自費嗎？", "acceptedAnswer": {"@type": "Answer", "text": "超出核定額度的部分，需 全額自費 。可以先請個管師檢視計畫，把額度優先用在「最能減輕負擔」的項目（如洗澡、翻身拍背、復能訓練），並搭配社區據點、喘息、輔具、居家醫療等其他資源。 【實務提醒】請看護與長照不是二選一。實務上，外籍看護家庭可用 30% 額度（見第 22 題）；若白天最需要人手，評估「日照＋看護分工」往往比單純增加居服時數更能撐得久。"}}, {"@type": "Question", "name": "家裡是第幾類身分？低收、中低收要怎麼申請？", "acceptedAnswer": {"@type": "Answer", "text": "長照部分負擔依身分分為 低收入戶、中低收入戶、一般戶 三種，負擔比例不同（見第 8 題）。 低收、中低收身分是由 戶籍地的區公所社會課 審核與核發證明，不是由長照單位認定。 【實務提醒】如果家中經濟因照顧而吃緊，可以同步詢問區公所：中低收入老人生活津貼、身心障礙生活補助、急難救助等，常常是「長照以外」另一筆能補貼的資源。"}}, {"@type": "Question", "name": "長輩要住進機構，政府有補助嗎？2026 年有新制嗎？", "acceptedAnswer": {"@type": "Answer", "text": "有，而且 2026 年已調增 。衛福部於 2026 年 9 月 10 日公布「住宿式服務機構使用者補助方案」調整（ 追溯自 115 年 1 月 1 日 ）： 對象：入住住宿式機構，且經評估 長照需要等級 4 級以上 ，或持有 中度以上身心障礙證明 者 金額：由每月最高 10,000 元調增為 每月 15,000 元，全年最高 18 萬元 （原制全年最高 12 萬元） 認列方式：改為 按月認列 ，當月實際入住達日曆天數二分之一以上，即認列 1 個月；地方政府每年分上、下半年 2 次檢核撥付 過渡：114 年度已核定領取 12 萬元者，115 年 1～8 月累積入住達 180 日，一律核給 12 萬元；9 月起依新制按月認列 實際申請作業與時程由衛福部另行通知地方政府，請洽當地長照中心或社會局確認。 【實務提醒】補助是「減輕費用」，不是「免費」。簽約前務必確認機構是否立案、月費與耗材（尿布、營養品、護理費）的明細、有無押金與退費規則，並請機構提供合約書帶回家討論。"}}, {"@type": "Question", "name": "居家服務員到底可以幫我們做什麼？哪些事不能做？", "acceptedAnswer": {"@type": "Answer", "text": "可以： 協助洗澡與身體清潔、翻身拍背、協助進食、排泄協助、肢體關節活動、陪同就醫或外出、備餐、長輩個人生活空間的整理。 不可以： 打針、換管路等醫療行為（需護理師）；全家的大掃除與洗全家衣物；照顧其他家人；代為處理金錢、存摺與印章；與長輩照顧無關的私人差事。 實際項目依長照給付及支付基準與您的照顧計畫而定。 【實務提醒】第一次服務前，請把「長輩最在意的三件事」寫給居服員（例如：不吃冰、洗澡水溫、不喜歡被叫某個稱呼）。有熟悉感，長輩接受度和服務成功率會差很多。"}}, {"@type": "Question", "name": "居服、日照、家庭托顧、機構，我該怎麼選？", "acceptedAnswer": {"@type": "Answer", "text": "白天家人要上班、長輩需要陪伴與活動 → 日間照顧（日照） 行動不便、出門困難、需要洗澡翻身 → 居家服務 想要小規模、家庭式環境 → 家庭托顧 24 小時都需要專人 、家屬已無法支撐 → 住宿式機構 照顧者需要休息 → 喘息服務 【實務提醒】不用一次決定。常見組合是「居服＋日照＋偶爾喘息」，試三個月再依狀況調整。照顧計畫本來就可以修改，個管師也會定期追蹤。"}}, {"@type": "Question", "name": "日間照顧中心怎麼挑？去參觀要看什麼？", "acceptedAnswer": {"@type": "Answer", "text": "是否 立案 、評鑑結果與負責人資歷 照服員與長者的人數比、午休與如廁的安排 動線、廁所、防滑、輪椅可否順暢通行 活動內容是否有 復能或認知訓練 ，而不只是看電視 午餐品質，能否提供軟質餐、吞嚥餐 接送路線與乘車時間（太久的車程長輩會很累） 收費明細：餐費、尿布、自費活動 是否可以 試上 1～2 天 【實務提醒】請在下午 2～3 點去看，那時最能看出日常照顧品質；並觀察工作人員怎麼跟長輩說話——語氣、有沒有蹲下來平視，比環境新舊更重要。"}}, {"@type": "Question", "name": "長輩排斥外人、不肯去日照，怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "排斥是很常見的反應，不是失敗。可以這樣慢慢來： 先請居服員在家短時間陪伴（30～60 分鐘），建立信任 日照先 半日試上 ，最好有熟人或家人陪第一次 用「去運動、去幫忙、朋友邀約」取代「去給人照顧」 給選擇權：「今天先去看看，不喜歡我們就回來」 避免欺騙式說法，以免日後失去長輩的信任 【實務提醒】前兩週最關鍵。請與個管師、日照人員保持聯絡，告訴他們長輩過去的職業、興趣與拿手的事，工作人員能快速找到話題，長輩才會覺得「這裡有我的位置」。"}}, {"@type": "Question", "name": "對服務單位或居服員不滿意，可以更換嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。先向 個案管理師 說明狀況，申請更換人員或服務單位；更換服務單位不需要重新申請長照評估。 若溝通無效，可向 照管中心 、地方政府衛生局或社會局的長照窗口反映，也可撥 1966 。若發現疑似虐待、竊盜或其他違法情形，請立即通報，緊急時撥 110 或 119。 【實務提醒】記錄日期、事件與證據（訊息截圖、照片），比情緒陳述更能讓單位和主管機關處理。語氣冷靜、事實清楚，通常能更快得到調整。"}}, {"@type": "Question", "name": "輔具怎麼申請？可以先租再決定買嗎？", "acceptedAnswer": {"@type": "Answer", "text": "輔具須經評估（照管專員、個管師或輔具中心治療師）才能核給。第一組（3 年 4 萬元）可購置或租賃；2026 年 7 月 1 日起新增第二組（3 年 6 萬元，須全租賃），兩組 二擇一 。居家無障礙改善（扶手、防滑、斜坡等）3 年最高 2 萬元。 可以用本站 輔具與無障礙環境改善試算 先估算補助與自付額。 【實務提醒】輔具買錯最浪費。輪椅、氣墊床、移位機務必先請輔具中心或治療師到場試用，確認身形、坐姿、居家空間（門寬、電梯、轉彎）再決定租或買；租賃也比較容易隨長輩狀況改變而更換。"}}, {"@type": "Question", "name": "長照 3.0 到底是什麼？和 2.0 差在哪？", "acceptedAnswer": {"@type": "Answer", "text": "《長期照顧十年計畫 3.0》涵蓋 115～124 年（2026～2035 年） ，行政院於 2025 年 12 月 31 日核定。方向是從「失能後才照顧」，走向 更早介入、預防失能、醫療與長照整合 ： 擴大服務對象（失智、PAC、外國專業人才等） 出院銜接更快（目標 2 天） 強化家庭照顧者支持，例如互助喘息 新增智慧科技輔具、居家服務分級、住宿機構品質提升與補助調增 四包錢仍延續使用，目前申請方式仍是 撥打 1966 。 【實務提醒】新制是「陸續上路」，不是一天全部生效。每一項都請以衛福部或 1966 的最新公告為準；遇到網路文章與公告不一致時，以官方為準。"}}, {"@type": "Question", "name": "3.0 新增了哪些服務對象？我的家人符合嗎？", "acceptedAnswer": {"@type": "Answer", "text": "新增或擴大包含： 年輕型失智且失能者 急性後期整合照護（PAC）失能者 ：中風、骨折、重大手術後返家復健者 符合資格的失能外國專業人才 報導指出符合者須長照需要等級 2 級以上，預估約 74.5 萬人受惠。原有對象（65 歲以上、身障、失智等）不變。 【實務提醒】各類擴大對象的實際上路時間與審核方式不盡相同，建議直接撥 1966，說明長輩的年齡、診斷與失能情形，由專員判斷。不要自己先預設「不符合」而放棄詢問。"}}, {"@type": "Question", "name": "新的輔具「第二組 6 萬」是什麼？和原本 4 萬怎麼選？", "acceptedAnswer": {"@type": "Answer", "text": "2026 年 7 月 1 日起 上路 第二組 ：3 年 6 萬元，須 全租賃 （含智慧科技輔具），其中居家無障礙改善上限 2 萬元 第一組 ：3 年 4 萬元，可購置或租賃 兩組 二擇一，不是合計 10 萬元 115 年 6 月 30 日以前已獲第一組給付者，須自核定日起滿 3 年後，才能申請第二組 【實務提醒】需要「買斷、長期使用」的輔具（如輪椅）通常第一組較合適；需要經常更換或智慧監測（防走失、離床感應、智慧床墊）時，第二組較有彈性。可先用本站試算頁比較，再與治療師討論。"}}, {"@type": "Question", "name": "我們有請外籍看護，3.0 之後還能使用長照嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可使用 照顧及專業服務額度的 30% ，自 114 年 9 月 1 日起可用於 日間照顧、家庭托顧 等社區式服務 可申請 交通接送、輔具及居家無障礙環境改善 看護請假期間可使用 喘息服務 。衛福部表示，聘僱外籍看護家庭的喘息規定在 3.0 並未改變；每年長照喘息加勞動部短期替代照顧的額度合計 12 萬 120 元（報導資料） 勞動部補助地方政府辦理 到宅指導 ，由專業人員與通譯免費到宅教導基本照護技巧 【實務提醒】很多雇主以為「有請看護就不能申請長照」，這是誤解。評估時請主動告知有聘看護，個管師才能把 30% 額度與社區資源配對好。"}}, {"@type": "Question", "name": "3.0 的出院銜接有什麼不同？住院時就能申請嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以，而且 越早越好 。醫院出院準備團隊會在出院前完成 CMS 評估，並擬定出院後的簡易照顧計畫；社區 A 單位須於出院後 3 日內到案家擬定正式照顧計畫。 全國平均銜接時間已從 2017 年的 51 天縮短到約 4 天，3.0 的目標是 2 天。 【實務提醒】請在病人出院前 3～5 天，主動向病房社工或個管師提出需求，讓氣墊床、輪椅與居家服務能在「回家當天」就位，而不是回家後才開始找。"}}, {"@type": "Question", "name": "家人失智，3.0 有哪些新資源？智慧輔具和 ACP 是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "失智照護擴大 ：3.0 新增失智症專章，年輕型失智且失能者納入服務對象；可洽失智共同照護中心與社區失智據點 智慧科技輔具 ：具感測、數據記錄、傳輸、分析等功能的輔具（如智慧床墊、安全看視、防走失），可透過第二組租賃使用 預立醫療照護諮商（ACP） ：報導指衛福部將提供「一生一次免費」的諮商，協助本人與家屬及早討論末期醫療選擇 ACP 的適用疾病與資格細節，請以衛福部公告為準。 【實務提醒】ACP 最好在長輩意識清楚、還能表達時進行。它談的是「想被怎麼照顧」，不是「放棄治療」；早點談，家人之後做決定時才不會自責、也不會吵架。"}}, {"@type": "Question", "name": "照顧者喘息怎麼用？一次可以休息多久？", "acceptedAnswer": {"@type": "Answer", "text": "喘息額度每年 32,340 元 （CMS 2～6 級）或 48,510 元 （7～8 級）。參考價格（114 年公告，可能調整）： 居家喘息：2 小時 770 元 日照喘息：全日 1,250 元、半日 625 元 機構住宿喘息：24 小時 2,310 元 以機構住宿喘息為例，32,340 ÷ 2,310 = 14，約可使用 14 天 ；48,510 元則約 21 天 （未計部分負擔與單位實際收費）。 【實務提醒】喘息不是等累垮才用。建議每年排 2～3 次「預防性喘息」：先讓長輩試住機構或日照 1～2 晚，家屬好好休息，也順便測試長輩適不適應。機構床位需提前預約，旺季尤其難排。"}}, {"@type": "Question", "name": "聽說有「互助喘息」，是什麼？怎麼預約？", "acceptedAnswer": {"@type": "Answer", "text": "這是長照 3.0 的「互助喘息服務試辦計畫」：由 1 名照顧服務員搭配 1～3 位家庭照顧者 ，共同照顧多位長輩；照顧者可輪流換工、以服務換服務，概念是「顧一個時段，換兩倍時段的喘息」。 截至 2026 年 3 月，已在 16 個縣市設置 50 處據點 。可至 互助喘息服務預約平台 註冊預約；家庭照顧者關懷專線： 0800-507272 。 【實務提醒】適合長輩還有一些活動能力、家屬願意「互相支援」的家庭。名額與時段有限，請提早預約，並先確認據點離家距離與可服務的失能程度。"}}, {"@type": "Question", "name": "照顧到快崩潰、情緒很差、睡不好，可以找誰幫忙？", "acceptedAnswer": {"@type": "Answer", "text": "您的感受很正常，也很重要。可以尋求： 家庭照顧者關懷專線： 0800-507272 安心專線 1925 （心理支持） 社區心理衛生中心、家庭照顧者支持服務據點、照顧者支持團體 睡眠與情緒問題持續兩週以上：請就診家醫科、身心科或精神科 若有傷害自己或他人的念頭，請立即撥打 119 或 1925 。 【實務提醒】照顧者先被照顧好，被照顧者才會被照顧好。請把喘息、日照、支持團體排進行事曆，而不是「等有空再說」——在長照路上，永遠不會有空。"}}, {"@type": "Question", "name": "爸爸失智，常忘事、半夜起來，甚至走失，家人該怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "就醫與評估 ：神經內科或精神科確診；可洽失智共同照護中心取得個管與家屬支持 預防走失 ：愛心手環、衣物縫上聯絡資訊、定位裝置；並可向警政單位洽詢失智者指紋捺印 居家安全 ：夜燈、門窗警示鈴、收好瓦斯與危險物品 溝通 ：簡單、肯定、不爭辯、轉移注意力 走失時 ：立即報案（110）， 不需要等 24 小時 【實務提醒】同一天不要糾正三次。失智者的「錯」多半是疾病，不是故意；改變環境，比改變他容易得多。把「不能做」換成「換個時間、換個方式做」，家屬的消耗會小很多。"}}, {"@type": "Question", "name": "怎麼預防長輩跌倒和壓瘡？家裡要先改哪裡？", "acceptedAnswer": {"@type": "Answer", "text": "浴室 ：防滑措施、扶手、沐浴椅 廁所與夜間動線 ：夜燈、扶手、馬桶增高器或便盆椅 室內動線 ：淨空雜物、地毯固定或移除、門檻斜角 臥床者 ：氣墊床、約每 2 小時翻身、保持皮膚乾爽、補充蛋白質與水分 居家無障礙改善 3 年最高 2 萬元，須先經評估。 【實務提醒】最先處理浴室與夜間上廁所的動線，這兩處是家屬最容易低估、也最常出事的地方。改善前先請治療師或輔具中心到府看一次，常常用小改動就能達到效果，不必大興土木。"}}, {"@type": "Question", "name": "什麼時候該考慮讓長輩住進機構？怎麼挑？", "acceptedAnswer": {"@type": "Answer", "text": "常見訊號： 夜間需要頻繁起身或翻身、有管路或複雜照護、照顧者的健康或工作已無法支撐、長輩出現安全風險（走失、頻繁跌倒、自傷）、居家與社區資源已用到極限。 挑選重點： 立案與評鑑、護理人力與照服員比例、費用明細與合約、用餐與下午時段實地參觀、是否可以試住、家屬探視規定。補助請見第 12 題。 【實務提醒】「送機構」不是放棄，而是換一種方式照顧。很多家庭在決定後，反而重新有力氣好好探視、陪伴。若遇到緊急狀況，請直接撥打 119，不要等網站或人員回覆。"}}]}]}</script>
 </head>
 <body>
 
@@ -2087,6 +2204,7 @@
           </div>
           <div class="dropdown-menu">
             <div class="dropdown-item" onclick="navigateTo('calc')"><span>🔹 照顧及專業服務</span></div>
+            <div class="dropdown-item" onclick="navigateTo('calc');calcTab('respite')"><span>🔹 喘息服務</span></div>
             <div class="dropdown-item" onclick="navigateTo('assistive')"><span>🔹 輔具與無障礙環境改善服務</span></div>
           </div>
         </div>
@@ -2098,7 +2216,9 @@
             <span class="arrow-icon">▼</span>
           </div>
           <div class="dropdown-menu grid-2col">
+            <div class="dropdown-item" onclick="navigateTo('nearby')"><span>🗺️ 附近資源地圖</span></div>
             <div class="dropdown-item" onclick="openInfoModal('失智共同照護中心', '提供失智症患者確診銜接、個案管理服務、照護諮詢、家屬支持團體與社區失智友善據點資源轉介。', '🧠')"><span>🧠 失智共同照護中心</span></div>
+            <div class="dropdown-item" onclick="openInfoModal('巷弄長照站', '住家附近的長照 C 級據點：健康促進、認知活動、共餐與社交，長輩還沒失能也能去，是預防退化的第一道防線。', '🏘️')"><span>🏘️ 巷弄長照站</span></div>
             <div class="dropdown-item" onclick="openInfoModal('居家醫療', '醫師、護理師定期到行動不便或出門困難長輩家中進行看診、開藥、抽血與慢性病照護，免去大費周章奔波醫院之苦。', '🩺')"><span>🩺 居家醫療</span></div>
             <div class="dropdown-item" onclick="openInfoModal('居家安寧', '安寧緩和醫療專業團隊到府提供末期病人疼痛控制、舒適護理、心理靈性關懷，協助長輩在熟悉溫暖的家中尊嚴安度晚年。', '🕊️')"><span>🕊️ 居家安寧</span></div>
             <div class="dropdown-item" onclick="openInfoModal('出院準備服務', '於住院期間提早啟動長照評估，無縫銜接出院後居家照顧、居家醫療、無障礙改善或機構轉銜，避免照顧空窗期。', '🏥')"><span>🏥 出院準備服務</span></div>
@@ -2110,7 +2230,7 @@
             <div class="dropdown-item" onclick="openInfoModal('獨居長輩緊急救援守護連線', '在家中裝設 24 小時無線通報主機與防跌求援隨身鈕，發生意外跌倒或突發急性病況時，一鍵直通監控中心啟動緊急救援。', '🚨')"><span>🚨 獨居長輩緊急救援守護連線</span></div>
             <div class="dropdown-item" onclick="openInfoModal('成人保護通報(家暴防治中心)', '若發現長輩遭受家庭暴力、身心虐待、惡意遺棄或嚴重疏忽，可隨時撥打 113 專線或尋求家暴防治中心即刻介入保護處遇。', '🛡️')"><span>🛡️ 成人保護通報(家暴防治中心)</span></div>
             <div class="dropdown-item" onclick="openInfoModal('身心障礙者通報及生涯轉銜中心', '協助領有身心障礙證明者進行福利需求評估、就業輔導、日間作業設施（小作所）及各生涯階段之無縫轉銜。', '♿')"><span>♿ 身心障礙者通報及生涯轉銜中心</span></div>
-            <div class="dropdown-item" onclick="openInfoModal('2026住宿型機構補助方案', '入住住宿式機構，且經評估長照需要等級 4 級以上或持有中度以上身心障礙證明者，依衛福部 2026 年 9 月 10 日公布之調整方案（追溯自 115 年 1 月 1 日）：每月補助由 5,000 元調增為 15,000 元，全年最高 18 萬元，並改為按月認列。實際申請作業與時程請洽地方政府，並以衛福部最新公告為準。', '💰')"><span>💰 2026住宿型機構補助方案</span></div>
+            <div class="dropdown-item" onclick="openInfoModal('2026住宿型機構補助方案', '入住住宿式機構，且經評估長照需要等級 4 級以上或持有中度以上身心障礙證明者，依衛福部 2026 年 9 月 10 日公布之調整方案（追溯自 115 年 1 月 1 日）：每月最高補助由 10,000 元調增為 15,000 元，全年最高 18 萬元，並改為按月認列。實際申請作業與時程請洽地方政府，並以衛福部最新公告為準。', '💰')"><span>💰 2026住宿型機構補助方案</span></div>
           </div>
         </div>
 
@@ -2293,15 +2413,15 @@
         </div>
 
         <div class="cards-grid">
-          <div class="card" onclick="openInfoModal('服務介紹', '長照 2.0/3.0 涵蓋照顧及專業服務、交通接送、輔具與無障礙環境改善服務、喘息服務四大項補助。歡迎聯繫我們為您的長輩量身安排合適之照顧計畫。', '💰')">
+          <div class="card" onclick="openInfoModal('服務介紹', '長照四大類給付：照顧及專業服務、交通接送、輔具與居家無障礙環境改善、喘息服務。點選下方項目，查看服務內容、費用與試算。', '💰')">
             <div class="card-top">
               <div class="card-icon">💰</div>
               <div class="card-content">
                 <h3>服務介紹</h3>
-                <p>照顧及專業服務、交通接送、輔具與無障礙環境改善服務、喘息服務四大補助解說。</p>
+                <p>居家、日間、家庭托顧、專業服務、交通接送、輔具與無障礙、三種喘息，點進去看內容、費用與試算。</p>
               </div>
             </div>
-            <div class="card-action">查看服務介紹 →</div>
+            <div class="card-action">查看全部服務 →</div>
           </div>
 
           <div class="card" onclick="openCalcChoiceModal()">
@@ -2309,21 +2429,32 @@
               <div class="card-icon">🧮</div>
               <div class="card-content">
                 <h3>額度/費用試算</h3>
-                <p>輸入失能等級與身分別，輕鬆算個人自負額度與每月補助總額上限。</p>
+                <p>照顧及專業（每月）、喘息（每年，依 CMS 等級）、輔具與無障礙（3 年額度），輸入等級與身分別，自動算出自付額。</p>
               </div>
             </div>
             <div class="card-action">選擇試算工具 →</div>
           </div>
 
-          <div class="card" onclick="openInfoModal('地方資源', '精準串聯失智共照中心、家庭照顧者支持中心、巷弄長照站、居家醫療、出院準備與住宿機構補助等社區網絡，讓照顧在地化。', '🏠')">
+          <div class="card" onclick="openInfoModal('地方資源', '串聯失智共照中心、家庭照顧者支持中心、巷弄長照站、居家醫療、出院準備與住宿機構補助等社區網絡。', '🏠')">
             <div class="card-top">
               <div class="card-icon">🏠</div>
               <div class="card-content">
                 <h3>地方資源</h3>
-                <p>失智共照中心、居家醫療、出院準備、輔具中心與住宿型機構補助等全方位盤點。</p>
+                <p>失智共照中心、家庭照顧者支持中心、巷弄長照站、居家醫療、出院準備與住宿機構補助，附轉介辦法與服務內容。</p>
               </div>
             </div>
-            <div class="card-action">查找鄰近據點 →</div>
+            <div class="card-action">查看資源與轉介辦法 →</div>
+          </div>
+
+          <div class="card" onclick="navigateTo('nearby')">
+            <div class="card-top">
+              <div class="card-icon">🗺️</div>
+              <div class="card-content">
+                <h3>附近資源地圖</h3>
+                <p>官方長照服務地圖、里長辦公室、社區關懷據點、日照與衛生所，輸入縣市或用定位，一鍵找住家附近。</p>
+              </div>
+            </div>
+            <div class="card-action">找住家附近的資源 →</div>
           </div>
 
           <div class="card" onclick="openInfoModal('教育訓練寶典', '提供居服員、居家督導員與個案管理員完整實務培訓指引。透過圖文範例教學，協助專業人員迅速上手照顧實務與評估流程。', '🎓')">
@@ -2406,6 +2537,12 @@
         </div>
       </div>
 
+      <div class="calc-tabs" role="tablist" aria-label="選擇試算類別">
+        <button type="button" class="calc-tab active" id="tabCare" role="tab" aria-selected="true" onclick="calcTab('care')">🏠 照顧及專業服務<br><small>每月額度</small></button>
+        <button type="button" class="calc-tab" id="tabRespite" role="tab" aria-selected="false" onclick="calcTab('respite')">🌿 喘息服務<br><small>每年額度</small></button>
+      </div>
+
+      <div id="panelCare">
       <div class="mobile-scroll-hint">
         <span>👈</span> 表格可左右滑動查看完整費用與輸入每月次數 <span>👉</span>
       </div>
@@ -2471,6 +2608,50 @@
               </table>
             </div>
           </div>
+        </div>
+      </div>
+
+      </div><!-- /panelCare -->
+
+      <div id="panelRespite" style="display:none;">
+        <div class="rs-box">
+          <h4>① 選擇 CMS 等級（喘息額度每年計算，不同等級額度不同）</h4>
+          <p class="rs-sub">喘息服務有<strong>自己的額度</strong>，不會用到「照顧及專業服務額度」。CMS 第 2～6 級每年 32,340 元；第 7～8 級每年 48,510 元。</p>
+          <div class="rs-levels" id="rsLevels"></div>
+        </div>
+        <div class="rs-box">
+          <h4>② 選擇長照身分別（影響自付額）</h4>
+          <div class="rs-ids" id="rsIds"></div>
+        </div>
+        <div class="rs-box">
+          <h4>③ 輸入「一年」預計使用量</h4>
+          <p class="rs-sub">依服務型態填入預計使用的次數、日數或時數。自付額依給付價格計算，<strong>不會再扣額度</strong>；用完額度的部分需全額自費。</p>
+          <div class="ltc-search-row"><input type="search" id="rsSearch" placeholder="🔍 搜尋喘息項目（例如：日照、夜間、機構、GA05）" aria-label="搜尋喘息項目" oninput="rsFilter()"></div>
+          <div class="rs-table-wrap"><table class="rs-table">
+            <thead><tr><th>代碼</th><th>服務項目</th><th>計價單位</th><th>給付價格</th><th>您的自付額／單位</th><th>預計用量</th><th>使用額度</th></tr></thead>
+            <tbody id="rsBody"></tbody>
+          </table></div>
+        </div>
+        <div class="rs-box" id="rsResult">
+          <h4>④ 試算結果</h4>
+          <div class="rs-stats">
+            <div class="rs-stat"><span>本等級年度喘息額度</span><b id="rsQuota">0</b></div>
+            <div class="rs-stat"><span>預計使用額度</span><b id="rsUsed">0</b></div>
+            <div class="rs-stat ok" id="rsRemainBox"><span>剩餘額度</span><b id="rsRemain">0</b></div>
+            <div class="rs-stat"><span>預計自付額（部分負擔）</span><b id="rsPay">0</b></div>
+            <div class="rs-stat bad"><span>超出額度需全額自費</span><b id="rsOver">0</b></div>
+          </div>
+          <div class="rs-bar" id="rsBar"><i></i></div>
+          <div class="rs-warn" id="rsWarn"></div>
+          <p class="note-text" style="margin-top:10px;" id="rsHint"></p>
+        </div>
+        <div class="rs-box">
+          <h4>📊 各 CMS 等級年度喘息額度與剩餘</h4>
+          <div class="rs-table-wrap"><table class="rs-lv-table">
+            <thead><tr><th>等級</th><th>年度額度</th><th>剩餘額度</th><th>剩餘約可住機構（天）</th><th>剩餘約可日照全日（天）</th></tr></thead>
+            <tbody id="rsLvBody"></tbody>
+          </table></div>
+          <p class="note-text">※ 喘息額度可跨「居家、日間、機構」混用。外籍看護家庭在看護請假休息期間亦可使用喘息，不受「照顧及專業服務 30%」限制。依辦法規定，若長照給付對象沒有家庭照顧者，不給付喘息額度。實際依照管專員核定為準。</p>
         </div>
       </div>
 
@@ -2630,6 +2811,21 @@
        【內頁 3：常見問題 FAQ VIEW】30 則家屬常見問題（依長照 3.0 最新資料整理）
        編輯方式：每一則是一個 <details class="faq-item">，可直接修改文字；序號請保持 faq-1 ~ faq-30
        ============================================================ -->
+  <div id="nearbyView" class="calc-page-view">
+    <div class="container">
+      <div class="calc-nav-header no-print">
+        <div><button class="btn-back-home" type="button" onclick="navigateTo('home')"><span>←</span> 返回首頁</button></div>
+        <div><span style="color: var(--primary); font-weight: 700;">附近資源地圖</span></div>
+      </div>
+      <header class="faq-hero">
+        <span class="eyebrow">NEARBY</span>
+        <h1>找住家附近的長照資源</h1>
+        <p>選縣市或用定位，再告訴我們「現在需要什麼」，就能一鍵開啟官方長照地圖、社區關懷據點、里長辦公室等，找到<strong>走得到、問得到</strong>的幫手。</p>
+      </header>
+      <div id="nearbyRoot"></div>
+    </div>
+  </div>
+
   <div id="faqView" class="calc-page-view">
     <div class="container">
       <div class="calc-nav-header no-print">
@@ -2780,7 +2976,7 @@
 <p>有，而且<strong>2026 年已調增</strong>。衛福部於 2026 年 9 月 10 日公布「住宿式服務機構使用者補助方案」調整（<strong>追溯自 115 年 1 月 1 日</strong>）：</p>
 <ul>
 <li>對象：入住住宿式機構，且經評估<strong>長照需要等級 4 級以上</strong>，或持有<strong>中度以上身心障礙證明</strong>者</li>
-<li>金額：由每月 5,000 元調增為<strong>每月 15,000 元，全年最高 18 萬元</strong>（原制全年最高 12 萬元）</li>
+<li>金額：由每月最高 10,000 元調增為<strong>每月 15,000 元，全年最高 18 萬元</strong>（原制全年最高 12 萬元）</li>
 <li>認列方式：改為<strong>按月認列</strong>，當月實際入住達日曆天數二分之一以上，即認列 1 個月；地方政府每年分上、下半年 2 次檢核撥付</li>
 <li>過渡：114 年度已核定領取 12 萬元者，115 年 1～8 月累積入住達 180 日，一律核給 12 萬元；9 月起依新制按月認列</li>
 </ul>
@@ -3142,6 +3338,9 @@
         <button class="submit-btn" type="button" style="padding: 14px; font-size: 1.05rem;" onclick="closeCalcChoiceModal(); navigateTo('calc');">
           🔹 照顧及專業服務試算 (每月額度)
         </button>
+        <button class="submit-btn" type="button" style="background: #0f766e; padding: 14px; font-size: 1.05rem;" onclick="closeCalcChoiceModal(); navigateTo('calc'); calcTab('respite');">
+          🔹 喘息服務試算 (每年額度，依 CMS 等級)
+        </button>
         <button class="submit-btn" type="button" style="background: #1a73e8; padding: 14px; font-size: 1.05rem;" onclick="closeCalcChoiceModal(); navigateTo('assistive');">
           🔹 輔具與無障礙改善試算 (3 年額度)
         </button>
@@ -3221,14 +3420,17 @@
       const calcView = document.getElementById('calcView');
       const assistiveCalcView = document.getElementById('assistiveCalcView');
       const faqView = document.getElementById('faqView');
+      const nearbyView = document.getElementById('nearbyView');
 
       homeView.style.display = 'none';
+      nearbyView.style.display = 'none';
       calcView.style.display = 'none';
       assistiveCalcView.style.display = 'none';
       faqView.style.display = 'none';
 
       if (view === 'calc') {
         calcView.style.display = 'block';
+        if (typeof calcTab === 'function' && !(hash === 'respite')) calcTab('care', true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (typeof recalculate === 'function') recalculate();
       } else if (view === 'assistive') {
@@ -3236,6 +3438,10 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (typeof renderItems === 'function') renderItems();
         if (typeof calculateTotals === 'function') calculateTotals();
+      } else if (view === 'nearby') {
+        nearbyView.style.display = 'block';
+        if (typeof nvRender === 'function') nvRender();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (view === 'faq') {
         faqView.style.display = 'block';
         if (hash && /^#faq-\d+$/.test(hash)) {
@@ -3262,6 +3468,7 @@
       }
       document.title = view === 'calc' ? '照顧及專業服務額度試算 | 長照好厝邊'
         : view === 'assistive' ? '輔具與無障礙補助試算 | 長照好厝邊'
+        : view === 'nearby' ? '附近資源地圖：找住家附近的長照資源 | 長照好厝邊'
         : view === 'faq' ? '長照常見問題 FAQ：家屬最常問的 30 題 | 長照好厝邊'
         : '長照好厝邊 | 找得到、看得懂、用得上的長照資源';
 
@@ -3270,7 +3477,8 @@
 
     function routeFromHash() {
       const h = location.hash.replace('#', '');
-      if (h === 'calc' || h === 'assistive' || h === 'faq') navigateTo(h, null, true);
+      if (h === 'respite') { navigateTo('calc', null, true); calcTab('respite', true); }
+      else if (h === 'calc' || h === 'assistive' || h === 'faq' || h === 'nearby') navigateTo(h, null, true);
       else if (/^faq-\d+$/.test(h)) navigateTo('faq', '#' + h, true);
       else if (h && h !== 'home' && document.getElementById(h)) navigateTo('home', '#' + h, true);
       else navigateTo('home', null, true);
@@ -3397,7 +3605,7 @@
     const INFO_DETAILS = {
       '最新消息': {
         sections: [
-          { h: '2026-09-10｜住宿式機構補助調增', p: '衛福部公布方案：經評估長照需要等級 4 級以上或持中度以上身障證明、入住住宿式機構者，每月補助 5,000 → 15,000 元，全年最高 18 萬元，追溯自 115 年 1 月 1 日，改按月認列。' },
+          { h: '2026-09-10｜住宿式機構補助調增', p: '衛福部公布方案：經評估長照需要等級 4 級以上或持中度以上身障證明、入住住宿式機構者，每月最高補助 10,000 → 15,000 元，全年最高 18 萬元，追溯自 115 年 1 月 1 日，改按月認列。' },
           { h: '2026-07-01｜輔具新增「第二組」', p: '3 年 6 萬元、須全租賃（含智慧科技輔具），其中居家無障礙上限 2 萬元；與第一組（3 年 4 萬元）二擇一。' },
           { h: '2026-03｜互助喘息服務試辦', p: '1 名照服員搭配 1～3 位家庭照顧者；16 縣市 50 處據點，可上預約平台預約，家庭照顧者關懷專線 0800-507272。' },
           { h: '2025-12-31｜長照十年計畫 3.0 核定', p: '《長期照顧十年計畫 3.0》涵蓋 115～124 年（2026～2035 年），延續四包錢並擴大服務對象、強化出院銜接與家庭支持。' },
@@ -3407,18 +3615,61 @@
       },
       '居家照顧服務': { home: true },
       '日間(社區)照顧服務': { day: true },
-      '家庭托顧服務': { fam: true }
+      '家庭托顧服務': { fam: true },
+      '專業服務': { pro: true },
+      '輔具服務': { cat: 'aid' },
+      '居家無障礙環境改善服務': { cat: 'acc' },
+      '居家喘息服務': { cat: 'rh' },
+      '日間(社區)喘息服務': { cat: 'rd' },
+      '機構喘息服務': { cat: 'ri' },
+      '失智共同照護中心': { res: 'dementia' },
+      '家庭照顧者支持中心': { res: 'caregiver' },
+      '巷弄長照站': { res: 'lane' },
+      '居家醫療': { res: 'homemed' },
+      '出院準備服務': { res: 'discharge' },
+      '2026住宿型機構補助方案': { res: 'resid' },
+      '地方資源': { hub: true },
+      '服務介紹': { svc: true },
+      '附近資源地圖': { near: true }
     };
 
     /* ===== 居家照顧服務：依「照顧組合表」整理，可點開看白話說明、內容、提醒與費用 ===== */
     const HC_GROUPS = [{"ic": "🛁", "t": "清爽整潔，每天都舒服", "items": [{"c": "BA01", "n": "基本身體清潔", "k": "擦澡 洗澡 床上 洗頭 尿片 臥床 梳頭 穿衣", "w": "長輩躺在床上或不方便進浴室時，照服員在床邊幫忙把身體清潔乾淨。", "d": ["梳頭、修面（刮鬍子、洗臉）", "協助穿脫衣服", "床上擦澡、床上洗頭", "排泄物清理（含當次更換尿片、倒尿袋）", "洗頭、排泄物清理若長輩沒有需要，可以不做"], "t": ["原則上一天使用一次；有需要時可早晚各一次", "同一時段不能和「協助沐浴及洗頭（BA07）」「協助洗頭（BA23）」一起申報", "遇到突發或臨時需要，可先提供服務，事後由單位通知照管中心確認"], "b": "", "lk": "BA01", "u": "每次"}, {"c": "BA07", "n": "協助沐浴及洗頭", "k": "洗澡 淋浴 盆浴 浴室 洗頭", "w": "長輩可以到浴室時，照服員陪著、扶著，安全地把澡洗好。", "d": ["協助或引導到浴間、穿脫衣服", "全身淋浴、坐浴或盆浴、洗頭", "排泄物清理（含更換尿片、倒尿袋）", "浴間事前準備與事後清理", "鼓勵長輩自己做得到的部分，維持自我照顧能力"], "t": ["是在浴間（或類似場所）進行；躺在床上擦澡屬於 BA01", "已包含 BA01 與 BA23 的內容，同一時段不能重複申報"], "b": "", "lk": "BA07", "u": "每次"}, {"c": "BA23", "n": "協助洗頭", "k": "洗頭 洗髮", "w": "只需要洗頭、不需要全身洗澡時使用。", "d": ["協助移位或引導到浴間、穿脫衣服", "洗頭，以及弄濕、弄髒的身體部位清潔", "環境事前準備、事後整理"], "t": ["在床上或浴間單獨洗頭時使用", "同一時段不能同時申報 BA01、BA07"], "b": "", "lk": "BA23", "u": "每次"}, {"c": "BA24", "n": "協助排泄", "k": "上廁所 大便 小便 尿失禁 造口 尿袋 嘔吐", "w": "陪長輩把「如廁」這件私密的事處理得有尊嚴、乾淨又安全。", "d": ["協助移位或引導到浴間，支持並協助大小便", "處理汗、痰、嘔吐物，觀察排泄物", "尿袋更換、造廔袋清理、人工肛門造口周圍照料（含造口袋更換、排空）", "生殖器官照顧的事後檢視", "介紹如何做大小便控制或失禁處理"], "t": ["在執行 BA01 或 BA07 的過程中一併處理的，不能重複計費"], "b": "", "lk": "BA24", "u": "每次"}, {"c": "BA09", "n": "到宅沐浴車服務（第 1 型）", "k": "沐浴車 洗澡 到府 外籍看護", "w": "專用沐浴車開到家門口，把「迷你浴缸」搬進家裡，在家就能舒服泡澡。", "d": ["利用專用車輛，載著組合式行動浴槽到家中", "沐浴前評估、全身沐浴、沐浴後設備清理消毒", "運用入浴安全移位技巧，協助清潔與穿換衣服"], "t": ["限照管專員評估核定長照需要等級 <b>5～8 級</b>者使用", "至少由 3 位完成認可訓練的照服員組成團隊", "聘有外籍看護的家庭也可使用，但給付額度仍只有「照顧及專業服務額度」的 30%", "此項自 2026 年 1 月 1 日起施行"], "b": "car", "lk": "BA09", "u": "每次"}, {"c": "BA09a", "n": "到宅沐浴車服務（第 2 型）", "k": "沐浴車 氣切 鼻胃管 導尿管 呼吸器 燒燙傷", "w": "身上有管路、需要護理人員一起照看的長輩，也能在家安全洗澡。", "d": ["同第 1 型的到府沐浴服務", "護理人員在沐浴前後評估生命徵象、身體與傷口，並護理三管（氣切、鼻胃管、導尿管）", "處理緊急狀況，並對主要照顧者做衛教與指導"], "t": ["限 <b>5～8 級</b>，且有留置管路（含氣切、鼻胃管、胃造廔口、導尿管、膀胱造廔口、結腸造廔口）、使用呼吸器，或有燒燙傷、三級傷口需協助者", "至少 1 位護理人員加 2 位照服員", "此項自 2026 年 1 月 1 日起施行"], "b": "car", "lk": "BA09a", "u": "每次"}]}, {"ic": "🛏️", "t": "日常起居，細心陪伴", "items": [{"c": "BA02", "n": "基本日常照顧", "k": "翻身 移位 刷牙 穿衣 如廁 剪指甲 吃藥 換床單 協助", "w": "最常用的「生活小幫手」：從起床、盥洗到整理床鋪，一次幫長輩把日常顧好。", "d": ["協助翻身、移位、上下床、坐下、離座", "刷牙洗臉、穿脫衣服、如廁、更換尿片或衛生棉", "倒尿桶、清洗便桶、造廔袋清理、會陰沖洗（不含身體清潔）", "清洗臉或手、刮鬍子、修剪指（趾）甲", "協助用藥、服藥，整理床、更換床單"], "t": ["以每 30 分鐘為一個單位，一天最多使用 3 小時", "不能和其他照顧組合同時併用", "上面沒列到、但屬基本日常照顧的事，經照管中心同意後可比照辦理"], "b": "t30", "lk": "BA02", "u": "每 30 分鐘"}, {"c": "BA10", "n": "翻身拍背", "k": "翻身 拍背 臥床 痰 壓瘡", "w": "幫臥床長輩翻身、拍背，預防痰液積聚與壓瘡。", "d": ["扣背、震顫、翻身及相關照顧指導", "依衛福部所定指引執行"], "t": ["完整做完一次，算一個單位"], "b": "", "lk": "BA10", "u": "每次"}, {"c": "BA11", "n": "肢體關節活動", "k": "復健 運動 關節 站立 伸展", "w": "幫長輩動一動手腳，或督促長輩自己運動、練習站立。", "d": ["上肢、下肢被動運動", "督促長輩進行主動運動或站立練習", "依衛福部所定指引執行"], "t": ["完整做完一次，算一個單位"], "b": "", "lk": "BA11", "u": "每次"}, {"c": "BA12", "n": "協助上（下）樓梯", "k": "樓梯 輪椅 搬運 無電梯 公寓", "w": "住在沒有電梯的公寓，出門、回家的這段樓梯，有人一起扶。", "d": ["協助長輩上（下）樓梯，或協助搬運輪椅上（下）樓", "樓梯數為一層樓以上；範圍含住家內、以及二樓以上的家門口到一樓"], "t": ["限照顧問題清單顯示「移位問題」或「上下樓梯問題」者", "使用電梯、爬梯機、樓梯升降椅的不適用", "遇突發或臨時需要，可先提供，事後經照管中心確認"], "b": "", "lk": "BA12", "u": "每次"}]}, {"ic": "🍚", "t": "吃得安心，營養到位", "items": [{"c": "BA04", "n": "協助進食或管灌餵食", "k": "餵食 吃飯 管灌 鼻胃管 灌食", "w": "陪長輩吃飯，餵食或管灌時也一併觀察吃得好不好。", "d": ["準備進食環境（配合長輩安置）、加熱飯菜、準備餐具", "協助餵食（或灌食），觀察進食量與反應", "提供家屬關於協助進食、管灌的諮詢，以及用餐後整理", "鼓勵、參與式照顧，維持長輩自我照顧潛能"], "t": ["一餐為一個單位"], "b": "", "lk": "BA04", "u": "每餐"}, {"c": "BA05", "n": "餐食照顧", "k": "備餐 煮飯 管灌飲食", "w": "到家裡幫長輩準備一餐，並把廚房收拾乾淨。", "d": ["在案家備餐、備餐後的餐具善後與清潔（備餐一次算一組）", "或在案家準備一日所需的管灌飲食與善後（一日一組）"], "t": ["單純加熱飯菜、非自製食物（如管灌食品、牛奶）的管灌，屬於 BA04", "同住的長輩共同使用時，只選一位扣額度與部分負擔"], "b": "", "lk": "BA05", "u": "每次"}]}, {"ic": "🩺", "t": "健康小幫手，專業把關", "items": [{"c": "BA03", "n": "測量生命徵象", "k": "血壓 體溫 脈搏 呼吸", "w": "配合疾病需要，定時量血壓、體溫、脈搏與呼吸。", "d": ["測量血壓、體溫、脈搏、呼吸", "記錄；異常時通知家屬與個案管理員"], "t": ["需因疾病需要而監測；若只是為了其他服務前後觀察（例如洗澡前量血壓），不適用此項"], "b": "", "lk": "BA03", "u": "每次"}, {"c": "BA08", "n": "足部照顧", "k": "足部 腳 糖尿病 指甲 雞眼 繭", "w": "幫糖尿病長輩顧好腳：檢查、修剪、保養，早一步發現問題。", "d": ["評估趾甲與足部皮膚", "趾甲及周圍修剪、足部長繭處處理", "足部按摩與保養", "必要時轉介醫療處置，並做紀錄"], "t": ["限<b>經診斷為糖尿病</b>者，且照顧問題清單含走路、皮膚照護或傷口問題，並有足部皮膚脫皮、龜裂、角質硬化（繭、雞眼）或問題甲（厚甲、捲甲、輕微炭甲）", "由完成認可訓練的照服員提供", "日常的指（趾）甲修剪屬 BA02", "此項自 2026 年 1 月 1 日起施行"], "b": "train", "lk": "BA08", "u": "每次"}, {"c": "BA17a", "n": "人工氣道管內分泌物抽吸", "k": "氣切 抽痰 呼吸 人工氣道", "w": "有氣切的長輩，由受過訓練的照服員協助清潔、抽吸痰液。", "d": ["人工氣道管內（非氣管內管）分泌物的清潔、抽吸與移除", "氣切造口分泌物的簡易照顧處理（含銜接造口設備、更換紗布及固定帶）"], "t": ["須由完成認可訓練的照服員提供", "一天以三組為限", "如需同時處理口腔內分泌物，可另加計 BA17b", "遇突發或臨時需要，可先提供，事後經照管中心確認"], "b": "train", "lk": "BA17a", "u": "每次"}, {"c": "BA17b", "n": "口腔內（懸壅垂之前）分泌物抽吸", "k": "抽痰 口腔 口鼻", "w": "協助清潔、抽吸口腔前段的分泌物，讓呼吸更順暢。", "d": ["口腔內（懸壅垂之前）分泌物的清潔、抽吸與移除"], "t": ["須由完成認可訓練的照服員提供", "一天以三組為限"], "b": "train", "lk": "BA17b", "u": "每次"}, {"c": "BA17c", "n": "尿管及鼻胃管之清潔與固定", "k": "導尿管 尿管 鼻胃管 管路 清潔", "w": "有導尿管或鼻胃管的長輩，每天把管路周圍顧乾淨、固定好。", "d": ["尿管清潔：陰部與尿道口、尿道口外的尿管沖洗，更換固定膠布", "鼻胃管清潔：清潔鼻部皮膚、確認管路是否滑脫、更換固定膠布"], "t": ["每週最多使用 7 組", "遇突發或臨時需要，可先提供，事後經照管中心確認"], "b": "", "lk": "BA17c", "u": "每次"}, {"c": "BA17d1", "n": "血糖機驗血糖", "k": "血糖 糖尿病 驗血糖", "w": "用攜帶式血糖機幫長輩測血糖。", "d": ["攜帶式血糖機驗血糖"], "t": ["每日以一組為限"], "b": "", "lk": "BA17d", "u": "每次"}, {"c": "BA17d2", "n": "甘油球通便", "k": "便秘 甘油球 通便", "w": "長輩便秘時，協助使用甘油球通便。", "d": ["甘油球通便"], "t": ["每週最多 3 組；有特殊需求者，經個案管理員評估並由照管中心同意，可專案核給次數"], "b": "", "lk": "BA17d", "u": "每次"}, {"c": "BA17e", "n": "依指示置入藥盒", "k": "藥盒 吃藥 藥袋 備藥", "w": "依藥袋上的指示，把一週要吃的藥分好放進藥盒，不漏藥、不吃錯。", "d": ["依照藥袋指示置入藥盒"], "t": ["每週以一組為限"], "b": "", "lk": "BA17e", "u": "每次"}]}, {"ic": "🚶", "t": "出門有人陪，安心看醫生", "items": [{"c": "BA13", "n": "陪同外出", "k": "外出 散步 購物 宗教 復健 洗腎 上下學", "w": "想出門走走、辦事、做復健，有人陪著，讓長輩安心出門。", "d": ["外出工具的安排、陪同外出，並注意安全", "外出目的包括：購物、社交活動、辦理事務、宗教活動、用餐、散步、上下學、定期復健或透析治療、運動等"], "t": ["以每 30 分鐘為一個單位", "金額不含外出的交通工具費用", "符合 BA12 條件時，可與 BA12 併用"], "b": "t30", "lk": "BA13", "u": "每 30 分鐘"}, {"c": "BA14", "n": "陪同就醫", "k": "就醫 看病 掛號 醫囑 回診", "w": "陪長輩去看醫生：掛號、陪診、聽醫囑，回家再轉知家人。", "d": ["協助掛號（含預約）、長輩準備", "陪同就診、聽取並轉知醫囑與注意事項"], "t": ["價格不含長輩與陪同照服員的就醫交通費用", "從自家出門起算 1.5 小時內適用；超過 1.5 小時，可依實際陪同時數使用 BA13（事後通知並經照管中心確認）", "定期復健或透析治療不適用此項，請使用陪同外出（BA13）", "遇突發或臨時需要，可先提供，事後經照管中心確認"], "b": "car", "lk": "BA14", "u": "每 1.5 小時內"}, {"c": "BA18", "n": "安全看視", "k": "看視 智能障礙 陪伴 安全", "w": "家人需要短暫離開時，有人在旁陪伴、留意安全。", "d": ["至案家陪伴、支持（如遊戲或嗜好）", "看視注意安全，或協助日常生活參與，並留意異常狀況"], "t": ["以每 30 分鐘為一個單位", "限智能障礙者使用", "不能與其他組合同時併用，但可接續使用"], "b": "t30", "lk": "BA18", "u": "每 30 分鐘"}, {"c": "BA20", "n": "陪伴服務", "k": "陪伴 聊天 讀報 看報 孤單", "w": "陪長輩聊聊天、讀報紙或書信，讓一天不孤單。", "d": ["至案家陪伴看視、日常生活參與", "讀紙本或電子新聞、書信"], "t": ["以每 30 分鐘為一個單位", "不能與其他組合同時併用，但可接續使用"], "b": "t30", "lk": "BA20", "u": "每 30 分鐘"}, {"c": "BA22", "n": "巡視服務", "k": "巡視 探視 獨居 關心", "w": "獨居或白天無人的長輩，由照服員定時到家探視。", "d": ["上午 6 點至晚上 8 點之間，至案家探視長輩並做簡易協助，至少 3 次"], "t": ["不能搭配其他照顧組合", "遇突發或臨時需要，可依規定提供臨時服務，事後通知並經照管中心確認"], "b": "", "lk": "BA22", "u": "每次"}]}, {"ic": "🏡", "t": "家事小幫手，生活更輕鬆", "items": [{"c": "BA15-1", "n": "家務協助（自用）", "k": "打掃 洗衣 熨燙 縫補 家事 獨居", "w": "幫獨居長輩把生活空間整理乾淨、衣物洗好。", "d": ["居家生活空間的清理或洗滌", "衣物洗滌、晾曬烘乾（含至自助洗衣店洗衣）、熨燙、簡單縫補", "清理方式包含吸塵或濕式清洗、沖洗或除塵，不是大掃除"], "t": ["以每 30 分鐘為一個單位", "「獨居」是指長輩自己一個人住"], "b": "t30", "lk": "BA15-1", "u": "每 30 分鐘"}, {"c": "BA15-2", "n": "家務協助（共用）", "k": "打掃 洗衣 同住 家人 共用", "w": "和家人同住時，只做長輩本人需要的部分；與家人共用的區域，政府只支付一半。", "d": ["睡眠及主要居家生活空間的清理或洗滌", "衣物洗滌、晾曬烘乾、熨燙、簡單縫補"], "t": ["須為長輩本人所需；與家人共用的區域，金額只支付 50%，另外 50% 由長輩自行負擔", "長輩使用的臥室與浴室，不論是否與家人共用，都不算共用區域", "同住的家人須符合：未滿 18 歲、18～64 歲領有身障證明或長照需要等級 2～8 級、65 歲以上，或確診失智症者"], "b": "t30", "lk": "BA15-2", "u": "每 30 分鐘"}, {"c": "BA16-1", "n": "代購、代領或代送（自用）", "k": "代購 買東西 領藥 郵寄 送洗 繳費", "w": "不方便出門時，請照服員幫忙買東西、領藥、寄信、辦事。", "d": ["代購餐食、食材、生活用品、藥品、補助品", "郵寄、衣物床單送洗（或取回）、必要的辦理事務（如洽政府機關或繳費）", "含購物清單規劃確認、購物、物品清理歸位與記帳"], "t": ["以代購、代領或代送長輩本人的物品或事項為主；距離自家出門起算 5 公里內適用，超過 5 公里所需費用由長輩自付"], "b": "", "lk": "BA16-1", "u": "每次"}, {"c": "BA16-2", "n": "代購、代領或代送（共用）", "k": "代購 買東西 家人物品", "w": "代購的物品包含家人的東西時，政府只支付一半。", "d": ["服務內容與自用相同"], "t": ["物品或事項包含長輩以外的家人物品時，金額只支付 50%，另外 50% 由長輩自行負擔"], "b": "", "lk": "BA16-2", "u": "每次"}]}];
+
+    /* ===== 「費用參考」→ 直接帶到對應試算表的那一項 ===== */
+    function priceGo(kind, code) {
+      return '<button type="button" class="hc-golink" onclick="goCalc(\'' + kind + '\',\'' + String(code).replace(/'/g, '') + '\')">📊 到試算表算這一項 ›</button>';
+    }
+    function goCalc(kind, code) {
+      try { closeInfoModal(); } catch (e) {}
+      const flash = el => { if (!el) return; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('go-hl'); void el.offsetWidth; el.classList.add('go-hl'); setTimeout(() => el.classList.remove('go-hl'), 2800); };
+      if (kind === 'care') {
+        navigateTo('calc'); calcTab('care', true);
+        const sb = document.getElementById('ltcSearch'); if (sb) { sb.value = ''; filterLtc(); }
+        let idx = ltcData.findIndex(x => x.code === code);
+        if (idx < 0) idx = ltcData.findIndex(x => x.code.indexOf(code) === 0 || code.indexOf(x.code) === 0);
+        setTimeout(() => { const row = document.getElementById('ltc-row-' + idx); if (row) { flash(row); const inp = row.querySelector('input'); if (inp) { try { inp.focus({ preventScroll: true }); inp.select(); } catch (e) {} } } }, 450);
+      } else if (kind === 'respite') {
+        navigateTo('calc', null, false); calcTab('respite');
+        const sb = document.getElementById('rsSearch'); if (sb) { sb.value = ''; rsFilter(); }
+        setTimeout(() => { const row = [...document.querySelectorAll('#rsBody tr')].find(tr => (tr.getAttribute('data-s') || '').indexOf(code) === 0); if (row) { flash(row); const inp = row.querySelector('input'); if (inp) { try { inp.focus({ preventScroll: true }); inp.select(); } catch (e) {} } } }, 550);
+      } else if (kind === 'aid') {
+        navigateTo('assistive');
+        if (typeof currentGroup !== 'undefined' && currentGroup !== 'group1') switchGroup('group1');
+        const cf = document.getElementById('category-filter'); if (cf) cf.value = 'ALL';
+        const sb = document.getElementById('search-box'); if (sb) sb.value = code;
+        filterItems();
+        setTimeout(() => { const c = document.querySelector('#items-container .item-card'); if (c) flash(c); }, 450);
+      }
+    }
+
     function hcPrice(it) {
       const d = (typeof ltcData !== 'undefined') ? ltcData.find(x => x.code === it.lk) : null;
       if (!d) return '';
       const shared = /共用/.test(it.n);
       return '<div class="hc-price"><b>💰 費用參考</b>' +
         '<span>給付價格：' + d.fee.toLocaleString() + ' 元（' + esc(it.u) + '）</span>' +
-        '<span>您的自付額約：低收入戶 ' + d.c1 + ' 元｜中低收入戶 ' + d.c2 + ' 元｜一般戶 ' + d.c3 + ' 元' + (shared ? '（已含需自行負擔的 50%）' : '') + '</span></div>';
+        '<span>您的自付額約：低收入戶 ' + d.c1 + ' 元｜中低收入戶 ' + d.c2 + ' 元｜一般戶 ' + d.c3 + ' 元' + (shared ? '（已含需自行負擔的 50%）' : '') + '</span>' + priceGo('care', it.lk) + '</div>';
     }
     function buildHomeCare() {
       const bd = { t30: '<span class="hc-badge t">⏱ 每 30 分鐘計</span>', train: '<span class="hc-badge e">🎓 需受過訓練</span>', car: '<span class="hc-badge c">⭐ 特殊安排</span>' };
@@ -3457,10 +3708,10 @@
     const DC_TYPES = [{"t": 1, "cms": 2, "fc": "BB01", "f": 675, "hc": "BB02", "h": 340}, {"t": 2, "cms": 3, "fc": "BB03", "f": 840, "hc": "BB04", "h": 420}, {"t": 3, "cms": 4, "fc": "BB05", "f": 920, "hc": "BB06", "h": 460}, {"t": 4, "cms": 5, "fc": "BB07", "f": 1045, "hc": "BB08", "h": 525}, {"t": 5, "cms": 6, "fc": "BB09", "f": 1130, "hc": "BB10", "h": 565}, {"t": 6, "cms": 7, "fc": "BB11", "f": 1210, "hc": "BB12", "h": 605}, {"t": 7, "cms": 8, "fc": "BB13", "f": 1285, "hc": "BB14", "h": 645}];
     const DC_BD = [{"c": "BD01", "n": "社區式協助沐浴", "e": "🛁", "w": "在日照中心洗個舒服的澡，家人不用在家費力幫忙。", "d": ["協助或引導到浴間、穿脫衣服", "全身淋浴或坐浴（或洗頭）", "刷牙洗臉", "浴間使用後的清理"], "t": ["在日間照顧中心（含小規模多機能）或托顧家庭的浴間進行"], "f": 200, "u": "每次"}, {"c": "BD02", "n": "社區式晚餐", "e": "🍲", "w": "家人晚點才下班時，長輩在日照中心先吃一頓熱騰騰的晚餐。", "d": ["準備晚餐", "協助進食（或餵食）", "飯後口腔清潔"], "t": ["在日間照顧中心（含小規模多機能）或托顧家庭進行"], "f": 150, "u": "每次"}, {"c": "BD03", "n": "社區式服務交通接送", "e": "🚐", "w": "專車到家裡接長輩去日照，傍晚再平安送回家。", "d": ["接（送）長輩從住家到社區式服務據點：日間照顧中心、小規模多機能、托顧家庭", "也包含巷弄長照站、文化健康站、失智社區服務據點、輔具中心或身心障礙日間照顧服務"], "t": ["以長輩住家到據點距離 10 公里以內適用，超過 10 公里的費用由長輩自付", "一趟為一個單位（去、回各算一趟）", "由持有職業駕照的駕駛提供"], "f": 115, "u": "每趟"}];
     function dcPay(f) { return { c2: Math.floor(f * 0.05), c3: Math.floor(f * 0.16) }; }
-    function dcLine(label, code, f) { const p = dcPay(f); return '<div class="dc-line"><b>' + label + '（' + code + '）</b><span>給付價格 ' + f.toLocaleString() + ' 元</span><span>自付約：低收入戶 0 元｜中低收入戶 ' + p.c2 + ' 元｜一般戶 ' + p.c3 + ' 元</span></div>'; }
+    function dcLine(label, code, f) { const p = dcPay(f); return '<div class="dc-line"><b>' + label + '（' + code + '）</b><span>給付價格 ' + f.toLocaleString() + ' 元</span><span>自付約：低收入戶 0 元｜中低收入戶 ' + p.c2 + ' 元｜一般戶 ' + p.c3 + ' 元</span>' + priceGo('care', code) + '</div>'; }
     function buildDayCare() {
       const chips = DC_TYPES.map(x => '<button type="button" class="dc-chip" data-cms="' + x.cms + '" aria-pressed="false" onclick="dcPick(' + x.cms + ')">第 ' + x.cms + ' 級</button>').join('');
-      const bd = DC_BD.map(x => '<details class="hc-item"><summary><span class="hc-code">' + x.c + '</span><span class="hc-name">' + x.e + ' ' + esc(x.n) + '</span></summary><div class="hc-body"><p class="hc-plain">' + esc(x.w) + '</p><h6>服務內容</h6><ul>' + x.d.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul><h6>使用小提醒</h6><ul>' + x.t.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul><div class="hc-price"><b>💰 費用參考</b><span>給付價格：' + x.f + ' 元（' + x.u + '）</span><span>您的自付額約：低收入戶 0 元｜中低收入戶 ' + dcPay(x.f).c2 + ' 元｜一般戶 ' + dcPay(x.f).c3 + ' 元</span></div></div></details>').join('');
+      const bd = DC_BD.map(x => '<details class="hc-item"><summary><span class="hc-code">' + x.c + '</span><span class="hc-name">' + x.e + ' ' + esc(x.n) + '</span></summary><div class="hc-body"><p class="hc-plain">' + esc(x.w) + '</p><h6>服務內容</h6><ul>' + x.d.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul><h6>使用小提醒</h6><ul>' + x.t.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul><div class="hc-price"><b>💰 費用參考</b><span>給付價格：' + x.f + ' 元（' + x.u + '）</span><span>您的自付額約：低收入戶 0 元｜中低收入戶 ' + dcPay(x.f).c2 + ' 元｜一般戶 ' + dcPay(x.f).c3 + ' 元</span>' + priceGo('care', x.c) + '</div></div></details>').join('');
       const rows = DC_TYPES.map(x => '<tr><td>第 ' + x.cms + ' 級</td><td>第 ' + x.t + ' 型</td><td>' + x.f.toLocaleString() + '<small>（' + x.fc + '）</small></td><td>' + x.h.toLocaleString() + '<small>（' + x.hc + '）</small></td></tr>').join('');
       return '<div class="hc-intro">白天家人要上班、長輩需要有人陪伴與活動時，<strong>日間照顧（日照）</strong>是很好的選擇：長輩早上由專車接到日照中心，和同伴一起活動、用餐，傍晚再平安回家，晚上就能在熟悉的家裡休息。</div>' +
         '<div class="dc-sec"><h5>🌞 一天會做些什麼？</h5><ul class="dc-list"><li><b>生活照顧：</b>協助盥洗、如廁、用餐，把日常顧好</li><li><b>健康促進：</b>量血壓、運動、復健等，維持身體功能</li><li><b>文康休閒活動：</b>唱歌、手作、遊戲、散步，認識新朋友</li><li><b>家屬指導與諮詢：</b>教家人怎麼照顧、有問題隨時問</li><li><b>備餐服務：</b>在中心享用營養均衡的餐點</li></ul></div>' +
@@ -3498,8 +3749,420 @@
         '<p class="dc-tip">想估算一個月的費用？按下方「前往照顧額度試算」，輸入每月使用天數即可。</p>';
     }
 
+    /* ===== 專業服務：依「照顧組合表」與「長照專業服務手冊」整理 ===== */
+    const PS_ITEMS = [{"c": "CA07", "n": "IADLs 復能、ADLs 復能照護", "e": "🌱", "f": 4500, "u": "三次措施（含評估）為一個單位", "k": "復能 復健 洗澡 穿衣 上廁所 走路 煮飯 洗衣 用藥 自己做 ADL IADL 物理治療 職能治療 越來越吃力", "s": "洗澡、穿衣、上廁所、外出、煮飯越來越吃力，想讓長輩盡量自己做", "w": "不是「幫長輩把事情做完」，而是教長輩和家人「怎麼做得到」，把能力練回來、維持住，也減輕照顧者的負擔。", "d": ["評估：和長輩、家人討論想改善的日常事項（進食、洗澡、個人修飾、穿脫衣服、上廁所、移位、走路，或用電話、備餐、做家事、洗衣、用藥等）", "擬訂服務計畫：規劃日常活動、生活自理訓練、生活習慣建立、情緒行為輔導、肢體功能訓練、溝通互動、環境調整與輔具使用訓練，可跨居家與社區", "指導：以長輩與主要照顧者為對象，融入日常生活、模擬情境練習，示範怎麼支持長輩，並請照顧者回覆示教", "需要時協助轉介醫療復健等資源", "留下紀錄，可用通訊軟體、照片或影片方便日後複習"], "t": ["目標：發揮長輩潛能、提升自主生活能力、維持健康的生活參與與社交", "主要照顧者與其他照顧者最好一起學習，並盡量不要任意更換", "服務人員為醫師（含中醫師）、職能、物理、語言治療師、護理、心理師、藥師、呼吸治療師、營養師等，並完成長照專業課程"]}, {"c": "CA08", "n": "個別化服務計畫（ISP）擬定與執行", "e": "🧩", "f": 6000, "u": "四次措施（含評估及計畫擬訂）為一個單位", "k": "ISP 個別化服務計畫 慢性精神病 自閉症 智能障礙 失智症 社區適應 社交 休閒", "s": "領有身心障礙證明的慢性精神病、自閉症、智能障礙者，或確診失智症者，想培養社區自主生活能力", "w": "專業人員依長輩自己的狀況與期待，量身訂出「個別化服務計畫」，陪著練習生活自理、人際互動與社區適應。", "d": ["評估：生活自理與工具性日常活動、生活習慣、人際與社交技巧、休閒生活、健康維護、社區適應等", "擬訂個別化服務計畫（含目標與執行策略），建議次數與期程，並和長輩、家人討論取得共識", "指導：在日常生活情境中學技能；透過休閒或社區活動提高學習動機與社會參與", "定期追蹤訪視，了解計畫執行情形，並給照顧者回饋與示範", "必要時轉介醫療或跨專業合作，並留下紀錄"], "t": ["目標：提升生活自理能力、促進社會參與、減緩退化", "失智症者需經確診", "服務人員包含教保員、社工師、醫師、牙醫師、職能、物理、語言治療師、聽力師、護理、心理師、營養師等"]}, {"c": "CB01a", "n": "營養照護", "e": "🥗", "f": 4500, "u": "三次措施（含評估）為一個單位", "k": "營養 體重 吃不下 食慾 備餐 BMI 營養師 蛋白質 熱量 水分", "s": "吃得少、體重掉很快，或不知道該怎麼準備適合長輩的餐點", "w": "由專業人員看長輩的活動量、疾病、體重與咀嚼狀況，幫忙把「吃進去的營養」調整到剛剛好，也教家人怎麼備餐。", "d": ["評估：測量身高、體重、BMI、小腿圍，觀察近期體重變化、咀嚼能力、腸道消化、皮膚是否水腫或有壓傷，並參考檢驗數據與病史", "記錄實際吃進的量與質，分析營養不良的原因（如藥物、咀嚼能力）", "擬訂個別化營養計畫（含目標與進程）", "指導：熱量、蛋白質等營養建議、水分攝取、餐點質地與份量、餐次與製作方式的調整，並教照顧者備餐、使用餐具、進食姿勢與體重監測", "營養紀錄要清楚列點、目標可追蹤"], "t": ["若因疾病、用藥等造成營養不良，會通知照管中心或社區整合型服務中心，協助轉介必要醫療", "服務人員為醫師（含中醫師）、營養師、護理、藥師、語言治療師等"]}, {"c": "CB02", "n": "進食與吞嚥照護", "e": "🍽️", "f": 9000, "u": "六次措施（含評估）為一個單位", "k": "吞嚥 嗆咳 吃飯嗆到 清喉嚨 鼻胃管 吸入性肺炎 進食 口腔清潔 語言治療", "s": "吃飯、喝水常嗆咳、清喉嚨，或鼻胃管長輩希望逐步恢復經口進食", "w": "讓長輩「安全地吃、吃得夠」，減少嗆咳與吸入性肺炎的風險，家人也學會正確的餵食技巧。", "d": ["評估：口腔結構、適合的飲食質地、姿勢擺位、餐具、由口進食的安全性，以及照顧者的知能與長輩的認知、情緒", "留置鼻胃管、胃（腸）造廔管者，會先做吸入風險評估，必要時轉介醫院評估，才開始逐步經口進食", "指導：準備合適質地的餐食、安全進食與餵食策略、觀察吸入性肺炎徵狀、調整餐具或姿勢、促進吞嚥的運動或感覺促進技巧、口腔清潔", "暫時無法由口進食者，教導安全吞嚥口水的策略", "紀錄執行狀況與觀察要點"], "t": ["因疾病導致進食或吞嚥困難的高風險者，會通知照管中心或社區整合型服務中心協助轉介醫療", "服務人員為醫師、牙醫師、語言治療師、護理、職能、物理治療、營養師、藥師、呼吸治療師等"]}, {"c": "CB03", "n": "困擾行為照護", "e": "🤝", "f": 4500, "u": "三次措施（含評估）為一個單位", "k": "困擾行為 失智 躁動 攻擊 情緒不穩 亂罵 遊走 日夜顛倒 自傷 照顧壓力", "s": "長輩出現不適當的語言、聲音、動作，情緒或行為不穩定，讓家人照顧壓力很大", "w": "先找出行為背後的原因，再教長輩身邊的人用對的方法回應，讓長輩穩定、家人也安全、安心。", "d": ["評估：是否因身體或精神狀態改變而需要立即就醫；分析誘發原因（疾病症狀、溝通能力、認知、肢體功能、動機、情緒調適，以及照顧者互動方式與環境）", "了解照顧者的主要困擾與期待", "指導：環境安全與危險預防、改善困擾行為的有效因應策略、安排活動維持身心功能並轉移焦慮與壓力", "教照顧者行為管理與溝通技巧，提供社會資源資訊", "評估長輩與照顧者的自傷、傷人風險，必要時提供照顧支持或社會安全網資源"], "t": ["困擾行為是指不適當的語言、聲音、動作、情緒或想法，造成情緒或行為不穩定，影響生活與照顧者壓力", "服務人員為醫師、護理、物理與職能治療、心理師、藥師、語言治療師、營養師及社工師等"]}, {"c": "CB04", "n": "臥床或長期活動受限照護", "e": "🛌", "f": 9000, "u": "六次措施（含評估）為一個單位", "k": "臥床 長期臥床 壓瘡 褥瘡 翻身 移位 關節 皮膚 感染 活動受限 照顧作息表", "s": "長輩長期臥床或活動受限，擔心壓傷、嗆咳、關節僵硬，翻身移位又很費力", "w": "由專業團隊評估整體照護需要，教家人安全省力的照顧方法，預防臥床帶來的併發症。", "d": ["評估四個面向：水分與營養攝取、皮膚完整性、日常生活活動與生活型態、合併症或其徵兆", "分析居住環境與照顧者能力，擬訂個別化照護策略與「照顧作息表」", "指導：安全進食、營養與水分、省力的床上翻身與轉移位技巧、維持關節活動度、皮膚照顧、預防感染", "追蹤並檢討修正照護策略與作息表", "身體狀況改變時，協助轉介相關醫事專業"], "t": ["由 2 種以上的專業人員（醫師、護理、物理、職能、語言、心理師、藥師、呼吸治療師、營養師等）組成團隊提供"]}, {"c": "CC01", "n": "居家環境安全或無障礙空間規劃", "e": "🏠", "f": 2000, "u": "二次措施（含評估）為一個單位", "k": "居家環境 無障礙 跌倒 動線 浴室 廁所 扶手 輔具 改裝 家具擺設 修繕", "s": "擔心家裡容易跌倒、動線不順，想知道要不要買輔具或改裝", "w": "專業人員到家裡走一圈，幫您看哪裡有危險、怎麼擺才順手，並建議需要的輔具或小改裝。", "d": ["檢視並規劃臥室、浴廁、餐廳、廚房，以及彼此相連的日常動線", "提供活動與照顧方式的策略建議、現有家具擺設、日常活動所需輔具的使用，與復健運動的空間動線規劃", "提出居家環境改善方式，教導家人維護居家安全與注意事項，介紹緊急聯絡資源並協助建立通報程序", "需要時轉介輔具或空間修繕，改造完成後再檢視使用是否正確、安全", "可配合木工、室內設計等技術人員提供諮詢"], "t": ["為達到安全或無障礙空間所需的輔具或空間修繕，依「輔具服務」或「居家無障礙環境改善服務」另計", "服務人員為醫師、護理、物理與職能治療人員，或甲類輔具評估人員"]}, {"c": "CD02", "n": "居家護理指導與諮詢", "e": "🩹", "f": 6000, "u": "三次措施（含評估）加一次評值為一個單位", "k": "護理 護理師 傷口 管路 疼痛 感染 跌倒 足部 慢性病 安寧 緩和 衛教 護理指導", "s": "長輩有疼痛、傷口、管路、感染、跌倒風險等問題，家人想有護理人員教怎麼照顧", "w": "護理師到家評估長輩與整個家庭的照護需要，一步步教您處理照護問題，讓家人更有信心。", "d": ["評估：失能者的護理照護需求，以及家庭動力與支持系統、家庭對疾病的適應、家庭內外資源", "擬訂居家護理指導計畫，確認長輩與照顧者的照護需求與決定", "處理護理照護問題：疼痛、皮膚及傷口、管路照顧、感染、溝通、不動症候群風險、跌倒風險、足部問題", "指導與諮詢：慢性病管理、緊急醫療事件因應、症狀預防與處理、失智照顧指導、緩和安寧照顧指導，並提供衛教單張或健康網路資訊", "成效評值，追蹤照護問題與生活品質的改善；若有護理以外的醫療需求，協助轉介"], "t": ["由完成認可訓練的居家護理機構、居家式（或含居家式之綜合式）長照機構之護理人員提供"]}];
+    function buildProCare() {
+      const cards = PS_ITEMS.map(it => {
+        const p = dcPay(it.f);
+        return '<details class="hc-item ps-item" data-k="' + esc((it.c + ' ' + it.n + ' ' + it.k + ' ' + it.s + ' ' + it.w).toLowerCase()) + '">' +
+          '<summary><span class="ps-sum"><span class="ps-name"><span class="hc-code">' + esc(it.c) + '</span> ' + it.e + ' ' + esc(it.n) + '</span><span class="ps-scene">適合：' + esc(it.s) + '</span></span></summary>' +
+          '<div class="hc-body"><p class="hc-plain">' + esc(it.w) + '</p>' +
+          '<h6>會做哪些事</h6><ul>' + it.d.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' +
+          '<h6>使用小提醒</h6><ul>' + it.t.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' +
+          '<div class="hc-price"><b>💰 費用參考</b><span>給付價格：' + it.f.toLocaleString() + ' 元（' + esc(it.u) + '）</span><span>您的自付額約：低收入戶 0 元｜中低收入戶 ' + p.c2 + ' 元｜一般戶 ' + p.c3 + ' 元</span>' + priceGo('care', it.c) + '</div></div></details>';
+      }).join('');
+      return '<div class="hc-intro">專業服務是請<strong>專業人員（如物理治療師、職能治療師、護理師、營養師、語言治療師、社工師等）到家裡或到社區</strong>，用專業的眼光看長輩的狀況，教長輩和家人「怎麼做、怎麼顧」。和居服員「幫忙做」不同，專業服務著重<b>自立賦能</b>：把長輩的潛能找出來、讓家人學會技巧。<br><b>點一下下面的服務，就能看到它在做什麼、適合什麼狀況、費用大概多少。</b></div>' +
+        '<div class="hc-find"><input type="search" id="psFilter" placeholder="🔍 說說長輩的狀況，例如：嗆咳、臥床、傷口、洗澡吃力" aria-label="搜尋專業服務" oninput="psFilter(this.value)"><div class="hc-find-bar"><span id="psCount">共 ' + PS_ITEMS.length + ' 項服務</span><span><button type="button" onclick="psToggle(true)">全部展開</button><button type="button" onclick="psToggle(false)">全部收合</button></span></div></div>' +
+        '<div class="hc-grid" id="psGrid" style="grid-template-columns:1fr"><section class="hc-card">' + cards + '</section></div><div class="hc-empty" id="psEmpty" hidden>找不到符合的服務，換個說法試試看，或直接撥打 1966 長照專線詢問。</div>' +
+        '<div class="hc-note">💛 <b>貼心提醒：</b>專業服務是否需要、一次做幾次，會由照管專員與個案管理師評估後寫進您的照顧計畫，不是自己選了就能使用。專業人員到府時，居家照顧服務員可以一起學習（照顧服務員配合專業服務，不扣額度、免自付）。費用為「一個單位」的價格（內含數次措施），並從「照顧及專業服務額度」中扣抵。<br>🌏 <b>聘有外籍看護的家庭：</b>照顧及專業服務額度的 30% 可用於居家服務以外的照顧組合，包含專業服務。</div>' +
+        '<div class="hc-cta"><div><b>想先知道大概要付多少錢？</b><br><small>試算頁已加入專業服務項目，輸入每月使用單位數就能看到自付額與剩餘額度。</small></div><button type="button" class="hc-btn" onclick="closeInfoModal();navigateTo(\'calc\')">🧮 前往照顧額度試算</button></div>';
+    }
+    function psFilter(q) {
+      const words = (q || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      document.querySelectorAll('#psGrid .ps-item').forEach(el => {
+        const hay = el.dataset.k || '';
+        const ok = words.every(w => hay.indexOf(w) > -1 || (typeof SYNONYMS !== 'undefined' && SYNONYMS[w] && hay.indexOf(String(SYNONYMS[w]).toLowerCase()) > -1));
+        el.hidden = !ok; if (ok) shown++;
+        if (words.length && ok) el.open = shown <= 2;
+      });
+      const c = document.getElementById('psCount'); if (c) c.textContent = words.length ? ('符合 ' + shown + ' 項服務') : ('共 ' + PS_ITEMS.length + ' 項服務');
+      const em = document.getElementById('psEmpty'); if (em) em.hidden = shown > 0;
+    }
+    function psToggle(open) { document.querySelectorAll('#psGrid .ps-item:not([hidden])').forEach(el => { el.open = open; }); }
+
+    /* ===== 輔具、居家無障礙、三種喘息：依「照顧組合表」整理 ===== */
+    const CATALOGS = {"aid": {"kind": "goods", "intro": "長輩身體有些吃力時，合適的<strong>輔具</strong>能讓生活更安全、更自在，也減輕照顧者的負擔。以下依生活情境整理常見項目，點一下就能看到內容、給付價格與最低使用年限。", "groups": [["🚽", "如廁與洗澡更安全", [{"c": "EA01", "n": "馬桶增高器、便盆椅或沐浴椅", "k": "馬桶 便盆椅 沐浴椅 洗澡椅 增高", "w": "讓上廁所、洗澡時不再蹲不下、站不起來。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢及相關服務"], "buy": 1200, "rent": null, "yrs": 3, "free": false, "t": ["此項輔具選配服務可由輔具供應人員自行提供"], "unit": null}]], ["🚶", "走路更穩，出門更有信心", [{"c": "EB01", "n": "單支拐杖（不銹鋼製）", "k": "拐杖 手杖 走路", "w": "走路需要一點支撐時的好幫手，不銹鋼耐用。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢及相關服務"], "buy": 1000, "rent": null, "yrs": 5, "free": false, "t": ["依實際需求同時申請雙側使用者，給付額度可加倍"], "unit": null}, {"c": "EB02", "n": "單支拐杖（鋁製）", "k": "拐杖 手杖 走路 鋁製", "w": "輕巧的鋁製拐杖，適合想要輕一點的長輩。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢及相關服務"], "buy": 500, "rent": null, "yrs": 3, "free": false, "t": ["依實際需求同時申請雙側使用者，給付額度可加倍"], "unit": null}, {"c": "EB03", "n": "助行器", "k": "助行器 步行 扶", "w": "需要更穩的支撐時，用助行器邊扶邊走。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢及相關服務"], "buy": 800, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}, {"c": "EB04", "n": "帶輪型助步車（助行椅）", "k": "助步車 助行椅 推車 休息 煞車", "w": "有輪子、能推著走，累了還能坐下來休息。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤使用狀況、清潔消毒、運送、回收整備"], "buy": 3000, "rent": 300, "yrs": 3, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "須附手控煞車及煞車鎖定功能，並附臨時休憩座位", "租賃以一個月為一個單位，未滿一個月按比率計算"], "unit": null}]], ["♿", "輪椅與坐姿擺位", [{"c": "EC01", "n": "輪椅-A 款（非輕量化量產型）", "k": "輪椅 推 坐", "w": "最基本的量產型輪椅。", "d": ["輔具選用建議、尺寸調整配置、諮詢及相關服務"], "buy": 3500, "rent": null, "yrs": 3, "free": false, "t": ["輪椅均應配備骨盆帶", "EC01、EC02、EC03 只能擇一給付"], "unit": null}, {"c": "EC02", "n": "輪椅-B 款（輕量化量產型）", "k": "輪椅 輕量 租", "w": "比較輕、好推好收，可租也可買。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤使用狀況、清潔消毒、運送、回收整備"], "buy": 4000, "rent": 450, "yrs": 3, "free": false, "t": ["輪椅均應配備骨盆帶", "EC01、EC02、EC03 只能擇一給付", "租賃以一個月為一個單位，未滿一個月按比率計算"], "unit": null}, {"c": "EC03", "n": "輪椅-C 款（量身訂製型）", "k": "輪椅 量身 訂製 特殊 體型", "w": "依長輩身形與需求量身訂製的輪椅。", "d": ["輔具選用建議、尺寸調整配置、諮詢及相關服務"], "buy": 9000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "須符合規定規格之一（如載重 150 公斤以上、特殊座寬、座深座寬可調整等）", "EC01、EC02、EC03 只能擇一給付"], "unit": null}, {"c": "EC04", "n": "輪椅附加功能-A 款（利於移位）", "k": "輪椅 移位 扶手 腳靠", "w": "可拆掀式扶手與可拆卸式腳靠，上下輪椅更容易。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 5000, "rent": 150, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應搭配 EC02 或 EC03 同時申請"], "unit": null}, {"c": "EC05", "n": "輪椅附加功能-B 款（具仰躺功能）", "k": "輪椅 仰躺 椅背", "w": "椅背可無段式仰躺，適合需要休息或減壓的長輩。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 2000, "rent": 150, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應配備胸帶及防傾桿", "應搭配 EC02 或 EC03 同時申請"], "unit": null}, {"c": "EC06", "n": "輪椅附加功能-C 款（具空中傾倒功能）", "k": "輪椅 空中傾倒 傾倒 壓瘡", "w": "椅背與座面一起往後傾，幫助姿勢與減壓。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 4000, "rent": 150, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應配備胸帶及防傾桿", "應搭配 EC02 或 EC03 同時申請"], "unit": null}, {"c": "EC07", "n": "擺位系統-A 款（平面型輪椅背靠）", "k": "擺位 背靠 坐姿", "w": "讓長輩坐在輪椅上更正、更舒服。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 1000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "平面型背靠應含硬式底板及軟墊", "本項應為輪椅使用者", "EC07 與 EC08 僅能擇一申請"], "unit": null}, {"c": "EC08", "n": "擺位系統-B 款（曲面適形輪椅背靠）", "k": "擺位 背靠 曲面 側彎 坐姿", "w": "貼合身形的曲面背靠，適合坐姿不易維持的長輩。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 6000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "本項應為輪椅使用者", "EC07 與 EC08 僅能擇一申請"], "unit": null}, {"c": "EC09", "n": "擺位系統-C 款（輪椅軀幹側支撐架）", "k": "擺位 軀幹 側支撐", "w": "支撐上半身兩側，避免身體傾斜。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 3000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "申請單支軀幹側支撐架者，補助金額減半", "本項應為輪椅使用者"], "unit": null}, {"c": "EC10", "n": "擺位系統-D 款（輪椅頭靠系統）", "k": "擺位 頭靠 頭", "w": "可調整高度與角度的頭靠，支撐頭頸部。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 2500, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "本項應為輪椅使用者"], "unit": null}, {"c": "EC11", "n": "電動輪椅", "k": "電動輪椅 電動 租", "w": "只能租賃，可依評估結果加裝沙發型座椅、擺位型座椅等。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": null, "rent": 2500, "yrs": null, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "限租賃，一個月為一個單位", "電動輪椅與電動代步車只能擇一申請"], "unit": null}, {"c": "EC12", "n": "電動代步車", "k": "代步車 電動 租", "w": "適合需要代步、但還能自己坐穩操控的長輩，限租賃。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": null, "rent": 1200, "yrs": null, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "以四輪規格為原則", "電動輪椅與電動代步車只能擇一申請"], "unit": null}, {"c": "EG03", "n": "輪椅座墊-A 款（連通管型氣囊氣墊座，塑膠材質）", "k": "座墊 輪椅座墊 氣囊 壓瘡 久坐", "w": "久坐輪椅的長輩，用座墊減少壓力、預防壓傷。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 5000, "rent": null, "yrs": 2, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG04", "n": "輪椅座墊-B 款（連通管型氣囊氣墊座，橡膠材質）", "k": "座墊 輪椅座墊 氣囊 壓瘡", "w": "橡膠材質的連通管型氣囊座墊。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 10000, "rent": null, "yrs": 2, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG05", "n": "輪椅座墊-C 款（液態凝膠座墊）", "k": "座墊 凝膠 壓瘡", "w": "液態凝膠分散壓力。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 10000, "rent": null, "yrs": 2, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG06", "n": "輪椅座墊-D 款（固態凝膠座墊）", "k": "座墊 凝膠 壓瘡", "w": "固態凝膠搭配適形泡棉底座。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 8000, "rent": null, "yrs": 5, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG07", "n": "輪椅座墊-E 款（填充式氣囊氣墊座）", "k": "座墊 氣囊 壓瘡", "w": "填充式氣囊座墊，高度需大於 2 英吋。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 8000, "rent": null, "yrs": 5, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG08", "n": "輪椅座墊-F 款（交替充氣型座墊）", "k": "座墊 交替充氣 壓瘡", "w": "含電動空氣幫浦、交替充氣的氣囊座墊。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 5000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG09", "n": "輪椅座墊-G 款（量製型座墊）", "k": "座墊 量製 取模", "w": "依個別需求取模製作的座墊。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 10000, "rent": null, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}]], ["🔄", "移位與搬運，省力又安全", [{"c": "ED01", "n": "移位腰帶", "k": "移位 腰帶 扶", "w": "協助長輩站起、移位時，照顧者好抓握、更省力。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 1500, "rent": null, "yrs": 3, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "寬度至少 10 公分，且有四個以上提把"], "unit": null}, {"c": "ED02", "n": "移位板", "k": "移位 板 床 輪椅", "w": "在床與輪椅之間搭一座小橋，坐著就能平移過去。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "ED03", "n": "人力移位吊帶", "k": "吊帶 移位 搬運", "w": "協助照顧者在坐姿或臥姿下，用人力搬運移位。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 4000, "rent": null, "yrs": 3, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "至少有四個提把"], "unit": null}, {"c": "ED04", "n": "移位滑墊-A 款", "k": "滑墊 移位 坐姿", "w": "易滑動材質，讓坐姿平行移位更輕鬆。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 3000, "rent": null, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "ED05", "n": "移位滑墊-B 款", "k": "滑墊 移位 臥姿 翻身", "w": "臥姿下的平行移位，降低摩擦力。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 8000, "rent": null, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "ED06", "n": "移位轉盤", "k": "轉盤 移位 轉身", "w": "站著轉身用的防滑轉盤，避免扭傷。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 2000, "rent": null, "yrs": 3, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "ED07", "n": "移位機", "k": "移位機 吊 起重 臥床", "w": "懸吊式電動移位設備，適合體重較重或完全無法自行移位者。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 40000, "rent": 2000, "yrs": 10, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應包含吊帶"], "unit": null}, {"c": "ED08", "n": "移位機吊帶", "k": "吊帶 移位機", "w": "移位機購置三年後，更換吊帶使用。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 6000, "rent": null, "yrs": 3, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "適用於 ED07 移位機購置三年後更換吊帶"], "unit": null}]], ["🛏️", "臥床與預防壓瘡", [{"c": "EH01", "n": "居家用照顧床", "k": "照顧床 病床 臥床 電動床 租", "w": "三片以上床面，至少可升降頭部與腿靠。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 8000, "rent": 1000, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EH02", "n": "居家用照顧床附加功能-A 款（床面升降）", "k": "照顧床 升降 床面", "w": "床面可升降，方便照顧者照顧。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 5000, "rent": 200, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應搭配 EH01 居家用照顧床同時申請"], "unit": null}, {"c": "EH03", "n": "居家用照顧床附加功能-B 款（電動升降）", "k": "照顧床 電動 升降", "w": "可電動調整升降。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 5000, "rent": 500, "yrs": 5, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "應搭配 EH01 居家用照顧床同時申請"], "unit": null}, {"c": "EG01", "n": "氣墊床-A 款", "k": "氣墊床 壓瘡 褥瘡 臥床", "w": "預防及減輕褥瘡的氣墊床，18 管以上、可交替充氣。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 8000, "rent": 300, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}, {"c": "EG02", "n": "氣墊床-B 款", "k": "氣墊床 壓瘡 褥瘡 臥床", "w": "三管交替式、管徑 4 英吋以上，購置應提供三年保固。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": 12000, "rent": 500, "yrs": 3, "free": true, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內"], "unit": null}]], ["🧰", "日常生活小幫手", [{"c": "EF01", "n": "衣著用輔具", "k": "穿衣 穿鞋 襪 取物鉗", "w": "協助穿衣桿、穿鞋器、襪輔助器、長柄取物鉗等。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 500, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}, {"c": "EF02", "n": "居家用生活輔具", "k": "特殊門把 烹調 開瓶 洗衣 備藥 提醒服藥", "w": "特殊門把、烹調用具、開瓶罐器、備藥、提醒服藥等。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 500, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}, {"c": "EF03", "n": "飲食用輔具", "k": "餐具 刀叉 湯匙 筷子 杯盤 防滑墊", "w": "特殊刀、叉、湯匙、筷子、杯盤、防滑墊，讓長輩自己吃飯。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 500, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}]], ["🔔", "溝通與警示", [{"c": "EE01", "n": "電話擴音器", "k": "電話 聽力 擴音", "w": "聽不清楚電話時的好幫手。", "d": ["輔具選用建議、使用說明、設定、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": [], "unit": null}, {"c": "EE02", "n": "電話閃光震動器", "k": "電話 聽障 閃光", "w": "用閃光、震動提醒有電話。", "d": ["輔具選用建議、使用說明、設定、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": [], "unit": null}, {"c": "EE03", "n": "火警閃光警示器", "k": "火警 警示 閃光 聽障", "w": "火警時以閃光提醒。", "d": ["輔具選用建議、使用說明、設定、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": [], "unit": null}, {"c": "EE04", "n": "門鈴閃光器", "k": "門鈴 閃光 聽障", "w": "有人按門鈴時用閃光提醒。", "d": ["輔具選用建議、使用說明、設定、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": [], "unit": null}, {"c": "EE05", "n": "無線震動警示器", "k": "震動 警示 無線 聽障", "w": "以無線震動方式提醒。", "d": ["輔具選用建議、使用說明、設定、諮詢"], "buy": 2000, "rent": null, "yrs": 5, "free": false, "t": [], "unit": null}]], ["🪜", "爬梯機（無電梯公寓）", [{"c": "EH04", "n": "爬梯機（單趟）", "k": "爬梯機 樓梯 無電梯 上下樓 租", "w": "按趟（上樓或下樓）計費，操作人員需受過訓練。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢、操作人員", "定期追蹤、清潔消毒、運送、回收整備"], "buy": null, "rent": 700, "yrs": null, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "限租賃，一趟為一個單位"], "unit": "趟"}, {"c": "EH05", "n": "爬梯機（月）", "k": "爬梯機 樓梯 無電梯 上下樓 租", "w": "按月計費，操作人員需受過訓練。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢", "定期追蹤、清潔消毒、運送、回收整備"], "buy": null, "rent": 4000, "yrs": null, "free": false, "t": ["需由輔具評估人員出具評估報告，判定為需要者才給付", "適配度評估費用不包含在給付價格內", "限租賃，一個月為一個單位"], "unit": null}]]], "placeholder": "🔍 想找什麼？例如：輪椅、拐杖、洗澡椅、氣墊床、移位", "note": "輔具能不能申請、申請哪一種，須先由輔具評估人員到家評估（部分項目可由輔具供應人員自行提供選配服務）。價格為「給付價格上限」，適配度評估費用另計，不含在內。輔具與居家無障礙環境改善共用額度，且各項目有「最低使用年限」，年限內同一項目不可重複申請；一般因損壞更換或汰舊換新者不予補助。", "cta": "🧮 前往輔具額度試算", "go": "assistive", "cta2": "看看您的輔具額度與自付額，可用輔具額度試算。", "paykind": "aid"}, "acc": {"kind": "goods", "intro": "家裡多一點安全設計，就少一次跌倒的擔心。<strong>居家無障礙環境改善</strong>包含門檻、浴廁、扶手、地面防滑等小工程。點一下就能看到內容與給付價格上限。", "groups": [["🚪", "出入口與門檻（高低差）", [{"c": "FA25", "n": "門檻斜角（單側）", "k": "門檻 斜角 高低差 斜坡", "w": "門檻不高時，用斜角讓輪椅、助行器更好通過。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 1000, "rent": null, "yrs": 10, "free": false, "t": ["改善高度 10 公分以下的門檻；跨門檻斜角若兩側都處理，視為兩側補助", "FA25～FA29 同一側於最低使用年限內僅能擇一申請"], "unit": null}, {"c": "FA26", "n": "非固定式斜坡板-A 款（長度未達 90 公分）", "k": "斜坡板 輪椅 攜帶 門檻", "w": "可隨意移動的輕量斜坡板，具攜帶功能。", "d": ["輔具選用建議、使用說明、諮詢"], "buy": 3500, "rent": null, "yrs": 10, "free": false, "t": ["FA26～FA29 依長度分 A～D 四款；若處理門檻兩側高低差，可申請單處二個補助"], "unit": null}, {"c": "FA27", "n": "非固定式斜坡板-B 款（90～120 公分）", "k": "斜坡板 輪椅 可折", "w": "可收折、可攜帶。", "d": ["輔具選用建議、使用說明、諮詢"], "buy": 5000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA28", "n": "非固定式斜坡板-C 款（120～150 公分）", "k": "斜坡板 輪椅 可折", "w": "可收折、可攜帶。", "d": ["輔具選用建議、使用說明、諮詢"], "buy": 7000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA29", "n": "非固定式斜坡板-D 款（150 公分以上）", "k": "斜坡板 輪椅 可折 較長", "w": "可收折、可攜帶，適合較大高低差。", "d": ["輔具選用建議、使用說明、諮詢"], "buy": 10000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA30", "n": "改善高低差（高度 10 公分以下）", "k": "高低差 門檻 降低 斜坡道", "w": "門檻降低、順平、剔除、固定式斜坡道等工程。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 3500, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA31", "n": "改善高低差（逾 10～20 公分）", "k": "高低差 門檻 平台 階梯", "w": "門檻降低、地軌移除、固定式斜坡道、新增平台或階梯等。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 5000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA32", "n": "改善高低差（逾 20～30 公分）", "k": "高低差 門檻 平台 階梯", "w": "同上，高度逾 20 公分至 30 公分。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 7000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA33", "n": "改善高低差（超過 30 公分）", "k": "高低差 門檻 平台 階梯", "w": "同上，高度逾 30 公分。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 10000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA37", "n": "門（簡易型）", "k": "門 門片 軌道 推拉門", "w": "改變門片類型或增設門片（含裝設軌道）。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 7000, "rent": null, "yrs": 10, "free": false, "t": ["同一扇門的 FA37 與 FA38 於最低使用年限內僅能擇一申請", "僅移除門片或增設浴廁乾濕分離的門，不屬於本項補助"], "unit": null}, {"c": "FA38", "n": "門（進階型）", "k": "門 加寬 加高 門框", "w": "含門框施工之門加寬、加高、新增、調整位置等壁面施工。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 10000, "rent": null, "yrs": 10, "free": false, "t": ["同一扇門的 FA37 與 FA38 於最低使用年限內僅能擇一申請"], "unit": null}]], ["🚿", "浴室與廁所", [{"c": "FA34", "n": "防滑地磚", "k": "防滑 地磚 浴室 滑倒", "w": "移除原地磚或整平地面，鋪設防滑地磚。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 6000, "rent": null, "yrs": 10, "free": false, "t": ["單處施作區域至少 1 平方公尺以上"], "unit": null}, {"c": "FA35", "n": "防滑措施", "k": "防滑 貼片 貼條 地墊 防滑劑", "w": "防滑貼片、貼條、地墊或防滑劑，快速又省錢。", "d": ["輔具選用建議、使用說明、尺寸調整配置、諮詢"], "buy": 2000, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}, {"c": "FA39", "n": "截水槽", "k": "截水槽 浴室 地面 水", "w": "浴室排水用，施工長度須達 60 公分以上。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 6000, "rent": null, "yrs": 10, "free": false, "t": ["含面蓋及施工費"], "unit": null}, {"c": "FA40", "n": "改善浴缸", "k": "浴缸 開門式 拆除", "w": "新增、改換為開門式浴缸，或拆除浴缸。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 7000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA41", "n": "改善馬桶", "k": "馬桶 蹲式 坐式 免治", "w": "新增、改換、移除馬桶，蹲式改坐式及加裝免治馬桶。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 5000, "rent": null, "yrs": 10, "free": false, "t": ["同一處因馬桶改換位置而新增或遷移糞管，可申請同處二個補助", "僅更換免治馬桶座蓋不屬本項補助"], "unit": null}, {"c": "FA42", "n": "馬桶背靠", "k": "馬桶 背靠", "w": "讓坐馬桶時身體有靠。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 2000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA17", "n": "壁掛式淋浴台", "k": "淋浴台 洗澡 座椅 平躺", "w": "附掛於壁面的淋浴支撐平台（座椅或平躺型）。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 5000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA15", "n": "改善洗臉台（槽）", "k": "洗臉台 洗手台 輪椅", "w": "新增、改換、移除洗臉台（槽），含原處填補。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 3000, "rent": null, "yrs": 10, "free": false, "t": ["不含水龍頭"], "unit": null}, {"c": "FA13", "n": "水龍頭（單處）", "k": "水龍頭 撥桿 感應", "w": "新增或改換為撥桿式、單閥式或電子感應式。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 3000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA36", "n": "隔間（每平方公尺）", "k": "隔間 牆面 新增", "w": "新增固定於地面之牆面，以每平方公尺為一個單位。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 800, "rent": null, "yrs": 10, "free": false, "t": ["扣除門的面積"], "unit": "平方公尺"}]], ["🤲", "扶手，多一個支撐", [{"c": "FA22", "n": "固定式扶手（每 10 公分）", "k": "扶手 固定式 浴室 廁所 走廊", "w": "鎖固於牆面、天花板或地面，以每 10 公分為一個單位。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 160, "rent": null, "yrs": 10, "free": false, "t": ["以提供握持部位每 10 公分為一給付單位"], "unit": "10 公分"}, {"c": "FA23", "n": "可動式扶手（單支）", "k": "扶手 可動 馬桶旁 掀起", "w": "基座鎖固於牆面並具可動關節。", "d": ["估價、修繕、使用說明、保固"], "buy": 3600, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA24", "n": "床邊扶手（單處）", "k": "床邊扶手 起身 床 穩定", "w": "放置在床板、床架或床旁地面的穩定支撐裝置。", "d": ["輔具選用建議、使用說明、諮詢"], "buy": 1000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}]], ["🍳", "廚房與地面光線", [{"c": "FA18", "n": "改善流理台（單處）", "k": "流理台 輪椅 廚房", "w": "新增或改換流理台，靠近邊緣 20 公分內須有 65 公分以上高的腿部淨空間。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 15000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA19", "n": "改善抽油煙機（位置調整）", "k": "抽油煙機 廚房", "w": "調整抽油煙機高度或位置。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 1000, "rent": null, "yrs": 10, "free": false, "t": [], "unit": null}, {"c": "FA08", "n": "反光貼條或消光處理", "k": "反光 貼條 消光 樓梯 地面 夜間", "w": "在樓梯、通路、浴室、廁所、臥房地面鋪設反光貼條及消光處理。", "d": ["修繕施工圖、估價、施作、保固"], "buy": 3000, "rent": null, "yrs": 3, "free": false, "t": [], "unit": null}]]], "placeholder": "🔍 想找什麼？例如：門檻、扶手、浴室、防滑、馬桶", "note": "居家無障礙環境改善（F 碼）需由輔具評估人員出具評估報告，判定為「改善需要」才給付；範圍以長輩使用空間為限，不含公共空間與未完成裝修的毛胚屋；施工前，服務單位應與您說明施作細節、施工圖與估價並確認；一般使用損壞更換或汰舊換新者不予補助。各項目於最低使用年限內，同一改善處不得重複申請。價格為給付上限，適配度評估費用不含在內。", "cta": "🧮 前往輔具額度試算", "go": "assistive", "cta2": "無障礙改善與輔具共用額度，可用輔具額度試算。", "paykind": "aid"}, "rh": {"kind": "respite", "intro": "照顧是一場長跑，照顧者也需要休息。<strong>居家喘息</strong>由照服員到家接手，讓您可以安心外出、辦事或好好休息一下。", "groups": [["🏠", "居家喘息服務", [{"c": "GA09", "n": "居家喘息服務", "k": "居家喘息 到府 照顧 休息 兩小時 陪同運動 就醫 BA14", "w": "由照服員到家裡接手，照顧者可以安心出門休息、辦事。", "d": ["協助如廁、沐浴、穿換衣服、口腔清潔、進食、服藥", "翻身、拍背、簡單被動式肢體關節活動、上下床", "陪同運動（安全情況下，可陪同到家庭院、社區中庭或附近公園運動、散步）", "協助使用日常生活輔助器具及其他服務"], "f": 770, "u": "每 2 小時", "t": ["家庭照顧者與服務單位議定服務時間", "單日居家喘息以 10 小時為上限", "如有陪同就醫需求，可加計 BA14"], "ex": null}]]], "placeholder": "", "note": "喘息服務有自己的額度，不會用到「照顧及專業服務額度」。依辦法規定，若長照給付對象沒有家庭照顧者，不給付喘息額度；已依身心障礙者權益保障法接受臨時及短期照顧者，不得重複使用。實際可用天數與時段，以照管專員核定的照顧計畫及服務單位為準。", "cta": "🧮 前往喘息額度試算", "tab": "respite", "go": "calc", "cta2": "依 CMS 等級（2～6 級／7～8 級）試算每年喘息額度與自付額。", "paykind": "resp"}, "rd": {"kind": "respite", "intro": "想讓長輩白天或晚上到日照、社區據點待一下，自己好好休息或辦事，可以選擇<strong>日間（社區）喘息</strong>。", "groups": [["☀️", "日間照顧中心與社區據點喘息", [{"c": "GA03", "n": "日間照顧中心喘息服務（全日）", "k": "日照 日間 喘息 全日 接送 護理照護", "w": "把長輩送到日照中心照顧一整天，照顧者好好休息。", "d": ["接受照顧、停留", "護理照護、協助沐浴、進食、服藥", "活動安排及相關服務", "含交通接送"], "f": 1250, "u": "每日", "t": ["提供護理照護服務應依護理人員法規定辦理"], "ex": null}, {"c": "GA04", "n": "日間照顧中心喘息服務（半日）", "k": "日照 日間 喘息 半日 接送", "w": "只需要半天空檔時使用。", "d": ["接受照顧、停留", "護理照護、協助沐浴、進食、服藥", "活動安排及相關服務", "含交通接送"], "f": 625, "u": "每半日", "t": ["提供護理照護服務應依護理人員法規定辦理"], "ex": null}, {"c": "GA07", "n": "巷弄長照站喘息服務", "k": "巷弄長照站 喘息 小時 據點", "w": "在住家附近的巷弄長照站，短時間照顧一下。", "d": ["接受照顧、停留", "進食、服藥", "活動安排及相關服務"], "f": 170, "u": "每小時", "t": [], "ex": null}]], ["🌙", "夜間喘息", [{"c": "GA06", "n": "小規模多機能服務－夜間喘息", "k": "夜間 喘息 住宿 小規模多機能 夜間照顧", "w": "晚上需要好好睡一覺時，由機構人員提供夜間照顧。", "d": ["由機構工作人員提供生活照顧、協助沐浴、進食、服藥", "活動安排、住宿及相關照顧服務", "夜間是指每日下午 6 點至翌日上午 8 點", "含交通接送"], "f": 2000, "u": "每次", "t": [], "ex": null}]]], "placeholder": "", "note": "喘息服務有自己的額度，不會用到「照顧及專業服務額度」。日照中心與小規模多機能的喘息服務已含交通接送。依辦法規定，若長照給付對象沒有家庭照顧者，不給付喘息額度；實際可用天數與時段，以照管專員核定的照顧計畫及服務單位為準。", "cta": "🧮 前往喘息額度試算", "tab": "respite", "go": "calc", "cta2": "依 CMS 等級（2～6 級／7～8 級）試算每年喘息額度與自付額。", "paykind": "resp"}, "ri": {"kind": "respite", "intro": "家人需要出遠門、或自己需要完整休息幾天時，可以讓長輩到住宿式長照機構短期住宿，由專人<strong>24 小時照顧</strong>。", "groups": [["🏥", "機構住宿式喘息", [{"c": "GA05", "n": "機構住宿式喘息服務", "k": "機構 住宿 喘息 短期 24小時 住宿式 短暫照顧", "w": "長輩到住宿式長照機構短期住幾天，由專人 24 小時照顧。", "d": ["接受短暫照顧、停留，由機構工作人員提供 24 小時照顧", "護理照護、協助沐浴、進食、服藥", "活動安排及相關服務", "含交通接送"], "f": 2310, "u": "每日（24 小時）", "t": ["提供護理照護服務應依護理人員法規定辦理"], "ex": null}]]], "placeholder": "", "note": "喘息服務有自己的額度，不會用到「照顧及專業服務額度」；含交通接送。依辦法規定，若長照給付對象沒有家庭照顧者，不給付喘息額度。實際可用天數與機構床位，以照管專員核定的照顧計畫及服務單位為準；機構住宿式喘息另請洽各縣市長照服務單位。", "cta": "🧮 前往喘息額度試算", "tab": "respite", "go": "calc", "cta2": "依 CMS 等級（2～6 級／7～8 級）試算每年喘息額度與自付額。", "paykind": "resp"}};
+
+    /* ===== 示意圖（自行繪製的簡化線稿，非實際產品外觀）與使用規範／小叮嚀 ===== */
+    /* 一般使用小叮嚀：依輔具類型整理的常見衛教原則（非法規條文，實際操作請依輔具評估人員或服務單位指導） */
+    const CARE_TIPS = {
+      EA01: ['使用前先確認四隻腳都放平、防滑腳墊完好，地面保持乾燥。','洗澡椅先試坐、確認穩了再開水；水溫先用手腕內側試過再給長輩。','起身時雙手扶住穩固的地方，不要拉扯椅子本身。'],
+      EB01: ['握把高度約與手腕橫紋同高（站直、手自然下垂時），握住時手肘微彎。','一般是用在「較有力那一側」的手；若不確定，請由評估人員示範。','底部橡膠腳墊磨平或破損就要更換，避免打滑。'],
+      EB03: ['走路時先把助行器往前移一小步，再跟上腳步，不要推得太遠。','身體盡量站直、不要整個人趴在上面；不要把它當成拉著起身的支撐。','使用前檢查四隻腳的腳墊與高度鎖扣。'],
+      EB04: ['坐下休息前，一定要先鎖好煞車。','下坡、轉彎放慢速度，雙手握穩手把。','定期檢查煞車線、輪子與座椅是否鬆動。'],
+      EC01: ['上下輪椅前先鎖煞車、把腳踏板移開，再起身或移位。','乘坐時繫好骨盆帶；定期檢查輪胎、煞車與坐墊。','久坐請定時調整姿勢，皮膚出現不退的紅印要特別注意。'],
+      EC04: ['加裝功能後，請由評估或供應人員示範一次正確操作。','仰躺或傾倒功能使用後，請慢慢回復到坐姿，避免頭暈。','使用傾倒、仰躺時要繫好胸帶，並確認防傾桿到位。'],
+      EC07: ['擺位用品的位置，會影響坐得穩不穩，請照評估時的設定，不要自己亂調。','每天至少檢查一次皮膚，特別是骨頭突出的地方有沒有紅印。','約每 30 分鐘至 1 小時協助改變姿勢或減壓一次。'],
+      EC11: ['每次使用前確認電量與煞車；充電請用原廠充電器、放在通風處。','上下斜坡與轉彎請放慢速度，室內請留意地面與門框間距。','電動輪椅與代步車請在經過訓練、評估適合後再獨自使用。'],
+      EG03: ['座墊方向不要放反，上面不要再疊其他坐墊。','氣囊型請依評估人員指導調整氣量，過硬或過軟都會失去減壓效果。','定期清潔並檢查有沒有破損、漏氣；皮膚出現不退的紅印要通知專業人員。'],
+      ED01: ['移位前先鎖好床、輪椅的煞車，並清出路徑。','移位腰帶是「協助」，照顧者應站穩、用大腿力量，不要只用腰背硬拉。','請照顧者先接受評估人員或治療師的移位教學。'],
+      ED07: ['移位機一定要先接受專人教學，再自行操作；首次使用最好有第二人在旁。','每次使用前檢查吊帶有無磨損、掛勾是否扣緊，吊帶要符合機型與體型。','移位過程中隨時留意長輩的表情與狀況，有不適就先停下來。'],
+      EH01: ['照顧床使用時，記得把床欄或安全措施依需求設定，搭配床邊扶手使用。','調整床面高度、角度時，先確認周邊與管路沒有卡住。','長期臥床者仍需要依照指導定時翻身。'],
+      EG01: ['氣墊床要確認電源、管路沒有被壓折，聽到警示或漏氣聲要馬上處理。','氣墊床能減輕壓力，但不能完全取代翻身，仍需依照護指導翻身。','床單不要過緊、不要疊太多層，以免影響氣墊效果。'],
+      EF01: ['依長輩手部與關節狀況選用，例如握把粗細、重量要合手。','餐具、用具使用後清潔，避免滑手。','先在安全的環境練習，習慣了再日常使用。'],
+      EE01: ['聲音、閃光、震動的輔具，請放在長輩最容易注意到的位置。','每個月測試一次，確認電池、電源與連線正常。','警示類裝置安裝後，請全家人一起了解訊號代表什麼意思。'],
+      EH04: ['爬梯機必須由受過訓練的人員操作，長輩要繫好安全帶。','使用前確認樓梯寬度、轉彎空間、地面是否濕滑。','上下樓過程請保持平穩，不要突然改變姿勢。'],
+      FA25: ['門檻、斜坡板與高低差改善後，請走一遍動線，確認輪椅、助行器能順利通過。','斜坡太陡時，推輪椅的人容易失控，需要時請與服務人員討論調整坡度。','斜坡板請放穩、防滑，使用前先確認兩端沒有翹起。'],
+      FA34: ['浴室防滑最怕「積水」，施工後仍要保持排水順暢、少用濕滑的地墊。','防滑貼條、地墊要定期檢查，邊緣翹起會變成絆腳石。','洗澡時搭配洗澡椅與扶手，效果更好。'],
+      FA40: ['浴缸、馬桶、洗臉台改善前，請先與服務人員確認長輩的使用習慣（站、坐、用輪椅）。','改善完成後，請全家一起走一次動線，看看哪裡還有卡卡的地方。','水龍頭、馬桶沖水的位置，要選長輩手最容易抓握的高度。'],
+      FA22: ['扶手請安裝在牆體結構穩固處，高度依長輩身高與使用姿勢決定，不要只憑感覺。','裝好後請用力拉拉看，確認牢固再使用，之後每半年檢查一次有沒有鬆動。','浴室、馬桶旁的扶手，建議與防滑措施一起考慮。'],
+      FA18: ['廚房、流理台改善，要考慮長輩是「站著用」還是「坐輪椅用」，高度與下方空間才會合適。','改善後請模擬一次煮飯動線，確認拿取東西不用過度彎腰或伸手。','用火安全也要一併留意，例如瓦斯、抽油煙機的位置。'],
+      FA08: ['反光貼條適合貼在樓梯邊緣、走道轉角與夜間常走的地方。','貼條位置請避開容易踩髒的地方，並定期清潔。','搭配夜間小夜燈，夜間起身更安全。']
+    };
+    const CARE_ALIAS = { EB02:'EB01', EB04:'EB04', EC02:'EC01', EC03:'EC01', EC05:'EC04', EC06:'EC04', EC08:'EC07', EC09:'EC07', EC10:'EC07', EC12:'EC11', EG04:'EG03', EG05:'EG03', EG06:'EG03', EG07:'EG03', EG08:'EG03', EG09:'EG03', ED02:'ED01', ED03:'ED01', ED04:'ED01', ED05:'ED01', ED06:'ED01', ED08:'ED07', EH02:'EH01', EH03:'EH01', EG02:'EG01', EF02:'EF01', EF03:'EF01', EE02:'EE01', EE03:'EE01', EE04:'EE01', EE05:'EE01', EH05:'EH04',
+      FA26:'FA25', FA27:'FA25', FA28:'FA25', FA29:'FA25', FA30:'FA25', FA31:'FA25', FA32:'FA25', FA33:'FA25', FA35:'FA34', FA39:'FA34', FA41:'FA40', FA42:'FA40', FA17:'FA40', FA15:'FA40', FA13:'FA40', FA37:'FA25', FA38:'FA25', FA36:'FA40', FA23:'FA22', FA24:'FA22', FA19:'FA18' };
+    const NOEVAL = ['EA01','EB01','EB02','EB03','EC01','EC02','EE01','EE02','EE03','EE04','EE05','EF01','EF02','EF03'];
+    /* 實物照片（選填，目前未使用）：取得授權或同意後，填入 { 'EC01': { src: '圖片網址', credit: '圖片來源／授權說明' } }。
+       有填的項目才會顯示照片；沒填就不顯示圖片。 */
+    const ART_PHOTO = {};
+    function catArt(code) {
+      const ph = ART_PHOTO[code]; if (!ph) return '';
+      return '<div class="cg-art-wrap has-photo"><img class="cg-photo" src="' + esc(ph.src) + '" alt="' + esc(code) + ' 實物參考圖" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">' + (ph.credit ? '<div class="cg-photo-credit">圖片來源：' + esc(ph.credit) + '</div>' : '') + '</div>';
+    }
+    function catRules(it, C) {
+      const isAcc = /^F/.test(it.c), L = [];
+      if (it.buy && it.rent) L.push('取得方式：可<b>購置</b>或<b>租賃</b>（租賃一個月為一個單位，未滿一個月依比率計算）');
+      else if (it.rent && !it.buy) L.push('取得方式：<b>限租賃</b>，依' + (it.unit === '趟' ? '趟' : '月') + '計價');
+      else if (it.buy) L.push('取得方式：<b>購置</b>' + (isAcc ? '（含施工、估價與保固）' : ''));
+      if (isAcc) L.push('評估：需由輔具評估人員評估為「改善需要」才給付，施工前服務單位會與您說明施作內容、施工圖與估價。');
+      else if (NOEVAL.indexOf(it.c) > -1) L.push('評估：<b>免輔具評估報告</b>，可由輔具供應人員選配服務。');
+      else L.push('評估：需由輔具評估人員出具評估報告，判定為需要才給付。');
+      if (it.yrs) L.push('最低使用年限：<b>' + it.yrs + ' 年</b>。年限內同一項目不可重複申請；一般因損壞更換或汰舊換新者不補助。');
+      else L.push('租賃項目依實際使用的月數（或趟數）計價，不另訂最低使用年限。');
+      L.push(it.free ? '部分負擔：<b>免部分負擔</b>。' : '部分負擔：低收入戶 0%、中低收入戶 10%、一般戶 30%。');
+      L.push('輔具與居家無障礙共用額度，適配度評估費用不含在給付價格內。');
+      (it.t || []).forEach(t => { if (t.indexOf('輔具評估人員') < 0 && t.indexOf('適配度評估') < 0) L.push('其他規定：' + t); });
+      return '<div class="cg-rules"><h6>📋 申請規範（依基準表整理）</h6><ul>' + L.map(x => '<li>' + (/[<]b>/.test(x) ? x : esc(x)) + '</li>').join('') + '</ul></div>';
+    }
+    function catCare(code) {
+      const key = CARE_TIPS[code] ? code : CARE_ALIAS[code]; const t = key && CARE_TIPS[key]; if (!t) return '';
+      return '<div class="cg-care"><h6>🛟 使用小叮嚀</h6><ul>' + t.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><small>以上為一般使用原則，並非法規條文，實際操作請依輔具評估人員或服務單位的指導。</small></div>';
+    }
+
+    function catPayLine(it, kind) {
+      const money = n => Number(n).toLocaleString();
+      if (kind === 'resp') {
+        const a = Math.floor(32340 / it.f), b = Math.floor(48510 / it.f), p = dcPay(it.f);
+        return '<div class="hc-price"><b>💰 費用參考</b><span>給付價格：' + money(it.f) + ' 元（' + esc(it.u) + '）</span><span>您的自付額約：低收入戶 0 元｜中低收入戶 ' + p.c2 + ' 元｜一般戶 ' + p.c3 + ' 元</span><span>每年喘息額度約可使用：第 2～6 級 ' + a + ' 個單位；第 7～8 級 ' + b + ' 個單位（單位：' + esc(it.u) + '，僅供估算，未計自付額）</span>' + priceGo('respite', it.c) + '</div>';
+      }
+      const lines = [];
+      if (it.buy) lines.push('購置給付上限：' + money(it.buy) + ' 元' + (it.yrs ? '（最低使用年限 ' + it.yrs + ' 年）' : ''));
+      if (it.rent) lines.push('租賃給付上限：' + money(it.rent) + ' 元／' + (it.unit || '月'));
+      const base = it.buy || it.rent;
+      lines.push(it.free ? '部分負擔：<b>免部分負擔</b>' : '部分負擔比例：低收入戶 0%｜中低收入戶 10%｜一般戶 30%（購置約 ' + money(Math.floor(base * 0.1)) + '／' + money(Math.floor(base * 0.3)) + ' 元）');
+      return '<div class="hc-price"><b>💰 費用參考</b>' + lines.map(x => '<span>' + x + '</span>').join('') + priceGo('aid', it.c) + '</div>';
+    }
+    function buildCatalog(key) {
+      const C = CATALOGS[key]; if (!C) return '';
+      let n = 0;
+      const cards = C.groups.map(g => '<section class="hc-card"><h5><span>' + g[0] + '</span>' + esc(g[1]) + '</h5>' + g[2].map(it => { n++;
+        const price = C.kind === 'respite' ? '' : '';
+        return '<details class="hc-item cg-item" data-k="' + esc((it.c + ' ' + it.n + ' ' + (it.k || '') + ' ' + it.w).toLowerCase()) + '"><summary><span class="hc-code">' + esc(it.c) + '</span><span class="hc-name">' + esc(it.n) + '</span></summary><div class="hc-body"><p class="hc-plain">' + esc(it.w) + '</p>' + (C.kind === 'goods' ? catArt(it.c) : '') +
+          '<h6>服務內容</h6><ul>' + it.d.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' +
+          ((C.kind !== 'goods' && it.t && it.t.length) ? '<h6>使用小提醒</h6><ul>' + it.t.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+          (C.kind === 'goods' ? catRules(it, C) + catCare(it.c) : '') +
+          catPayLine(it, C.paykind) + '</div></details>'; }).join('') + '</section>').join('');
+      const find = C.placeholder ? '<div class="hc-find"><input type="search" id="cgFilter" placeholder="' + esc(C.placeholder) + '" aria-label="搜尋項目" oninput="cgFilter(this.value)"><div class="hc-find-bar"><span id="cgCount">共 ' + n + ' 項</span><span><button type="button" onclick="cgToggle(true)">全部展開</button><button type="button" onclick="cgToggle(false)">全部收合</button></span></div></div>' : '';
+      return '<div class="hc-intro">' + C.intro + '<br><b>點一下下面的項目，就能看到內容與費用。</b></div>' + find +
+        '<div class="hc-grid" id="cgGrid">' + cards + '</div><div class="hc-empty" id="cgEmpty" hidden>找不到符合的項目，換個說法試試看，或直接撥打 1966 長照專線詢問。</div>' +
+        '<div class="hc-note">💛 <b>貼心提醒：</b>' + esc(C.note) + '</div>' +
+        '<div class="hc-cta"><div><b>想先知道大概要付多少錢？</b><br><small>' + esc(C.cta2) + '</small></div><button type="button" class="hc-btn" onclick="closeInfoModal();navigateTo(\'' + C.go + '\')' + (C.tab ? ';calcTab(\'' + C.tab + '\')' : '') + '">' + C.cta + '</button></div>';
+    }
+    function cgFilter(q) {
+      const words = (q || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      document.querySelectorAll('#cgGrid .cg-item').forEach(el => {
+        const hay = el.dataset.k || '';
+        const ok = words.every(w => hay.indexOf(w) > -1 || (typeof SYNONYMS !== 'undefined' && SYNONYMS[w] && hay.indexOf(String(SYNONYMS[w]).toLowerCase()) > -1));
+        el.hidden = !ok; if (ok) shown++;
+        if (words.length && ok) el.open = shown <= 3;
+      });
+      document.querySelectorAll('#cgGrid .hc-card').forEach(c => { c.hidden = !c.querySelector('.cg-item:not([hidden])'); });
+      const cnt = document.getElementById('cgCount'); if (cnt) cnt.textContent = words.length ? ('符合 ' + shown + ' 項') : ('共 ' + document.querySelectorAll('#cgGrid .cg-item').length + ' 項');
+      const em = document.getElementById('cgEmpty'); if (em) em.hidden = shown > 0;
+    }
+    function cgToggle(open) { document.querySelectorAll('#cgGrid .cg-item:not([hidden])').forEach(el => { el.open = open; }); }
+
+
+    /* ===== 喘息服務試算（每年額度，依 CMS 等級） ===== */
+    const RS_LEVELS = [2,3,4,5,6,7,8].map(n => ({ n: n, quota: n >= 7 ? 48510 : 32340 }));
+    const RS_ITEMS = [
+      { code: 'GA09', name: '居家喘息服務', unit: '每 2 小時', fee: 770, k: '居家 到府 照服員 BA14' },
+      { code: 'GA07', name: '巷弄長照站喘息服務', unit: '每小時', fee: 170, k: '巷弄 據點 長照站' },
+      { code: 'GA04', name: '日間照顧中心喘息服務（半日）', unit: '每半日', fee: 625, k: '日照 日間 半日 社區' },
+      { code: 'GA03', name: '日間照顧中心喘息服務（全日）', unit: '每日', fee: 1250, k: '日照 日間 全日 社區' },
+      { code: 'GA06', name: '小規模多機能－夜間喘息', unit: '每次', fee: 2000, k: '夜間 小規模多機能 住宿' },
+      { code: 'GA05', name: '機構住宿式喘息服務', unit: '每日（24 小時）', fee: 2310, k: '機構 住宿 24小時 短期' }
+    ];
+    const RS_IDS = [ { k: 'c1', t: '第一類', s: '低收入戶 0%', r: 0 }, { k: 'c2', t: '第二類', s: '中低收入戶 5%', r: 0.05 }, { k: 'c3', t: '第三類', s: '一般戶 16%', r: 0.16 } ];
+    const rsState = { level: 2, id: 'c3', qty: {} };
+    function rsPer(fee) { const r = RS_IDS.find(x => x.k === rsState.id).r; return Math.floor(fee * r); }
+    function rsInit() {
+      const lv = document.getElementById('rsLevels'); if (!lv) return;
+      lv.innerHTML = RS_LEVELS.map(l => '<button type="button" class="rs-level" data-n="' + l.n + '" onclick="rsSetLevel(' + l.n + ')">第 ' + l.n + ' 級<small>' + l.quota.toLocaleString() + ' 元</small></button>').join('');
+      document.getElementById('rsIds').innerHTML = RS_IDS.map(x => '<button type="button" class="rs-id" data-k="' + x.k + '" onclick="rsSetId(\'' + x.k + '\')">' + x.t + '<small>' + x.s + '</small></button>').join('');
+      document.getElementById('rsBody').innerHTML = RS_ITEMS.map((it, i) => '<tr data-s="' + esc(it.code + ' ' + it.name + ' ' + it.k) + '"><td><b>' + it.code + '</b></td><td class="l">' + esc(it.name) + '</td><td>' + esc(it.unit) + '</td><td>' + it.fee.toLocaleString() + '</td><td id="rsPer_' + i + '">0</td><td><input type="number" inputmode="numeric" min="0" max="999" value="0" data-i="' + i + '" aria-label="' + esc(it.name) + ' 一年預計用量" oninput="rsCalc()"></td><td id="rsSub_' + i + '">0</td></tr>').join('');
+      rsCalc();
+    }
+    function rsSetLevel(n) { rsState.level = n; rsCalc(); }
+    function rsSetId(k) { rsState.id = k; rsCalc(); }
+    function rsFilter() {
+      const q = (document.getElementById('rsSearch').value || '').trim().toLowerCase();
+      document.querySelectorAll('#rsBody tr').forEach(tr => { tr.style.display = (!q || (tr.getAttribute('data-s') || '').toLowerCase().includes(q)) ? '' : 'none'; });
+    }
+    function rsCalc() {
+      const L = RS_LEVELS.find(l => l.n === rsState.level) || RS_LEVELS[0];
+      let used = 0, pay = 0;
+      document.querySelectorAll('#rsBody input').forEach(inp => {
+        const i = +inp.dataset.i, it = RS_ITEMS[i], q = Math.max(0, parseInt(inp.value) || 0);
+        used += it.fee * q; pay += rsPer(it.fee) * q;
+        const sub = document.getElementById('rsSub_' + i); if (sub) sub.textContent = (it.fee * q).toLocaleString();
+        const per = document.getElementById('rsPer_' + i); if (per) per.textContent = rsPer(it.fee).toLocaleString();
+      });
+      const remain = L.quota - used, over = Math.max(0, used - L.quota);
+      const overPay = over;
+      const g = id => document.getElementById(id);
+      g('rsQuota').textContent = L.quota.toLocaleString() + ' 元';
+      g('rsUsed').textContent = used.toLocaleString() + ' 元';
+      g('rsRemain').textContent = remain.toLocaleString() + ' 元';
+      g('rsRemainBox').className = 'rs-stat ' + (remain >= 0 ? 'ok' : 'bad');
+      /* 自付額只計額度內的部分；超出額度的給付價格全額自費 */
+      const ratio = used > 0 ? Math.min(1, L.quota / used) : 1;
+      const payIn = Math.floor(pay * ratio);
+      g('rsPay').textContent = payIn.toLocaleString() + ' 元';
+      g('rsOver').textContent = overPay.toLocaleString() + ' 元';
+      g('rsBar').className = 'rs-bar' + (over > 0 ? ' over' : '');
+      g('rsBar').firstElementChild.style.width = Math.min(100, L.quota ? used / L.quota * 100 : 0) + '%';
+      const w = g('rsWarn');
+      if (over > 0) { w.textContent = '⚠️ 預計用量超過第 ' + L.n + ' 級的年度喘息額度，超出的 ' + over.toLocaleString() + ' 元需全額自費。'; w.classList.add('show'); } else w.classList.remove('show');
+      g('rsHint').textContent = '以第 ' + L.n + ' 級、' + RS_IDS.find(x => x.k === rsState.id).t + '試算：年度額度 ' + L.quota.toLocaleString() + ' 元；每使用 1 日機構住宿式喘息（2,310 元），自付額約 ' + rsPer(2310).toLocaleString() + ' 元。實際以照管專員核定為準。';
+      document.querySelectorAll('.rs-level').forEach(b => b.classList.toggle('active', +b.dataset.n === rsState.level));
+      document.querySelectorAll('.rs-id').forEach(b => b.classList.toggle('active', b.dataset.k === rsState.id));
+      g('rsLvBody').innerHTML = RS_LEVELS.map(l => {
+        const r = l.quota - used;
+        return '<tr class="' + (l.n === rsState.level ? 'cur' : '') + '"><td>第 ' + l.n + ' 級</td><td>' + l.quota.toLocaleString() + '</td><td style="color:' + (r >= 0 ? '#0f766e' : '#b91c1c') + '">' + r.toLocaleString() + '</td><td>' + (r > 0 ? Math.floor(r / 2310) : 0) + '</td><td>' + (r > 0 ? Math.floor(r / 1250) : 0) + '</td></tr>';
+      }).join('');
+    }
+    function calcTab(name, silent) {
+      const r = name === 'respite';
+      const a = document.getElementById('panelCare'), b = document.getElementById('panelRespite'); if (!a || !b) return;
+      a.style.display = r ? 'none' : ''; b.style.display = r ? 'block' : 'none';
+      document.getElementById('tabCare').classList.toggle('active', !r); document.getElementById('tabRespite').classList.toggle('active', r);
+      document.getElementById('tabCare').setAttribute('aria-selected', String(!r)); document.getElementById('tabRespite').setAttribute('aria-selected', String(r));
+      document.title = r ? '喘息服務額度試算 | 長照好厝邊' : '照顧及專業服務額度試算 | 長照好厝邊';
+      if (!silent) { try { history.replaceState({ view: 'calc' }, '', r ? '#respite' : '#calc'); } catch (e) {} }
+      if (r) { rsCalc(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    }
+    document.addEventListener('DOMContentLoaded', rsInit);
+    if (document.readyState !== 'loading') rsInit();
+
+    const RES = {"dementia": {"ic": "🧠", "intro": "家人忘東忘西、重複問同樣的事、個性變了、出門找不到路……您不用一個人摸索。<strong>失智共同照護中心（共照中心）</strong>是陪伴失智者與照顧者走過各個階段的「諮詢＋轉介」窗口，把醫院、居家與社區的資源接起來。", "sec": [["who", "👪 誰可以找共照中心？", ["懷疑家人有失智現象、想知道要去哪裡檢查的家屬", "已確診失智症的長輩，以及他的照顧者與家人", "想了解失智症怎麼照顧、情緒與行為怎麼應對的人"]], ["what", "🧰 共照中心能幫什麼？", ["專業照顧諮詢：症狀變化、行為與情緒問題、日常照顧方式", "協助診斷與就醫的諮詢與資訊", "依不同階段，協助轉介醫療與長照服務", "照顧者支持：衛教與支持團體資訊", "協助社區成立失智服務據點、培訓失智照護人才"]], ["what2", "🏘️ 失智據點、日照，怎麼選？", ["<b>失智社區服務據點：</b>就近提供安全看視、認知促進、緩和失智，以及照顧者訓練與支持團體，適合極輕度、輕度的長輩。", "<b>中度以上、同時需要較多生活協助：</b>建議使用立案長照機構，例如日間照顧中心、小規模多機能，提供生活照顧、餐飲、接送、社交與認知活動，以及家屬指導與諮詢。", "<b>病情退化時：</b>自 114 年起，若據點個案病情退化、不適合續留，縣市政府須輔導據點在 6 個月內協助轉介至照管中心，由 A 個管員媒合長照服務單位。", "若轉介後仍無法順利銜接，經原據點同意、且個案或主要照顧者同意自費，據點可續留服務。"]], ["steps", "🧭 轉介與申請辦法（一步一步來）", ["<b>先找到窗口：</b>詢問就診的神經內科、精神科或老年醫學科，或向縣市衛生局查詢所在地共照中心；不知從何問起，可撥失智症關懷專線 0800-474-580。", "<b>確認診斷：</b>就醫檢查，由醫師診斷是否為失智症（醫師診斷是申請長照的依據）。", "<b>日常生活需要協助時：</b>撥打 1966，由照管專員到家評估長照需要等級（CMS）。失智症不限年齡皆可申請（自 115 年 1 月 1 日起）。", "<b>評估達 CMS 第 2 級以上：</b>由個案管理師依需要擬定照顧計畫，連結居家照顧、日間照顧、喘息、輔具與交通接送等。", "<b>還沒失能、只是需要預防與陪伴：</b>可先到失智據點或巷弄長照站參加認知促進與社交活動。"], "ol"], ["cost", "💰 費用怎麼算？", ["共照中心與失智據點的收費方式各處不同，請先電話詢問確認。", "使用長照給付服務，依 CMS 額度計算，部分負擔：低收入戶 0%、中低收入戶 5%、一般戶 16%。"]], ["tips", "💡 實務小提醒", ["就醫前先整理：開始出現的時間、近況變化、用藥、有沒有迷路或情緒行為問題，醫師更容易判斷。", "如果長輩走失，請立即報警（110），並準備近照與特徵。", "照顧者也會累：同時可找「家庭照顧者支持中心」，不要一個人撐。"]]], "contacts": [["☎ 失智症關懷專線 0800-474-580", "tel:0800474580"], ["☎ 長照專線 1966", "tel:1966"]], "cta": ["🧮 看喘息額度試算", "calc-respite"], "src": [["衛福部｜打造失智友善社區照護網絡", "https://www.mohw.gov.tw/cp-16-46746-1.html"], ["衛福部｜推動失智分流照顧，優化服務模式（2025-01-20）", "https://www.mohw.gov.tw/cp-2704-81280-1.html"]], "note": "電話與服務時間、各縣市共照中心與據點的名單與收費，請以衛福部、縣市政府或機構最新公告為準。"}, "caregiver": {"ic": "🫂", "intro": "照顧的人，也需要被照顧。<strong>家庭照顧者支持服務據點（家照據點）</strong>有受過訓練的「家照專員」，陪您盤點壓力、安排資源、找人聊聊，不讓照顧變成一個人的事。", "sec": [["who", "👪 誰適合來？", ["每天照顧家人，覺得累、孤單、心情低落的照顧者", "不知道怎麼安排照顧、不知道有哪些資源可以用的家屬", "想學習正確照顧技巧的人", "（113 年起試辦）長照、身心障礙者與精神病人的家庭照顧者，可在同一個據點獲得服務"]], ["what", "🧰 服務內容", ["<b>照顧安排諮詢：</b>一起整理「現在誰在顧、缺什麼」，找出可用的長照資源", "<b>到宅照顧技巧指導：</b>在家裡教您翻身、移位、餵食等照顧方法", "<b>支持團體：</b>和同樣在照顧的人互相打氣、交流", "<b>轉介心理協談：</b>情緒需要專業協助時，協助轉介", "<b>個別輔導與團體支持：</b>面對家人病況惡化、生活失衡時，陪您調整"]], ["steps", "🧭 怎麼找到？怎麼轉介？", ["<b>先打電話：</b>家庭照顧者關懷專線 0800-507272，也可在 LINE 搜尋官方帳號「家庭照顧者關懷專線」；長照相關問題可撥 1966。", "<b>詢問所在縣市的家照據點：</b>專線人員可協助說明，也可向縣市長期照顧管理中心詢問。", "<b>與家照專員談談：</b>專員了解照顧狀況後，安排諮詢、到宅指導、支持團體或心理協談。", "<b>需要有人接手、自己休息：</b>搭配「喘息服務」（居家、日間或機構），由照管專員依照顧計畫安排；本站有喘息額度試算。", "<b>外籍看護請假休息期間：</b>也可申請喘息服務。"], "ol"], ["cost", "💰 費用怎麼算？", ["家照據點的服務收費方式各處不同，請先電話確認。", "喘息服務屬長照給付，部分負擔：低收入戶 0%、中低收入戶 5%、一般戶 16%，額度另計，不占用「照顧及專業服務額度」。"]], ["tips", "💡 您不是一個人", ["截至 114 年 5 月，全國 22 縣市已設置 134 個家照據點，約 300 位受過專業訓練的家照專員。", "113 年家庭照顧者關懷專線的來電中，「情緒支持」類占 29.4%，是最多的類型——覺得累，是很多照顧者共同的心聲。", "本站「最新消息」提到 2026 年 3 月起試辦互助喘息服務（1 名照服員搭配 1～3 位家庭照顧者），實際據點與預約方式請洽專線。"]]], "contacts": [["☎ 家庭照顧者關懷專線 0800-507272", "tel:0800507272"], ["☎ 長照專線 1966", "tel:1966"]], "cta": ["🧮 前往喘息額度試算", "calc-respite"], "src": [["衛福部｜家庭照顧者的照顧韌力（2025-07-22）", "https://www.mohw.gov.tw/cp-2704-83161-1.html"]], "note": "據點數量為 114 年 5 月資料，據點名單、服務時間與收費請以縣市政府與各據點公告為準。"}, "lane": {"ic": "🏘️", "intro": "<strong>巷弄長照站（C 級據點）</strong>就在住家附近。長輩<b>還沒失能</b>也能去：動一動、聊聊天、吃個飯，是預防退化、避免獨居孤單的第一道防線。", "sec": [["who", "👪 誰適合去？", ["想維持體力、預防退化的長輩", "獨居或少出門、少社交的長輩", "剛開始有退化跡象、還能自己行動的長輩", "想找人陪伴、分擔照顧壓力的家屬（可一起參加）"]], ["what", "🧰 常見的服務內容（各站略有不同）", ["健康促進：團體健康操、體適能活動", "認知促進：益智遊戲、懷舊與手作", "社交與共餐：卡拉 OK、一起吃飯、志工陪伴", "部分據點提供關懷訪視、電話問安", "書法、園藝、手工藝等社區活動"]], ["steps", "🧭 怎麼找、怎麼加入？", ["<b>找站：</b>撥 1966，或到「長照服務資源地理地圖」（本站『附近資源地圖』有入口）查詢附近的社區據點；也可洽區公所社會課、衛生所、里辦公室或社區發展協會。", "<b>先打電話確認：</b>開放時間、活動內容、參加對象與是否需要報名，各站不同。", "<b>直接到站登記：</b>一般不需要先經長照評估，但參加對象與年齡依各站公告為準。", "<b>若發現長輩退化、需要更多協助：</b>由家人或站內人員撥 1966 申請長照評估，銜接居家照顧、日間照顧等服務。", "<b>需要短時間有人照顧：</b>可使用「巷弄長照站喘息服務」（GA07，每小時 170 元），屬長照給付，須先經長照評估核定。"], "ol"], ["cost", "💰 費用怎麼算？", ["多數活動可免費或低費用參加；共餐、手作材料等少數項目可能酌收費用，金額各站不同，請現場確認。", "巷弄長照站喘息服務（GA07）為長照給付，自付額依身分別：低收入戶 0%、中低收入戶 5%、一般戶 16%。"]], ["tips", "💡 實務小提醒", ["初次到訪，先去看看、試參加一次，長輩比較容易接受。", "有定期出席的長輩，站內志工比較容易發現「最近怎麼變了」，是很好的早期警示。", "「巷弄長照站」與「日間照顧中心」不同：前者偏預防與社交，後者是長照給付的照顧服務，需要評估。"]]], "contacts": [["☎ 長照專線 1966", "tel:1966"], ["🗺 長照服務資源地理地圖", "https://ltcpgis.mohw.gov.tw/"]], "cta": ["🧮 看喘息額度試算（含 GA07）", "calc-respite-GA07"], "src": [["衛福部長照專區 1966", "https://1966.gov.tw/LTC/"]], "note": "巷弄長照站的活動內容、對象與收費依各縣市與各站公告為準；上方「怎麼找」與服務類型，部分整理自民間彙整資料，請向 1966 或當地據點核對。"}, "homemed": {"ic": "🩺", "intro": "長輩出門看診，常常是全家的大事。<strong>居家醫療</strong>由醫師、護理師等醫療團隊到家裡看診與照護，是<b>健保給付</b>的居家醫療照護整合計畫，也能和長照服務互相銜接。", "sec": [["who", "👪 誰適合使用？", ["行動不便、通行外出困難的病人（為主要對象，實際是否收案由醫師評估）", "剛出院、回家後仍需要醫療照護的人（出院個案）", "住在社區、長期臥床或失能的人（社區個案）"]], ["what", "🧰 服務內容", ["<b>分三階段連續照護：</b>居家醫療、重度居家醫療、安寧療護；另有居家中醫醫療、居家藥事照護", "<b>團隊成員：</b>醫師、中醫師、護理人員、藥師，視個案需要加入呼吸治療人員、心理師或社工師", "<b>常見項目：</b>到宅看診與開藥、傷口照護與換藥、檢驗（查）、針灸、藥事照護、呼吸器使用、緩和醫療家庭諮詢", "也可指導正確使用助行器與居家復健"]], ["steps", "🧭 申請與轉介辦法", ["<b>找特約機構：</b>到健保署網站「一般民眾 → 網路申辦及查詢 → 居家相關醫療服務」查詢居家醫療特約機構與電話；也可詢問平日看診的診所、醫院，或洽縣市照管中心／撥 1966 協助轉介。", "<b>醫師評估收案：</b>由醫師評估病況，開立醫囑；家屬需簽署收案申請書與病人用藥整合同意書，機構完成收案並通報健保署。", "<b>開始到宅訪視：</b>訪視頻率與內容，依病況與計畫階段，由醫療團隊安排。", "<b>病況變化時：</b>團隊會視需要調整階段（例如重度居家醫療、安寧療護）。", "<b>同時需要長照：</b>院所可透過「電子轉介平台」將個案轉介至照管中心；家屬也可直接撥 1966 申請長照評估。"], "ol"], ["cost", "💰 費用怎麼算？", ["屬健保給付；依計畫規定，居家照護醫療費用一般需負擔醫療費用的 5%，重大傷病、低收入戶及山地離島地區等可免收。", "醫療資源缺乏地區，保險對象自付費用可減免 20%。", "藥品部分負擔依健保規定另計。", "以上依健保署 115 年 5 月執行手冊，實際以各院所與健保署最新公告為準。"]], ["tips", "💡 實務小提醒", ["居家醫療是「醫療」，居家照顧服務是「生活照顧」，兩者不同，常常搭配使用。", "有安寧療護需求時，可參考本站「居家安寧」；長輩與家人的意願請先充分溝通。", "準備健保卡、近期用藥清單與診斷資料，第一次評估會更順利。"]]], "contacts": [["☎ 長照專線 1966", "tel:1966"]], "cta": null, "src": [["健保署｜居家醫療照護整合計畫執行手冊（115 年 5 月）", "https://www.nhi.gov.tw/ch/dl-98969-203aa9c173464d98b393a049813de742-1.pdf"], ["衛福部｜居家醫療照護整合計畫", "https://www.mohw.gov.tw/cp-2704-7180-1.html"]], "note": "收案條件、費用與減免規定以健保署與院所最新公告為準。"}, "discharge": {"ic": "🏥", "intro": "<strong>不要等到辦出院，才開始想「回家誰來顧」。</strong>出院準備服務在住院期間就先評估、先安排，讓長輩一出院，照顧不中斷。", "sec": [["who", "👪 誰適合使用？", ["出院後仍需要照顧、復能或生活協助的人，以及他的家屬", "行動不便、需要定期回診的人"]], ["what", "🧰 服務內容", ["住院期間，由醫院出院準備團隊主動介入", "協助在住院期間<b>完成長照需要等級（CMS）評估</b>", "協助<b>核定簡易照顧計畫</b>，並進行長照服務媒合", "加速取得簡易輔具，或安排出院返家的交通接送", "評估與安排完成後，返家<b>不需要再自行申請</b>長照評估與照顧計畫"]], ["steps", "🧭 申請與轉介辦法", ["<b>越早說越好：</b>住院後，盡早告訴病房護理師、出院準備團隊或醫院社工，表示想使用出院準備服務。", "<b>確認醫院有沒有參加：</b>可向醫院詢問，或到衛福部「全國參加醫院查詢」；也可撥 1966，由專人說明服務與申請流程。", "<b>住院期間完成評估與安排：</b>團隊協助完成 CMS 評估、簡易照顧計畫與服務媒合。", "<b>出院後銜接：</b>115 年目標是平均 2 天內完成銜接，並逐步朝出院當天即能接上服務邁進（113 年平均為 4 天，106 年為 51 天）。", "<b>返家後：</b>由長照服務單位到家服務；若需要醫師到家看診，可申請居家醫療。"], "ol"], ["cost", "💰 費用怎麼算？", ["出院後使用的長照服務，依長照給付規定：有 CMS 額度，部分負擔為低收入戶 0%、中低收入戶 5%、一般戶 16%。", "輔具與無障礙環境改善另有額度，可用本站輔具試算。"]], ["tips", "💡 實務小提醒", ["出院前，和家人討論：白天晚上誰顧、需不需要居家服務或日間照顧、家裡有沒有門檻或浴室危險。", "出院前先看一次家裡的環境，必要時評估是否需要扶手、斜坡或防滑措施（本站有輔具與無障礙內容）。", "如果醫院沒有參加計畫，出院後也可以直接撥 1966 申請長照評估。"]]], "contacts": [["☎ 長照專線 1966", "tel:1966"]], "cta": ["🧮 前往照顧額度試算", "calc"], "src": [["衛福部｜出院準備銜接長照服務計畫（2026-03-06）", "https://www.mohw.gov.tw/cp-2704-85726-1.html"]], "note": "資格條件、費用與各醫院參與情形，請以衛福部與各醫院最新公告為準。"}, "resid": {"ic": "💰", "intro": "住進住宿式機構，每個月的費用對家庭是不小的負擔。衛福部公布調整方案：<b>每月最高補助由 10,000 元調升為 15,000 元，全年最高 18 萬元</b>，追溯自 115 年 1 月 1 日起。", "sec": [["who", "👪 誰可以領？", ["入住住宿式機構的<b>中、重度失能者</b>（有 24 小時密集照顧需求）", "經評估<b>長照需要等級 4 級以上</b>，或持有<b>身心障礙中度以上證明</b>者，適用每月最高 15,000 元", "112 年 1 月 1 日前已入住並持續入住的既有住民，若未經評估或評估未達 4 級，仍維持每月補助 5,000 元", "入住身心障礙機構的中度以上身心障礙者，住宿式照顧費用補助也同步每月提高 5,000 元（115 年度或以前已核定領取者，另有銜接規定，請洽地方政府）"]], ["what", "🧰 補助怎麼算？", ["金額：每月最高 15,000 元、全年最高 18 萬元（原制每月最高 10,000 元、全年最高 12 萬元）", "改為<b>按月認列</b>：當月實際入住達該月日曆天數二分之一以上，即認列 1 個月", "地方政府按上、下半年分 2 次檢核、撥付", "過渡保障：115 年 1～8 月，114 年度已核定領取 12 萬元者，若累積入住達 180 日，該期間一律核給 12 萬元；9 月起依新制按月認列"]], ["steps", "🧭 申請與轉介辦法", ["<b>先確認身分：</b>撥 1966 申請長照評估，確認長照需要等級是否達 4 級；或準備身心障礙證明（中度以上）。", "<b>選擇機構、辦理入住：</b>機構會協助說明收費與需要的文件。", "<b>向縣市政府申請：</b>補助原則由「最近一次入住機構所在地」的直轄市、縣（市）政府受理；新申請個案自 115 年 9 月 14 日起，可依規定向受理的地方政府申請。", "<b>已有 114 年度補助資格者：</b>若 115 年度持續入住原機構、補助資格未變更，只要補正資料即可，免重新申請。", "<b>不確定時：</b>撥 1966，或詢問機構社工與縣市政府社會局（處）、衛生局。"], "ol"], ["cost", "💰 要注意什麼？", ["補助是減輕住宿費用，不是全額免費；機構收費仍依各機構公告。", "實際申請作業、應備文件與時程，以衛福部與地方政府公告為準。", "入住機構後，其他長照給付如何搭配，請向照管專員確認。"]], ["tips", "💡 實務小提醒", ["選機構前，先到現場看看、詢問收費明細、照護人力與評鑑結果。", "家屬可一併詢問「機構喘息服務」，短期住宿體驗，再決定是否長期入住。"]]], "contacts": [["☎ 長照專線 1966", "tel:1966"]], "cta": null, "src": [["衛福部｜住宿式服務機構使用者補助調整（2026-09-10）", "https://www.mohw.gov.tw/cp-2704-87895-1.html"], ["衛福部｜住宿式機構補助簡化申請與按月認列", "https://www.mohw.gov.tw/cp-2704-87934-1.html"]], "note": "金額、資格、日期依衛福部 2026 年 9 月公告整理，請以最新公告與地方政府通知為準。"}};
+
+    const RES_TITLES = { '失智共同照護中心': 'dementia', '家庭照顧者支持中心': 'caregiver', '巷弄長照站': 'lane', '居家醫療': 'homemed', '出院準備服務': 'discharge', '2026住宿型機構補助方案': 'resid' };
+    const RES_HUB = [
+      ['附近資源地圖','🗺️','長照地圖、里長辦公室、社區關懷據點'],
+      ['失智共同照護中心','🧠','懷疑或確診失智，先從這裡問'],
+      ['家庭照顧者支持中心','🫂','照顧者的情緒與技巧支持'],
+      ['巷弄長照站','🏘️','住家附近，預防退化、交朋友'],
+      ['居家醫療','🩺','醫師護理師到家，健保給付'],
+      ['出院準備服務','🏥','住院時就先安排長照'],
+      ['2026住宿型機構補助方案','💰','每月最高 15,000 元、全年 18 萬']
+    ];
+    function resGo(a) {
+      closeInfoModal();
+      if (a === 'calc') navigateTo('calc');
+      else if (a === 'calc-respite') { navigateTo('calc'); calcTab('respite'); }
+      else if (a === 'calc-respite-GA07') goCalc('respite', 'GA07');
+    }
+    function buildResource(key) {
+      const R = RES[key]; if (!R) return '';
+      const secs = R.sec.map(x => {
+        const cls = x[0] === 'steps' ? 'steps' : x[0] === 'cost' ? 'cost' : x[0] === 'tips' ? 'tips' : '';
+        const tag = x[3] === 'ol' ? 'ol' : 'ul';
+        return '<section class="rs3-sec ' + cls + '"><h5>' + esc(x[1]) + '</h5><' + tag + '>' + x[2].map(i => '<li>' + i.replace(/<(?!\/?b>)[^>]*>/g, '') + '</li>').join('') + '</' + tag + '></section>';
+      }).join('');
+      const contacts = '<div class="rs3-contacts">' + R.contacts.map(c => '<a href="' + esc(c[1]) + '"' + (/^http/.test(c[1]) ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' + esc(c[0]) + '</a>').join('') + '</div>';
+      const cta = R.cta ? '<div class="hc-cta"><div><b>想先算算費用嗎？</b></div><button type="button" class="hc-btn" onclick="resGo(\'' + R.cta[1] + '\')">' + esc(R.cta[0]) + '</button></div>' : '';
+      const src = '<div class="rs3-src">📚 資料來源：' + R.src.map(x => '<a href="' + esc(x[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(x[0]) + '</a>').join('；') + '<br>※ ' + esc(R.note) + '<br>※ 本頁為資訊整理，不構成個案核定、醫療或法律意見，個案請以 1966 與主管機關核定為準。</div>';
+      return '<div class="hc-intro">' + R.intro + '</div>' + secs + contacts + cta + src;
+    }
+    function buildResourceHub() {
+      return '<div class="hc-intro">照顧不必一個人扛。下面是社區裡最常用到的資源，點進去就能看到<b>服務內容、怎麼轉介、費用與聯絡方式</b>。不確定該找誰，也可以直接撥 <a href="tel:1966"><b>1966</b></a>。</div><div class="rs3-hub">' +
+        RES_HUB.map(h => '<button type="button" onclick="openInfoModal(\'' + h[0] + '\', \'\', \'' + h[1] + '\')">' + h[1] + ' ' + esc(h[0]) + '<small>' + esc(h[2]) + '</small></button>').join('') + '</div>';
+    }
+
+
+    /* ===== 「服務介紹」總覽：一次列出所有服務入口 ===== */
+    const SVC_HUB = [
+      ['🏠 照顧及專業服務', [['居家照顧服務','🏠','到家協助洗澡、換衣、備餐、陪伴'],['日間(社區)照顧服務','☀️','白天到日照中心，傍晚回家'],['家庭托顧服務','👨‍👩‍👧','社區版長照保母，小規模照顧'],['專業服務','🩺','治療師、護理師、營養師到宅指導']]],
+      ['🚌 交通接送', [['交通接送服務','🚌','往返就醫、復健、洗腎']]],
+      ['♿ 輔具與居家無障礙', [['輔具服務','♿','輪椅、氣墊床、移位、助行'],['居家無障礙環境改善服務','🚪','扶手、防滑、門檻、浴廁']]],
+      ['🌿 喘息服務', [['居家喘息服務','🏠','照服員到家，照顧者安心休息'],['日間(社區)喘息服務','☀️','日照或據點，半日或全日'],['機構喘息服務','🏥','機構短期住宿，24 小時照顧']]]
+    ];
+    function svcOpen(title) {
+      closeInfoModal();
+      const el = document.querySelector('[onclick*="openInfoModal(\'' + title + '\'"]');
+      if (el) setTimeout(() => el.click(), 60);
+    }
+    function buildServiceHub() {
+      return '<div class="hc-intro">長照給付分成四大類，點選下面的項目，就能看到<b>服務內容、費用、使用規範</b>，並可直接到試算表算自付額。不確定適合哪一種，請撥 <a href="tel:1966"><b>1966</b></a>，由照管專員到家評估。</div>' +
+        SVC_HUB.map(g => '<section class="rs3-sec"><h5>' + esc(g[0]) + '</h5><div class="rs3-hub">' + g[1].map(i => '<button type="button" onclick="svcOpen(\'' + i[0] + '\')">' + i[1] + ' ' + esc(i[0]) + '<small>' + esc(i[2]) + '</small></button>').join('') + '</div></section>').join('') +
+        '<div class="hc-cta"><div><b>想先知道大概要付多少錢？</b><br><small>三種試算：照顧及專業（每月）、喘息（每年）、輔具與無障礙（3 年）。</small></div><button type="button" class="hc-btn" onclick="closeInfoModal();openCalcChoiceModal()">🧮 選擇試算工具</button></div>';
+    }
+
+
+    /* ===== 附近資源地圖：官方地圖入口＋以縣市／定位開啟地圖搜尋（本站不蒐集、不上傳位置） ===== */
+    const NR_COUNTIES = ['臺北市','新北市','桃園市','臺中市','臺南市','高雄市','基隆市','新竹市','嘉義市','新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義縣','屏東縣','宜蘭縣','花蓮縣','臺東縣','澎湖縣','金門縣','連江縣'];
+    const NR_LINKS = {
+      ltcmap: 'https://ltcpgis.mohw.gov.tw/',
+      ltcmap2: 'https://ltcpap.mohw.gov.tw/public/index.html',
+      nhi: 'https://www.nhi.gov.tw/',
+      ccare: 'https://ccare.sfaa.gov.tw/home/index'
+    };
+    const NR_OFFICIAL = [
+      ['ltcmap','🗺️ 長照服務資源地理地圖（官方）','衛福部：可查居家、住宿機構、交通接送、輔具、社區據點、A／C 單位、失智據點；手機開啟定位可搜尋周邊'],
+      ['ccare','🏘️ 社區照顧關懷據點（官方）','衛福部社家署查詢網站，找住家附近的關懷據點']
+    ];
+    const NR_SEARCH = [
+      ['里長辦公室','🏛️ 里長辦公室／里辦公室','住家所在里的第一線窗口，可詢問里內活動與福利'],
+      ['社區關懷據點','🤝 社區關懷據點','在地長輩的共餐、問安、健康活動據點'],
+      ['巷弄長照站','🧓 巷弄長照站','預防退化的健康促進與社交據點'],
+      ['日間照顧中心','☀️ 日間照顧中心','白天照顧、復能活動與接送'],
+      ['失智社區服務據點','🧠 失智社區服務據點','失智者的認知促進與照顧者支持'],
+      ['家庭照顧者支持服務據點','🫂 家庭照顧者支持服務據點','照顧者諮詢、支持團體'],
+      ['區公所 社會課','🏢 區（鄉鎮市）公所','申請福利、詢問長照與補助'],
+      ['衛生所','⚕️ 衛生所','長者健康檢查、預防保健與在地衛教']
+    ];
+    const nrState = { lat: null, lng: null };
+    function nrBuild() {
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem('nrArea') || '{}'); } catch (e) {}
+      const opt = '<option value="">請選擇縣市</option>' + NR_COUNTIES.map(c => '<option' + (saved.c === c ? ' selected' : '') + '>' + c + '</option>').join('');
+      return '<div class="hc-intro">想知道<b>住家附近</b>有哪些長照資源？先選縣市（鄉鎮市區可填可不填），或用手機定位，就能一鍵開啟地圖搜尋。官方地圖資料最完整，下面也一併附上。</div>' +
+        '<section class="rs3-sec"><h5>📍 ① 告訴我您住哪裡</h5><div class="nr-form">' +
+        '<select id="nrCounty" aria-label="縣市" onchange="nrSave()">' + opt + '</select>' +
+        '<input type="text" id="nrDistrict" placeholder="鄉鎮市區（選填，例如：大安區）" aria-label="鄉鎮市區" value="' + esc(saved.d || '') + '" onchange="nrSave()">' +
+        '<button type="button" class="nr-geo" onclick="nrLocate()">📍 使用我目前的位置（選用）</button>' +
+        '<div class="nr-status" id="nrStatus" role="status" aria-live="polite">定位只在您的手機或電腦上使用，用來組成地圖搜尋連結，本站不會收集或上傳您的位置。</div></div></section>' +
+        '<section class="rs3-sec steps"><h5>🗺️ ② 官方長照地圖與據點查詢</h5><div class="nr-grid">' +
+        NR_OFFICIAL.map(o => '<button type="button" class="nr-btn" onclick="nrOpen(\'' + o[0] + '\')">' + o[1] + '<small>' + esc(o[2]) + '</small></button>').join('') + '</div></section>' +
+        '<section class="rs3-sec"><h5>🔎 ③ 在地圖上搜尋住家附近</h5><div class="nr-grid">' +
+        NR_SEARCH.map((o, i) => '<button type="button" class="nr-btn off" onclick="nrSearch(' + i + ')">' + o[1] + '<small>' + esc(o[2]) + '</small></button>').join('') + '</div></section>' +
+        '<section class="rs3-sec cost"><h5>💡 小提醒</h5><ul>' +
+        '<li>搜尋結果來自一般地圖服務，據點名稱與地址可能不完整或過時，<b>去之前請先電話確認</b>開放時間與服務對象。</li>' +
+        '<li>找不到、或不知道該找誰？撥 <a href="tel:1966"><b>1966</b></a>，會轉接到您所在縣市的長期照顧管理中心。</li>' +
+        '<li>里長（里辦公室）與里幹事熟悉社區狀況，可以先問問里內有哪些長輩活動與福利。</li></ul></section>' +
+        '<div class="rs3-contacts"><a href="tel:1966">☎ 長照專線 1966</a></div>' +
+        '<div class="rs3-src">📚 資料來源：衛福部長照服務資源地理地圖、衛福部社家署社區照顧關懷據點查詢網站、衛福部 1966 長照專區。<br>※ 地圖開啟後的內容由各官方網站或地圖服務提供，非本站資料。</div>';
+    }
+    function nrSave() {
+      try { localStorage.setItem('nrArea', JSON.stringify({ c: (document.getElementById('nrCounty') || {}).value || '', d: (document.getElementById('nrDistrict') || {}).value || '' })); } catch (e) {}
+    }
+    function nrOpen(k) { window.open(NR_LINKS[k], '_blank', 'noopener'); }
+    function nrStatus(msg, warn) { const el = document.getElementById('nrStatus'); if (el) { el.textContent = msg; el.className = 'nr-status' + (warn ? ' warn' : ''); } }
+    function nrLocate() {
+      if (!navigator.geolocation) { nrStatus('這個瀏覽器不支援定位，請改選縣市。', true); return; }
+      nrStatus('定位中…請在瀏覽器詢問時按「允許」。');
+      navigator.geolocation.getCurrentPosition(pos => {
+        nrState.lat = pos.coords.latitude; nrState.lng = pos.coords.longitude;
+        nrStatus('✅ 已取得位置，下面的搜尋會以您目前位置附近為主。');
+      }, () => { nrStatus('沒有取得位置（可能未允許或定位未開啟），請改選縣市。', true); }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    }
+    function nrSearch(i) {
+      const term = NR_SEARCH[i][0];
+      const c = (document.getElementById('nrCounty') || {}).value || '', d = ((document.getElementById('nrDistrict') || {}).value || '').trim();
+      let url;
+      if (nrState.lat !== null && !c) url = 'https://www.google.com/maps/search/' + encodeURIComponent(term) + '/@' + nrState.lat.toFixed(5) + ',' + nrState.lng.toFixed(5) + ',15z';
+      else if (c) url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c + d + ' ' + term);
+      else { nrStatus('請先選擇縣市，或按「使用我目前的位置」。', true); return; }
+      nrSave(); window.open(url, '_blank', 'noopener');
+    }
+
+
+    /* ===== 附近資源地圖（獨立頁面）===== */
+    const NV_TYPES = {
+      lane:   { ic:'🧓', n:'巷弄長照站', w:'預防退化的健康促進、認知活動、共餐與社交，長輩還沒失能也能去。', term:'巷弄長照站', info:'巷弄長照站' },
+      ccare:  { ic:'🤝', n:'社區關懷據點', w:'在地長輩的關懷訪視、電話問安、共餐與健康活動。', term:'社區關懷據點', link:'ccare', linkT:'官方查詢' },
+      village:{ ic:'🏛️', n:'里長辦公室', w:'住家所在里的第一線窗口，熟悉里內長輩、活動與福利，可先問問看。', term:'里長辦公室' },
+      district:{ ic:'🏢', n:'區（鄉鎮市）公所', w:'社會課可詢問福利補助、身心障礙與長照相關申請與轉介。', term:'區公所 社會課' },
+      health: { ic:'⚕️', n:'衛生所', w:'長者健康檢查、預防保健、衛教與在地健康諮詢。', term:'衛生所' },
+      day:    { ic:'☀️', n:'日間照顧中心', w:'白天由專人照顧、復能活動與接送，傍晚返家。需先經長照評估。', term:'日間照顧中心', info:'日間(社區)照顧服務' },
+      fam:    { ic:'👨‍👩‍👧', n:'家庭托顧', w:'社區版長照保母，在受訓合格的托顧家庭小規模照顧。', term:'家庭托顧服務', info:'家庭托顧服務' },
+      dem:    { ic:'🧠', n:'失智社區服務據點', w:'失智者的認知促進、安全看視與照顧者支持。', term:'失智社區服務據點', info:'失智共同照護中心' },
+      demc:   { ic:'🏥', n:'失智共同照護中心', w:'失智症的諮詢、診斷銜接、個案管理與轉介，多設在醫院。', term:'失智共同照護中心', info:'失智共同照護中心' },
+      cg:     { ic:'🫂', n:'家庭照顧者支持據點', w:'照顧者的諮詢、技巧指導、支持團體與心理協談轉介。', term:'家庭照顧者支持服務據點', info:'家庭照顧者支持中心' },
+      homemed:{ ic:'🩺', n:'居家醫療特約機構', w:'醫師、護理師到家看診與照護，屬健保給付。', link:'nhi', linkT:'健保署查詢', info:'居家醫療', hint:'健保署網站：一般民眾 → 網路申辦及查詢 → 居家相關醫療服務' },
+      resid:  { ic:'🛏️', n:'住宿式長照機構', w:'24 小時專人照顧；2026 年起補助調升，每月最高 15,000 元。', term:'住宿式長照機構', info:'2026住宿型機構補助方案' },
+      aid:    { ic:'♿', n:'輔具資源中心', w:'輔具評估、租借、諮詢與居家無障礙環境改善。', term:'輔具資源中心', info:'輔具服務' }
+    };
+    const NV_NEEDS = [
+      { k:'prevent', ic:'🧓', t:'想找長輩可以去動一動的地方', keys:['lane','ccare','village'], steps:['先到「巷弄長照站」或「社區關懷據點」看看，不需要先評估。','不知道在哪？問問里長辦公室，通常最清楚里內的長輩活動。','發現退化、需要更多照顧時，再撥 1966 申請長照評估。'] },
+      { k:'day', ic:'☀️', t:'白天需要有人照顧長輩', keys:['day','fam','district'], steps:['撥 1966，由照管專員到家評估長照需要等級。','評估後，選擇附近的日照中心或家庭托顧，由個管師協助媒合。','先用本站「照顧額度試算」估算每月自付額。'] },
+      { k:'dementia', ic:'🧠', t:'家人疑似或確診失智', keys:['demc','dem','day'], steps:['就醫確診，並向失智共同照護中心諮詢。','撥 1966 申請長照評估（失智症不限年齡）。','輕度可先到失智據點；中度以上依評估使用日照或居家服務。'] },
+      { k:'caregiver', ic:'🫂', t:'我是照顧者，覺得很累', keys:['cg','district','health'], steps:['撥家庭照顧者關懷專線 0800-507272，或找附近的家照據點聊聊。','評估使用喘息服務，讓自己有休息時間（本站有喘息額度試算）。','區公所社會課與衛生所也能協助轉介。'] },
+      { k:'discharge', ic:'🏥', t:'長輩即將出院', keys:['homemed','aid','resid'], steps:['住院時就告訴病房護理師或社工，啟動「出院準備服務」。','出院前評估是否需要輔具與居家無障礙改善。','需要醫師到家，可查詢居家醫療特約機構；考慮住宿機構可看補助方案。'] },
+      { k:'visit', ic:'🩺', t:'長輩出門看診很困難', keys:['homemed','health','district'], steps:['先問平常看診的診所或醫院有沒有提供居家醫療。','或到健保署網站查詢居家醫療特約機構。','需要生活照顧，再撥 1966 申請長照評估。'] },
+      { k:'unsure', ic:'❓', t:'不知道從哪裡問起', keys:['village','district','health'], steps:['最快的方法：撥 1966，會轉接到您所在縣市的長期照顧管理中心。','也可以先到里長辦公室、區公所社會課或衛生所詢問。','下方官方長照地圖可以直接看附近有哪些長照單位。'] }
+    ];
+    const nvState = { need: null };
+    function nvSaved() { try { return JSON.parse(localStorage.getItem('nrArea') || '{}'); } catch (e) { return {}; } }
+    function nvRender() {
+      const root = document.getElementById('nearbyRoot'); if (!root) return;
+      if (root.dataset.ready === '1') return;
+      root.dataset.ready = '1';
+      const sv = nvSaved();
+      const opt = '<option value="">請選擇縣市</option>' + NR_COUNTIES.map(c => '<option' + (sv.c === c ? ' selected' : '') + '>' + c + '</option>').join('');
+      root.innerHTML =
+        '<section class="nv-box"><h2>📍 步驟 1：您住哪裡？</h2><p class="sub">選縣市（鄉鎮市區可不填），或用手機定位。定位只在您的裝置上用來組成地圖搜尋連結，<b>本站不會收集或上傳位置</b>。</p><div class="nr-form">' +
+        '<select id="nrCounty" aria-label="縣市" onchange="nrSave()">' + opt + '</select>' +
+        '<input type="text" id="nrDistrict" placeholder="鄉鎮市區（選填，例如：大安區）" aria-label="鄉鎮市區" value="' + esc(sv.d || '') + '" onchange="nrSave()">' +
+        '<button type="button" class="nr-geo" onclick="nrLocate()">📍 使用我目前的位置（選用）</button>' +
+        '<div class="nr-status" id="nrStatus" role="status" aria-live="polite"></div></div></section>' +
+        '<section class="nv-box nv-map"><h2>🗺️ 官方長照服務資源地理地圖</h2><p class="sub">衛福部提供，可查詢住家附近的居家、日間、住宿機構、交通接送、輔具與社區據點，內容最完整。手機建議開啟定位。</p><div class="nv-actions">' +
+        '<button type="button" class="pri" onclick="nrOpen(\'ltcmap\')">🗺️ 開啟長照服務地圖</button>' +
+        '<button type="button" class="sec" onclick="nrOpen(\'ltcmap2\')">備用入口</button>' +
+        '<button type="button" class="sec" onclick="nrOpen(\'ccare\')">🤝 社區關懷據點查詢</button></div></section>' +
+        '<section class="nv-box"><h2>🧭 步驟 2：您現在最需要什麼？</h2><p class="sub">點一個情境，我們會告訴您「先找誰、怎麼做」，並標出下方最適合的資源。</p><div class="nv-needs" role="group" aria-label="選擇需求">' +
+        NV_NEEDS.map(n => '<button type="button" class="nv-need" data-k="' + n.k + '" aria-pressed="false" onclick="nvPick(\'' + n.k + '\')">' + n.ic + ' ' + esc(n.t) + '</button>').join('') + '</div><div id="nvReco"></div></section>' +
+        '<section class="nv-box"><h2>🔎 步驟 3：在地圖上找附近的資源</h2><p class="sub">按「在地圖找」會開啟地圖搜尋（需先完成步驟 1）。出發前請先電話確認開放時間與服務對象。</p><div class="nv-grid" id="nvGrid">' +
+        Object.keys(NV_TYPES).map(k => nvCard(k)).join('') + '</div></section>' +
+        '<section class="nv-box"><h2>☎ 找不到、不確定？</h2><p class="sub">撥 <a href="tel:1966"><b>1966</b></a>，會轉接到您所在縣市的長期照顧管理中心，由專人說明並協助申請評估。</p><div class="nv-actions"><a class="pri" href="tel:1966">☎ 撥打 1966</a><button type="button" class="sec" onclick="navigateTo(\'calc\')">🧮 先試算費用</button></div></section>' +
+        '<p class="rs3-src">📚 資料來源：衛福部長照服務資源地理地圖、衛福部社家署社區照顧關懷據點查詢網站、衛福部 1966 長照專區、健保署。地圖搜尋結果由地圖服務提供，非本站資料，可能不完整或過時。</p>';
+    }
+    function nvCard(k) {
+      const t = NV_TYPES[k];
+      const btns = (t.term ? '<button type="button" class="pri" onclick="nvFind(\'' + k + '\')">📍 在地圖找</button>' : '') +
+        (t.link ? '<button type="button" class="' + (t.term ? 'sec' : 'pri') + '" onclick="nrOpen(\'' + t.link + '\')">🔗 ' + esc(t.linkT) + '</button>' : '') +
+        (t.info ? '<button type="button" class="sec" onclick="openInfoModal(\'' + t.info + '\',\'\',\'' + t.ic + '\')">📖 了解服務</button>' : '');
+      return '<div class="nv-card" id="nvc-' + k + '"><h3>' + t.ic + ' ' + esc(t.n) + '</h3><p>' + esc(t.w) + (t.hint ? '<br><small>' + esc(t.hint) + '</small>' : '') + '</p><div class="nv-actions">' + btns + '</div></div>';
+    }
+    function nvFind(k) {
+      const t = NV_TYPES[k]; if (!t || !t.term) return;
+      const c = (document.getElementById('nrCounty') || {}).value || '', d = ((document.getElementById('nrDistrict') || {}).value || '').trim();
+      let url;
+      if (nrState.lat !== null && !c) url = 'https://www.google.com/maps/search/' + encodeURIComponent(t.term) + '/@' + nrState.lat.toFixed(5) + ',' + nrState.lng.toFixed(5) + ',15z';
+      else if (c) url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c + d + ' ' + t.term);
+      else { nrStatus('請先在步驟 1 選擇縣市，或按「使用我目前的位置」。', true); const el = document.getElementById('nrCounty'); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus(); } return; }
+      nrSave(); window.open(url, '_blank', 'noopener');
+    }
+    function nvPick(k) {
+      const n = NV_NEEDS.find(x => x.k === k); if (!n) return;
+      nvState.need = k;
+      document.querySelectorAll('.nv-need').forEach(b => { const on = b.dataset.k === k; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
+      document.querySelectorAll('.nv-card').forEach(c => c.classList.remove('hl'));
+      n.keys.forEach(key => { const el = document.getElementById('nvc-' + key); if (el) el.classList.add('hl'); });
+      document.getElementById('nvReco').innerHTML = '<div class="nv-reco"><h3>' + n.ic + ' ' + esc(n.t) + '：建議這樣做</h3><ol>' + n.steps.map(x => '<li>' + esc(x) + '</li>').join('') + '</ol><p style="margin:8px 0 0;font-size:.9rem;">👇 下方已標出建議優先找的資源：' + n.keys.map(x => esc(NV_TYPES[x].n)).join('、') + '</p></div>';
+    }
+
     function detailToText(title) {
       const d = INFO_DETAILS[title];
+      if (d && d.res) { const R = RES[d.res]; return R.intro.replace(/<[^>]*>/g, '') + ' ' + R.sec.map(x => x[1] + ' ' + x[2].join(' ').replace(/<[^>]*>/g, '')).join(' '); }
+      if (d && d.near) return '附近資源地圖 長照地圖 里長辦公室 里辦公室 社區關懷據點 巷弄長照站 日間照顧中心 衛生所 區公所 住家附近 定位 查詢';
+      if (d && d.svc) return '服務介紹 ' + SVC_HUB.map(g => g[0] + ' ' + g[1].map(i => i[0] + ' ' + i[2]).join(' ')).join(' ');
+      if (d && d.hub) return RES_HUB.map(h => h[0] + ' ' + h[2]).join(' ') + ' 轉介 地方資源';
+      if (d && d.cat) return (CATALOGS[d.cat].groups || []).map(g => g[1] + ' ' + g[2].map(i => i.c + ' ' + i.n + ' ' + (i.k || '')).join(' ')).join(' ');
+      if (d && d.pro) return '專業服務 復能 營養 吞嚥 困擾行為 臥床 居家環境 護理指導 ' + PS_ITEMS.map(i => i.c + ' ' + i.n + ' ' + i.k).join(' ');
       if (d && d.fam) return '家庭托顧 托顧家庭 長照保母 全日 半日 CMS ' + FC_TYPES.map(x => x.fc + ' ' + x.hc).join(' ');
       if (d && d.day) return '日間照顧 日照 全日 半日 CMS 社區式協助沐浴 社區式晚餐 社區式服務交通接送 ' + DC_TYPES.map(x => x.fc + ' ' + x.hc).join(' ');
       if (d && d.home) return HC_GROUPS.map(g => g.t + ' ' + g.items.map(i => i.c + ' ' + i.n + ' ' + i.k + ' ' + i.w).join(' ')).join(' ');
@@ -3514,6 +4177,12 @@
       if (d && d.home) { box.style.display = 'block'; box.innerHTML = buildHomeCare(); return; }
       if (d && d.day) { box.style.display = 'block'; box.innerHTML = buildDayCare(); return; }
       if (d && d.fam) { box.style.display = 'block'; box.innerHTML = buildFamilyCare(); return; }
+      if (d && d.pro) { box.style.display = 'block'; box.innerHTML = buildProCare(); return; }
+      if (d && d.cat) { box.style.display = 'block'; box.innerHTML = buildCatalog(d.cat); return; }
+      if (d && d.res) { box.style.display = 'block'; box.innerHTML = buildResource(d.res); return; }
+      if (d && d.hub) { box.style.display = 'block'; box.innerHTML = buildResourceHub(); return; }
+      if (d && d.svc) { box.style.display = 'block'; box.innerHTML = buildServiceHub(); return; }
+      if (d && d.near) { box.style.display = 'none'; return; }
       if (!d || !d.sections || !d.sections.length) { box.innerHTML = ''; box.style.display = 'none'; return; }
       box.style.display = 'block';
       box.innerHTML = d.sections.map(s =>
@@ -3526,6 +4195,7 @@
     }
 
     function openInfoModal(title, content, icon = '💡') {
+      if (title === '附近資源地圖') { closeMobileMenu(); try { closeInfoModal(); } catch (e) {} navigateTo('nearby'); return; }
       document.getElementById('infoModalTitle').innerText = title;
       document.getElementById('infoModalContent').innerText = content;
       document.getElementById('infoModalIcon').innerText = icon;
@@ -3622,7 +4292,15 @@
       { code: "BC11", name: "家庭托顧(全日)--第6型 CMS7", fee: 980, c1: 0, c2: 49, c3: 156, defaultQty: 0 },
       { code: "BC12", name: "家庭托顧(半日)--第6型 CMS7", fee: 490, c1: 0, c2: 24, c3: 78, defaultQty: 0 },
       { code: "BC13", name: "家庭托顧(全日)--第7型 CMS8", fee: 1040, c1: 0, c2: 52, c3: 166, defaultQty: 0 },
-      { code: "BC14", name: "家庭托顧(半日)--第7型 CMS8", fee: 520, c1: 0, c2: 26, c3: 83, defaultQty: 0 }
+      { code: "BC14", name: "家庭托顧(半日)--第7型 CMS8", fee: 520, c1: 0, c2: 26, c3: 83, defaultQty: 0 },
+      { code: "CA07", name: "IADLs 復能、ADLs 復能照護", fee: 4500, c1: 0, c2: 225, c3: 720, defaultQty: 0 },
+      { code: "CA08", name: "個別化服務計畫（ISP）擬定與執行", fee: 6000, c1: 0, c2: 300, c3: 960, defaultQty: 0 },
+      { code: "CB01a", name: "營養照護", fee: 4500, c1: 0, c2: 225, c3: 720, defaultQty: 0 },
+      { code: "CB02", name: "進食與吞嚥照護", fee: 9000, c1: 0, c2: 450, c3: 1440, defaultQty: 0 },
+      { code: "CB03", name: "困擾行為照護", fee: 4500, c1: 0, c2: 225, c3: 720, defaultQty: 0 },
+      { code: "CB04", name: "臥床或長期活動受限照護", fee: 9000, c1: 0, c2: 450, c3: 1440, defaultQty: 0 },
+      { code: "CC01", name: "居家環境安全或無障礙空間規劃", fee: 2000, c1: 0, c2: 100, c3: 320, defaultQty: 0 },
+      { code: "CD02", name: "居家護理指導與諮詢", fee: 6000, c1: 0, c2: 300, c3: 960, defaultQty: 0 }
     ];
 
     const cmsTiers = [
@@ -3679,7 +4357,7 @@
         cat2Pay += (item.c2 * qty);
         cat3Pay += (item.c3 * qty);
 
-        if (item.code === "BA09" || item.code === "BA09a" || /^B[BCD]/.test(item.code)) {
+        if (item.code === "BA09" || item.code === "BA09a" || /^(B[BCD]|C[A-D])/.test(item.code)) {
           foreignCareUsed += lineTotal;
         }
 
@@ -3727,7 +4405,7 @@
       { code: "EB04", name: "帶輪型助步車(助行椅)", buyPrice: 3000, buyC1: 3000, buyC2: 2700, buyC3: 2100, rentPrice: 300, rentC1: 300, rentC2: 270, rentC3: 210, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "EA" },
       { code: "EC01", name: "輪椅-A 款(非輕量化量產型)", buyPrice: 3500, buyC1: 3500, buyC2: 3150, buyC3: 2450, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "免評估(限購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
       { code: "EC02", name: "輪椅-B 款(輕量化量產型)", buyPrice: 4000, buyC1: 4000, buyC2: 3600, buyC3: 2800, rentPrice: 450, rentC1: 450, rentC2: 405, rentC3: 315, canRent: true, note: "免評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
-      { code: "EC03", name: "輪椅-C 款(量身訂製型)", buyPrice: 9000, buyC1: 9000, buyC2: 8100, buyC3: 6300, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
+      { code: "EC03", name: "輪椅-C 款(量身訂製型)", buyPrice: 9000, buyC1: 9000, buyC2: 9000, buyC3: 9000, rentPrice: 0, rentC1: 0, rentC2: 0, rentC3: 0, canRent: false, note: "需評估(限購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "輪椅擇一" },
       { code: "EC04", name: "輪椅附加功能-A 款(具利於移位功能)", buyPrice: 5000, buyC1: 5000, buyC2: 5000, buyC3: 5000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
       { code: "EC05", name: "輪椅附加功能-B款(具仰躺功能)", buyPrice: 2000, buyC1: 2000, buyC2: 2000, buyC3: 2000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
       { code: "EC06", name: "輪椅附加功能-C款(具空中傾倒功能)", buyPrice: 4000, buyC1: 4000, buyC2: 4000, buyC3: 4000, rentPrice: 150, rentC1: 150, rentC2: 135, rentC3: 105, canRent: true, note: "需評估(可租賃可購置)", years: "3", cat: "WHEELCHAIR", ruleTag: "須搭EC02/03" },
@@ -4512,7 +5190,7 @@
         a: '《長期照顧十年計畫 3.0》涵蓋 <b>115～124 年（2026～2035）</b>，2025/12/31 核定。重點：擴大對象（年輕型失智、PAC、外國專業人才）、出院銜接更快、互助喘息、輔具新增<b>第二組 6 萬元</b>（2026/7/1 起）、住宿機構補助調增。實際上路時間請以 1966 與衛福部公告為準。',
         acts: [['🆕 看 3.0 新制問答', () => setFaqCat('new')], ['📜 最新消息', () => openInfoModal('最新消息', '持續彙整衛生福利部長照給付與支付標準最新函釋、地方政府加碼補助公告與長照 3.0 全新權益變革。', '📜')]] },
       { k: ['機構補助', '住宿補助', '住機構', '入住機構', '住宿式', '安養', '護理之家'],
-        a: '2026 年新制（追溯自 115/1/1）：入住住宿式機構且<b>長照需要等級 4 級以上</b>或持<b>中度以上身障證明</b>者，每月補助由 5,000 元調增為 <b>15,000 元，全年最高 18 萬元</b>，改按月認列。實際申請方式請洽地方政府。',
+        a: '2026 年新制（追溯自 115/1/1）：入住住宿式機構且<b>長照需要等級 4 級以上</b>或持<b>中度以上身障證明</b>者，每月最高補助由 10,000 元調增為 <b>15,000 元，全年最高 18 萬元</b>，改按月認列。實際申請方式請洽地方政府。',
         acts: [['查看完整說明', () => openFaqItem(12)]] },
       { k: ['互助喘息'],
         a: '互助喘息試辦：1 名照服員搭配 1～3 位家庭照顧者，輪流換工、以服務換服務。截至 2026/3 已在 16 縣市設 50 處據點，可上「互助喘息服務預約平台」預約；專線 <b>0800-507272</b>。',
@@ -4528,7 +5206,7 @@
         acts: [['💬 看常見問題', () => navigateTo('faq')]] },
       { k: ['四包錢', '4包錢', '服務項目', '長照服務', '有哪些服務'],
         a: '長照四包錢：①照顧及專業服務 ②交通接送 ③輔具及居家無障礙環境改善 ④喘息服務。',
-        acts: [['查看服務介紹', () => openInfoModal('服務介紹', '長照 2.0/3.0 涵蓋照顧及專業服務、交通接送、輔具與無障礙環境改善服務、喘息服務四大項補助。歡迎聯繫我們為您的長輩量身安排合適之照顧計畫。', '💰')]] },
+        acts: [['查看服務介紹', () => openInfoModal('服務介紹', '長照四大類給付：照顧及專業服務、交通接送、輔具與居家無障礙環境改善、喘息服務。點選下方項目，查看服務內容、費用與試算。', '💰')]] },
       { k: ['自付', '費用', '多少錢', '部分負擔', '照顧額度', '計算機', '試算', 'cms', '額度'],
         a: '「<b>照顧及專業服務計算機</b>」：輸入每月各項服務次數，即可看到第二類 5%、第三類 16% 的預計自付，以及 CMS 第 2～8 級的剩餘額度。第一類（低收、中低收）為 0%。<br>輔具／無障礙另有專用計算機。',
         acts: [['🧮 照顧服務試算', () => navigateTo('calc')], ['🦽 輔具試算', () => navigateTo('assistive')]] },
@@ -4668,7 +5346,7 @@
       { view: 'home', sel: '.hero', t: '👋 歡迎來到長照好厝邊', d: '這裡是首頁。中間有<b>搜尋列</b>，輸入「喘息」「輪椅」等關鍵字就能找資料。' },
       { view: 'home', sel: '.navbar', t: '☰ 上方選單', d: '選單有：長照服務介紹、額度/費用試算、地方資源、教育訓練寶典、FAQ、聯絡我們。手機請點右上角 ☰，旁邊 🔍 可隨時搜尋。' },
       { view: 'home', sel: '#about .profile-card', t: '👨‍⚕️ 關於我與核心理念', d: '了解網站經營者的專業背景，以及「以人為本、專業賦能」的核心理念。' },
-      { view: 'home', sel: '#services .cards-grid', t: '💰 核心服務與指引', d: '點任何一張卡片，都會跳出簡明說明。其中「額度/費用試算」可選擇兩種計算機。' },
+      { view: 'home', sel: '#services .cards-grid', t: '💰 核心服務與指引', d: '點任何一張卡片，都會跳出簡明說明。其中「額度/費用試算」有三種計算機：照顧及專業、喘息、輔具與無障礙。' },
       { view: 'home', sel: '#community', t: '📱 多方管道', d: '官方 LINE、Instagram、Facebook，擇一追蹤就能收到衛教資訊。' },
       { view: 'calc', sel: '.ltc-calc-wrapper', t: '🧮 照顧及專業服務試算', d: '在「每月次數」欄輸入次數，右側會顯示自付額與 CMS 剩餘額度。<b>注意：</b>結果僅供參考，以照管中心核定為準。手機可左右滑動表格。' },
       { view: 'assistive', sel: '#assistiveCalcView .header-card', t: '🦽 輔具與無障礙試算', d: '先選<b>第一組(4萬)或第二組(6萬)</b>與身分別，再搜尋項目並設定數量；租賃要填起訖日期。上方看板會即時顯示補助與自付額。' },
